@@ -31,12 +31,12 @@ const courses = [
 ]
 
 const activity = [
-    {name: 'On Boarding', title: '1'},
-    {name: 'On Boarding', title: '2'},
-    {name: 'On Boarding', title: '3'},
-    {name: 'SOLUTION Culture', title: '1'},
-    {name: 'SOLUTION Culture', title: '2'},
-    {name: 'SOLUTION Culture', title: '3'},
+    {name: 'On Boarding', title: '1', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'On Boarding', title: '2', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'On Boarding', title: '3', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'SOLUTION Culture', title: '1', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'SOLUTION Culture', title: '2', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'SOLUTION Culture', title: '3', pdfSrc: '/src/files/pdf/Activity.pdf'},
     {name: 'Behaviour Competencies', title: '1'},
     {name: 'Behaviour Competencies', title: '2'},
     {name: 'Behaviour Competencies', title: '3'},
@@ -237,6 +237,11 @@ function PreActivity() {
         setCurrentPage('second');
     };
 
+    const handleThird = (activity) => {
+        setCurrentActivity(activity);
+        setCurrentPage('third');
+    };
+
     useEffect(() => {
         if (selectedPhase === 'option1') {
             setSelectedTopic('General Development');
@@ -318,7 +323,7 @@ function PreActivity() {
         return (
             <div className="activity-card-container">
                 {selectedActivities.map((activity, index) => (
-                    <div key={index} className="activity-card" onClick={handleMain}>
+                    <div key={index} className="activity-card" onClick={() => handleThird(activity)}>
                         <img className="activity-img" src="/src/files/icons/Day.png" />
                         <div className="activity-title">{activity.title}</div>
                     </div>
@@ -423,14 +428,33 @@ function PreActivity() {
                         )}
                     </div>
                 );
+            case 'third':
+                return (
+                    <div className="preactivity3">
+                        <div className="title3">
+                            <h><b>Pre-Activity</b></h>
+                        </div>
+                        <hr />
+                        <img className="backbutton" onClick={handleSecond} src="/src/files/icons/backbutton.png" alt="Back" />
+                        {currentActivity && (
+                            <div className="activityfill">
+                                <iframe 
+                                    src={currentActivity.pdfSrc} 
+                                    width="100%" 
+                                    height="100%" 
+                                    frameBorder="0"
+                                ></iframe>
+                            </div>
+                        )}
+                    </div>
+                );
             default:
                 return null;
         }
     };
 
-    
-    return(
-        <div className="App">
+    return (
+        <div className="pre-activity-container">
             {renderPage()}
         </div>
     );
