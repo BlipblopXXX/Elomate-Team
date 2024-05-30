@@ -25,11 +25,13 @@ function Dashboard() {
         );
       };
 
+    // Simulate progress increase over time
     setTimeout(() => {
         if (progress < 100) {
           setProgress(progress + 10);
         }
         }, 1000);
+        // Simulate progress increase over time
     setTimeout(() => {
         if (progress2 < 100) {
           setProgress2(progress2 + 20);
@@ -59,9 +61,6 @@ function Dashboard() {
                 <h><b>Dashboard</b></h>
             </div>
             <hr />
-            <div className="news">
-
-            </div>
             <div className="divider-d">
                 <div className="progress">
                     <div className="progress-up">
