@@ -25,13 +25,13 @@
   background-color: white;
   margin-left: 2%;
   margin-right: 1%;
-  height: 50vh;
+  height: 80vh;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .dashboard .progress-up {
-  flex: 2;
+  flex: 1;
   background-color: gold;
   border-radius: 10px 10px 0 0;
   align-content: center;
@@ -87,11 +87,11 @@
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
-  height: 50vh;
+  height: 80vh;
 }
 
 .dashboard .todolist-up {
-  flex: 2;
+  flex: 1;
   background-color: gold;
   border-radius: 10px 10px 0 0; 
   align-content: center;
@@ -116,11 +116,11 @@
   margin-left: 1%;
   margin-right: 2%;
   border-radius: 10px;
-  height: 50vh;
+  height: 80vh;
 }
 
 .dashboard .agenda-up {
-  flex: 2;
+  flex: 1;
   background-color: gold;
   border-radius: 10px 10px 0 0;
   align-content: center; 
@@ -149,6 +149,7 @@
 .dashboard .list-table {
   width: 100%;
   border-collapse: collapse;
+  
 }
   
 .dashboard .list-table th,
@@ -156,6 +157,7 @@
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  border-radius: 0;
 }
 
 .dashboard .list-table .th1,
