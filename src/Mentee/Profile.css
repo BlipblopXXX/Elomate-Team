@@ -1,0 +1,32 @@
+.profile .title {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.profile .form {
+    background-color: white;
+    width: 160.3vh;
+}
+
+.profile .profileup {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile .picture {
+    margin-top: 1%;
+    margin-left: 1%;
+    width: 25vh;
+    height: 25vh;
+}
+
+.profile .input {
+    margin-top: 3%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+
+.profile .input hr{
+    width: 120vh;
+}
