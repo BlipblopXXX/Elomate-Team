@@ -209,3 +209,24 @@
     height: auto;
     cursor: pointer;
 }
+
+.preactivity3 .title3 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.preactivity3 .backbutton {
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 3%;
+    cursor: pointer;
+}
+
+.preactivity3 .activityfill {
+    margin: 2%;
+    background-color: white;
+    width: 153vh;
+    height: 69vh;
+    border: 1px solid #ccc;
+}
