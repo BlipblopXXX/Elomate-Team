@@ -4,6 +4,31 @@
     font-size: 25px;
 }
 
+.finalreport .selecttile {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+}
+
+.finalreport .selecttile .phase {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-weight: bold;
+}
+
+.finalreport .selecttile .phaseselect {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    width: 400px;
+    padding: 8px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .final-desc {
     padding: 1%;
 }
@@ -18,7 +43,7 @@
 }
 
 .batch-title {
-    margin-right: 10%;
+    margin-left: 0%;
     font-weight: bold;
 }
 
