@@ -13,6 +13,7 @@ import SelfPeer from './SelfPeer';
 import FinalReport from './FinalReport';
 import Announcement from './Announcement';
 import Mentoring from './Mentoring';
+import Profile from './Profile';
 
 function Main() {
     const [currentPage, setCurrentPage] = useState('home');
@@ -70,6 +71,10 @@ function Main() {
         setCurrentScreen('mentoring');
     }
 
+    const handleProfile = () => {
+        setCurrentScreen('profile');
+    }
+
     const renderScreen = () => {
         switch (currentScreen){
             case 'eap':
@@ -96,6 +101,8 @@ function Main() {
                 return <Announcement />;
             case 'mentoring':
                 return <Mentoring />;
+            case 'profile':
+                return <Profile />;
         }
     };
 
@@ -111,7 +118,7 @@ function Main() {
                             <div className="user">
                                 <img className="icon1" onClick={handleEAP} src="/src/files/icons/Health.png"/>
                                 <img className="icon2" onClick={handleGames} src="/src/files/icons/Games.png"/>
-                                <img className="icon3" src="/src/files/icons/User.png"/>
+                                <img className="icon3" onClick={handleProfile} src="/src/files/icons/User.png"/>
                                 <div className="user-text">
                                     <p><b>Nama Elomate</b></p>
                                     <p>Nomor Elomate</p>
