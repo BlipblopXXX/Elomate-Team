@@ -19,6 +19,48 @@ function Profile() {
         setCurrentPage('Five');
     }
 
+    const [progress, setProgress] = useState(0);
+    const [progress2, setProgress2] = useState(0);
+    const [progress3, setProgress3] = useState(0);
+    const [progress4, setProgress4] = useState(0);
+
+    const ProgressBar = ({ percentage }) => {
+        return (
+          <div className="progress-bar">
+            <div
+              className="progresss"
+              style={{ width: `${percentage}%` }}
+            />
+          </div>
+        );
+    }
+     // Simulate progress increase over time
+     setTimeout(() => {
+        if (progress < 100) {
+          setProgress(progress + 10);
+        }
+        }, 1000);
+        // Simulate progress increase over time
+    setTimeout(() => {
+        if (progress2 < 100) {
+          setProgress2(progress2 + 20);
+        }
+        }, 1000);
+        // Simulate progress increase over time
+    setTimeout(() => {
+        if (progress3 < 100) {
+          setProgress3(progress3 + 20);
+        }
+        }, 1000);
+        // Simulate progress increase over time
+    setTimeout(() => {
+        if (progress4 < 100) {
+          setProgress4(progress4 + 20);
+        }
+        }, 1000);
+
+
+
     const handleEditAccount = () => {
         handleSecond();
         
@@ -28,16 +70,16 @@ function Profile() {
         switch (currentPage) {
             case 'main':
                 return(
-                    <div className="Profile">
+                    <div className="profile">
                         <div className="title">
                             <h><b>User Profile</b></h> 
                             <div className="EditButton" onClick={handleEditAccount}> Edit Account </div>
                         </div>
                         <div className="form">
                             <hr />
+                            <div className='EditProfile' onClick={handleEditAccount}> Edit Profile </div>
                             <div className="profileup">
                                 <img className="picture" src="/src/files/profile/Profile1.png" />
-                                <div className='EditProfile' onClick={handleEditAccount}> Edit Profile </div>
                                 <div className="input">
                                     <div className="input-name"><b>Nama :</b></div>
                                     <hr />
@@ -57,7 +99,52 @@ function Profile() {
                                 </div>
                             </div>
                             <hr />
-                            <div className="profiledown">
+
+                        <div className='bot-container'>
+                            <div className='left-container'>
+                                <div className='judul-container'>
+                                    <div><strong> Mandatory Course Progress </strong></div>
+                                </div>
+                                <div className="profiledown">
+                                <p>General Development      
+                                <div className='bar'>
+                                    <div className='bar1'>
+                                        <ProgressBar percentage={progress}/>
+                                    </div>
+                                    <div className='bar2'>{progress}%</div>
+                                </div>          
+                                </p>
+                                <p>Orientasi Divisi
+                                <div className='bar'>
+                                        <div className='bar1'>
+                                            <ProgressBar percentage={progress2}/>
+                                        </div>
+                                        <div className='bar2'>{progress2}%</div>
+                                    </div>
+                                </p>
+                                <p>BGMS
+                                <div className='bar'>
+                                        <div className='bar1'>
+                                            <ProgressBar percentage={progress3}/>
+                                        </div>
+                                        <div className='bar2'>{progress3}%</div>
+                                    </div>
+                                </p>
+                                <p>Neop 
+                                <div className='bar'>
+                                        <div className='bar1'>
+                                            <ProgressBar percentage={progress4}/>
+                                        </div>
+                                        <div className='bar2'>{progress4}%</div>
+                                    </div>
+                                </p>
+                            </div>
+                            <div className='right-container'>
+                                *Last Update 15 November 2023
+                            </div>
+                        </div>
+                                
+
 
 
                             </div>
@@ -77,3 +164,4 @@ function Profile() {
 }
 
 export default Profile;
+
