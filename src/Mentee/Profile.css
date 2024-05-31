@@ -21,6 +21,10 @@
     height: 25vh;
 }
 
+.profile .EditProfile{
+    width: 3%;
+}
+
 .profile .input {
     margin-top: 3%;
     margin-left: 1%;
@@ -28,5 +32,22 @@
 }
 
 .profile .input hr{
-    width: 120vh;
+    width: 80vh;
+}
+
+.home .EditButton{
+    font-size: small;
+    display: flex;
+    flex-direction: row;
+    margin-left: 90%;
+    color: darkgray;
+}
+
+.home .EditProfile{
+    font-size: small;
+    display: flex;
+    flex-direction: row;
+    margin-left: 90%;
+    color: darkgrey;
+
 }
