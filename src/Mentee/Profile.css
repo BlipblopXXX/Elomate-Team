@@ -1,6 +1,6 @@
 .profile .title {
     margin-top: 1%;
-    margin-left: 2%;
+    margin-left: 3%;
     font-size: 25px;
 }
 
@@ -10,6 +10,7 @@
 }
 
 .profile .profileup {
+    background-color: white;
     display: flex;
     flex-direction: row;
 }
@@ -17,8 +18,8 @@
 .profile .picture {
     margin-top: 1%;
     margin-left: 1%;
-    width: 25vh;
-    height: 25vh;
+    width: 24vh;
+    height: 20vh;
 }
 
 .profile .EditProfile{
@@ -26,28 +27,41 @@
 }
 
 .profile .input {
-    margin-top: 3%;
+    margin-top: 1%;
     margin-left: 1%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }
 
 .profile .input hr{
     width: 80vh;
 }
 
-.home .EditButton{
+.profile .EditButton{
     font-size: small;
     display: flex;
     flex-direction: row;
-    margin-left: 90%;
+    margin-left: 89%;
     color: darkgray;
 }
 
-.home .EditProfile{
+.profile .EditProfile{
     font-size: small;
     display: flex;
     flex-direction: row;
-    margin-left: 90%;
+    margin-left: 95%;
     color: darkgrey;
 
 }
+
+.profile .bot-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile .judul-container{
+    font-size: large;
+    font-weight: bold;
+    background-color: yellow;
+}
+
+
