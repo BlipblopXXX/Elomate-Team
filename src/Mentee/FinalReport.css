@@ -1,121 +1,328 @@
-.finalreport .title {
+.selfpeer .title1 {
+    margin-top: 1%;
+    margin-left: 1%;
+    font-size: 25px;
+}
+
+.selfpeer .title2, .title3 {
+    display: flex;
+    align-items: center;
     margin-top: 1%;
     margin-left: 2%;
     font-size: 25px;
 }
 
-.finalreport .selecttile {
+.selfpeer h {
+    margin-left: 1%;
+}
+
+.selfpeer .title2 img, .selfpeer .title3 img {
+    width: 3%;
+    cursor: pointer;
+    
+}
+
+.selfpeer .phasetitle {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.selfpeer .phase {
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 32%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.selfpeer .selfpeer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.selfpeer .selfpeer-item {
+    background-color: white;
+    padding: 3%;
+    border-radius: 10px;
+    width: 45%;
+    margin: 1%;
+    display: grid;
+}
+
+.selfpeer-item .TwinButton {
+    display:flex;
+    
+}
+
+.selfpeer-item .TwinButton 
+.selfpeer-button {
+    width: 100%;;
+    justify-content: center;
+    padding: 1%;
+    background-color: rgb(0, 106, 255);
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px;
+}
+
+.selfpeer .Dropdown{
     display: flex;
     flex-direction: row;
     margin-top: 1%;
+    
 }
 
-.finalreport .selecttile .phase {
+.selfpeer .Dropdown .phasetitle{
+
     display: flex;
     flex-direction: column;
     margin-top: 1%;
     margin-left: 2%;
-    font-weight: bold;
+
 }
 
-.finalreport .selecttile .phaseselect {
+.selfpeer .Dropdown .phasetitle .phaseselect{
     display: flex;
     flex-direction: column;
     margin-top: 3%;
     width: 400px;
     padding: 8px;
-    font-size: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+}
+
+.selfpeer .Dropdown .roletitle{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: 15%;
+}
+
+.selfpeer .Dropdown .role{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    width: 400px;
+    padding: 8px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.final-desc {
-    padding: 1%;
-}
 
-.desc {
-    padding: 1%;
-    border-radius: 10px;
+.selfpeer .description {
     display: flex;
     flex-direction: row;
-    background-color: gold;
-    height: 3vh;
+    align-items: center;
+    margin-bottom: 3%;
 }
 
-.batch-title {
-    margin-left: 0%;
+.selfpeer .selfpeer-text {
+    margin-left: 3%;
+    align-items: center;
+}
+
+.selfpeer .selfpeer-title {
     font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 3%;
 }
 
-.batch {
-    margin-right: 25%;
+.selfpeer .selfpeer-date {
+    font-size: 16px;
 }
 
-.batch-name {
-    margin-right: 10%;
-    font-weight: bold;
-}
-
-.final-container {
-    margin-top: 2%;
-    margin-left: 1%;
-    margin-right: 1%;
-}
-
-table {
-    width: 100%;
-    border-collapse: separate;
-}
-
-th, td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    border-radius: 10px;
-}
-
-th {
-    background-color: gold;
-}
-
-th:first-child {
-    width: 50px;
-}
-
-td:nth-child(1),
-td:nth-child(3),
-td:nth-child(4) {
-    text-align: center;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tbody tr:nth-child(odd) td {
-    background-color: white;
-}
-
-tfoot {
-    font-weight: bold;
-}
-
-tfoot td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    border-radius: 10px;
-    background-color: gold;
-}
-
-tfoot td:first-child {
-    width: 50px;
-}
-
-tfoot td:nth-child(2) {
-    text-align: center;
-}
-
-.finalreport .graphic-title {
+.selfpeer .task-details-container {
     margin-top: 1%;
-    margin-left: 2%;
-    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+.selfpeer .task-details {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    padding: 1%;
+    border-radius: 10px;
+    width: 29%;
+    margin: 1%;
+}
+
+.selfpeer .task-details .task-description {
+    margin-top: 1%;
+    margin-left: 3%;
+    align-items: center;
+}
+
+.selfpeer .task-details .task-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 3%;
+}
+
+.selfpeer .task-details .task-desc {
+    font-size: 14px;
+}
+
+.selfpeer .question-container {
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    margin-left: 7%;
+    margin-top: 4%;
+    border-radius: 15px;
+    padding: 1%;
+    border: 1px solid #DEE2E6;
+}
+
+.selfpeer .buttonPosition {
+    margin-left: 15%;
+}
+
+.selfpeer .btnGhost {
+    border: 1px solid #D4D4D4;
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin: 20px;
+    background-color: transparent;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    left: 50%;
+}
+
+.selfpeer .btnGhost:hover {
+    background-color: #D4D4D4;
+    color: black;
+}
+
+.selfpeer .submitButton {
+    margin-left: 210px;
+}
+
+.selfpeer .submitButton .submit {
+    background-color: #3A89FD;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 7px;
+    font-size: medium;
+    width: 120px;
+}
+
+.selfpeer .submitButton .submit:hover {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #D4D4D4;
+    color: black;
+}
+
+.selfpeer .question-container-scale {
+    background-color: white;
+    float: right;
+    padding: 10px;
+    border-radius: 15px;
+    position: absolute;
+    top: 100px;
+    right: 80px;
+    width: 300px;
+    height: 240px;
+    border: 1px solid #DEE2E6;
+}
+
+.selfpeer .question-container-scale .numberOne {
+    background-color: #FF0000;
+}
+
+.selfpeer .question-container-scale .numberTwo {
+    background-color: #FF720D;
+}
+
+.selfpeer .question-container-scale .numberThree {
+    background-color: #FFCA0D;
+}
+
+.selfpeer .question-container-scale .numberFour {
+    background-color: #9EFF00;
+}
+
+.selfpeer .question-container-scale .numberFive {
+    background-color: #12FF0D;
+}
+
+.selfpeer .question-container-scale .numberOne,
+.selfpeer .question-container-scale .numberTwo,
+.selfpeer .question-container-scale .numberThree,
+.selfpeer .question-container-scale .numberFour,
+.selfpeer .question-container-scale .numberFive {
+    border-radius: 50%;
+    padding: 3px 9px;
+    width: 3%;
+    text-wrap: nowrap;
+    word-spacing: px;
+    font-size: medium;
+    margin-left: 15px;
+    display: flex;
+}
+
+/*Peer list styles*/
+.peer-list {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.peer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.peer-item:hover {
+    background-color: #f0f0f0;
+}
+
+.peer-name,
+.peer-status,
+.peer-assessment {
+    flex: 1;
+    text-align: left;
+}
+
+.peer-status,
+.peer-assessment {
+    text-align: center;
+}
+
+/* Table header styles */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-bottom: 2px solid #ccc;
+}
+
+.table-header div {
+    flex: 1;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table-header .peer-status,
+.table-header .peer-assessment {
+    text-align: center;
 }
