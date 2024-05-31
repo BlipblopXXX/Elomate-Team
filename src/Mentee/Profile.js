@@ -3,19 +3,41 @@ import './Profile.css';
 
 function Profile() {
     const [currentPage, setCurrentPage] = useState('main');
+    const handleMain = () => {
+        setCurrentPage('Main');
+    }
+    const handleSecond = () => {
+        setCurrentPage('Second');
+    }
+    const handleThree = () => {
+        setCurrentPage('Three');
+    }
+    const handleFour = () => {
+        setCurrentPage('Four');
+    }
+    const handleFive = () => {
+        setCurrentPage('Five');
+    }
+
+    const handleEditAccount = () => {
+        handleSecond();
+        
+    }
 
     const renderPage = () => {
         switch (currentPage) {
             case 'main':
                 return(
-                    <div className="profile">
+                    <div className="Profile">
                         <div className="title">
-                            <h><b>User Profile</b></h>
+                            <h><b>User Profile</b></h> 
+                            <div className="EditButton" onClick={handleEditAccount}> Edit Account </div>
                         </div>
                         <div className="form">
                             <hr />
                             <div className="profileup">
                                 <img className="picture" src="/src/files/profile/Profile1.png" />
+                                <div className='EditProfile' onClick={handleEditAccount}> Edit Profile </div>
                                 <div className="input">
                                     <div className="input-name"><b>Nama :</b></div>
                                     <hr />
@@ -36,6 +58,7 @@ function Profile() {
                             </div>
                             <hr />
                             <div className="profiledown">
+
 
                             </div>
                         </div>
