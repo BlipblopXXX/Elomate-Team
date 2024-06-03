@@ -1,1 +1,121 @@
+.finalreport .title {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
 
+.finalreport .selecttile {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+}
+
+.finalreport .selecttile .phase {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-weight: bold;
+}
+
+.finalreport .selecttile .phaseselect {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    width: 400px;
+    padding: 8px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.final-desc {
+    padding: 1%;
+}
+
+.desc {
+    padding: 1%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: gold;
+    height: 3vh;
+}
+
+.batch-title {
+    margin-left: 0%;
+    font-weight: bold;
+}
+
+.batch {
+    margin-right: 25%;
+}
+
+.batch-name {
+    margin-right: 10%;
+    font-weight: bold;
+}
+
+.final-container {
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+th {
+    background-color: gold;
+}
+
+th:first-child {
+    width: 50px;
+}
+
+td:nth-child(1),
+td:nth-child(3),
+td:nth-child(4) {
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd) td {
+    background-color: white;
+}
+
+tfoot {
+    font-weight: bold;
+}
+
+tfoot td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: gold;
+}
+
+tfoot td:first-child {
+    width: 50px;
+}
+
+tfoot td:nth-child(2) {
+    text-align: center;
+}
+
+.finalreport .graphic-title {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
