@@ -1,0 +1,61 @@
+.verifyapp {
+    text-align: center;
+    margin-top: 15%;
+}
+
+.verify {
+    display: inline-block;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #fdf5e6;
+    padding: 20px;
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.verify h1 {
+    color: #b8860b;
+}
+
+.verify .form-group {
+    margin-bottom: 15px;
+}
+
+.verify .form-group label {
+    display: block;
+    color: #b8860b;
+    margin-bottom: 5px;
+}
+
+.verify .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ffd700;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.verify .error {
+    color: red;
+    margin-top: 10px;
+}
+
+.verify .btn {
+    margin-top: 1%;
+    background-color: #ffd700;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.verify .btn:hover {
+    background-color: #b8860b;
+}
+
+.verify .backbutton {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
