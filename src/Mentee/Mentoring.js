@@ -21,7 +21,7 @@ function Mentoring() {
 
     const capitalizeWords = (str) => {
         return str.replace(/\b\w/g, char => char.toUpperCase());
-    };
+    }; 
 
     const handleAddScheduleButtonClick = () => {
         setAddScheduleButtonClicked(true);
@@ -118,6 +118,7 @@ function Mentoring() {
     const [competenciesError, setCompetenciesError] = useState('');
     const [lesson, setLesson] = useState('');
     const [catatan, setCatatan] = useState('');
+    const [file, setFile] = useState(null);
 
     const [schedules, setSchedules] = useState([])
     const [form, setForm] = useState([])
@@ -176,20 +177,20 @@ function Mentoring() {
             mentorName: capitalizeWords(mentorName),
             topicName: capitalizeWords(topicName),
             competencies: competencies.join(', '),
-            status: 'Ongoing',
+            status: 'Completed',
         };
 
         setSchedules([newSchedule, ...schedules]);
         handleOngoingButtonClicked();
 
-        setDate(new Date());
-        setTime('');
-        setTime1('');
-        setType(null);
-        setMethod(null);
-        setMentorName('');
-        setTopicName('');
-        setCompetencies([]);
+        // setDate(new Date());
+        // setTime('');
+        // setTime1('');
+        // setType(null);
+        // setMethod(null);
+        // setMentorName('');
+        // setTopicName('');
+        // setCompetencies([]);
     };
 
     const handleFormButtonClick = () => {
@@ -208,6 +209,57 @@ function Mentoring() {
 
         handleSecond();
     }
+
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0]);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (file) {
+            // You can handle the file submission here, e.g., upload to a server
+            console.log('File selected:', file);
+        }
+    };
+
+    const [lessonError, setLessonError] = useState('');
+    const [catatanError, setCatatanError] = useState('');
+
+    
+
+    const handleSubmitFormButton = () => {
+        // Clear previous errors
+        setLessonError('');
+        setCatatanError('');
+
+        let valid = true;
+
+        // Validate lesson input
+        if (!lesson.trim()) {
+            setLessonError('*Lesson learned is required.');
+            valid = false;
+        }
+
+        // Validate catatan input
+        if (!catatan.trim()) {
+            setCatatanError('*Catatan is required.');
+            valid = false;
+        }
+
+        if (!valid) return;
+
+        // Proceed with form submission if valid
+        // Handle form submission here
+        console.log('Form submitted:', { lesson, catatan, file });
+
+        // Reset form after submission
+        setLesson('');
+        setCatatan('');
+        setFile(null);
+
+        handleMain();
+        handleClosedButtonClick();
+    };
 
     const renderPage = () => {
         switch(currentPage) {
@@ -522,30 +574,47 @@ function Mentoring() {
                                                     <div className='value1'>{schedule.competencies}</div>
                                                 </div>
 
-                                                <p className='judul-form'><strong>Lesson Learned Competencies</strong></p>
-                                                <div className="form-desc"> 
-                                                    <p>Tuliskan dalam bentuk poin pembelajaran yang didapat selama Mentoring / Coaching</p>
+                                                <p className='judul-form1'><strong>Lesson Learned Competencies</strong></p>
+                                                <div> 
+                                                    <p className="form-desc">Tuliskan dalam bentuk poin pembelajaran yang didapat selama Mentoring / Coaching</p>
                                                 </div>
                                                 <div>
                                                     <input
+                                                        className='answer'
                                                         type="text"
                                                         placeholder="Your Answer"
                                                         value={lesson}
                                                         onChange={(e) => setLesson(e.target.value)}
                                                     />
+                                                    <div className="error">
+                                                        {lessonError}     
+                                                    </div>
                                                 </div>
-                                                <p className='judul-form'><strong>Catatan Mentor</strong></p>
-                                                <div className="form-desc"> 
-                                                    <p>Catatan terkait hal yang sudah improve dan area of development</p>
+                                                <p className='judul-form1'><strong>Catatan Mentor</strong></p>
+                                                <div> 
+                                                    <p className="form-desc">Catatan terkait hal yang sudah improve dan area of development</p>
                                                 </div>
                                                 <div>
                                                     <input
+                                                        className='answer'
                                                         type="text"
                                                         placeholder="Your Answer"
                                                         value={catatan}
                                                         onChange={(e) => setCatatan(e.target.value)}
                                                     />
+                                                    <div className="error">
+                                                        {catatanError}     
+                                                    </div>
                                                 </div>
+                                                <p className='judul-form1'><strong>Attachment</strong></p>
+                                                <div className='file'>
+                                                    <form onSubmit={handleSubmit}>
+                                                        <input className='file-input' type="file" onChange={handleFileChange} />
+                                                    </form>
+                                                </div>
+                                                <button className='submitButton' onClick={handleSubmitFormButton}>
+                                                    Submit
+                                                </button>
                                             </div>
                                         ))}
                                 </div>
