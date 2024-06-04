@@ -142,7 +142,7 @@ function Main() {
                                         <a href="#" className="schedule" onClick={handleSchedule}><img src="/src/files/icons/Schedule.png"/> Schedule</a>
                                         <a href="#" className="preactivity" onClick={handlePreActivity}><img src="/src/files/icons/PreActivity.png"/> Pre-Activity</a>
                                         <a href="#" className="assignment" onClick={handleAssignment}><img src="/src/files/icons/Assignment.png"/> Assignment</a>
-                                        <a href="#" className="selfpeer" onClick={handleSelfPeer}><img src="/src/files/icons/SelfPeer.png"/> Self & Peer Assessment</a>
+                                        <a href="#" className="selfpeer" onClick={handleSelfPeer}><img src="/src/files/icons/SelfPeer.png"/> Assessment</a>
                                         <a href="#" className="mentoring" onClick={handleMentoring}><img src="/src/files/icons/Mentoring.png"/> Mentoring</a>
                                         <a href="#" className="finalreport" onClick={handleFinalReport}><img src="/src/files/icons/FinalReport.png"/> Final Report</a>
                                         <a href="#" className="participant" onClick={handleParticipant}><img src="/src/files/icons/Participant.png"/> Participant Data</a>
