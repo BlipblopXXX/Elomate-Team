@@ -222,7 +222,7 @@
 }
 
 .mentoring .status {
-    color: orange;
+    color: rgb(52, 216, 52)
 }
 
 .mentoring .assign-details-container {
@@ -318,7 +318,7 @@
     background-color: white;
     border-radius: 10px;
     border: 1px solid #B3B3B3;
-    height: 75vh;
+    height: 78vh;
     border: 1px solid black;
 }
 
@@ -358,6 +358,12 @@
     margin-bottom: 1%;
 }
 
+.mentoring .judul-form1 {
+    font-size: 18px;
+    margin-left: 1%;
+    margin-bottom: 0%;
+}
+
 .mentoring .value1 {
     margin-left: 0.5%;
     margin-bottom: 0.5%;
@@ -365,5 +371,43 @@
 }
 
 .mentoring .form-desc {
+    margin-top: 0%;
     margin-left: 1%;
 }
+
+.mentoring .answer {
+    margin-left: 1%;
+    width: 98%;
+    height: 3vh;
+}
+
+.mentoring .file {
+    align-items: center;
+    border: 1px solid black;
+    margin-left: 1%;
+    margin-top: 1%;
+    height: 28px;
+    width: 98.5%;
+}
+
+.mentoring .file-input {
+    margin-left: 3px;
+    width: 100vh;
+}
+
+.mentoring .submitButton{
+    width: 200px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    margin-top: 2.5%;
+    margin-right: 5px;
+    float: right;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mentoring .submitButton:hover {
+    background-color: #0056b3;
+  }
