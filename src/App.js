@@ -3,7 +3,7 @@ import './App.css';
 import MenteeMain from './Mentee/Main';
 import FasilitatorMain from './Mentee/Main';
 import AdminMain from './Mentee/Main';
-import Register from './Register';
+import Verify from './Verify';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -50,7 +50,7 @@ function App() {
   }
 
   const handleRegister = () => {
-    setCurrentPage('register');
+    setCurrentPage('verify');
   };
 
   const renderPage = () => {
@@ -93,8 +93,8 @@ function App() {
             </div>
           </div>
         );
-      case 'register':
-        return <Register />;
+      case 'verify':
+        return <Verify />;
       case 'mentee':
         return <MenteeMain />;
       case 'fasilitator':
