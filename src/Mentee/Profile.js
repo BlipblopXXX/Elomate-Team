@@ -106,43 +106,46 @@ function Profile() {
                                     <div><strong> Mandatory Course Progress </strong></div>
                                 </div>
                                 <div className="profiledown">
-                                <p>General Development      
-                                <div className='bar'>
-                                    <div className='bar1'>
-                                        <ProgressBar percentage={progress}/>
-                                    </div>
-                                    <div className='bar2'>{progress}%</div>
-                                </div>          
-                                </p>
-                                <p>Orientasi Divisi
-                                <div className='bar'>
+                                    <p>General Development      
+                                    <div className='bar'>
                                         <div className='bar1'>
-                                            <ProgressBar percentage={progress2}/>
+                                            <ProgressBar percentage={progress}/>
                                         </div>
-                                        <div className='bar2'>{progress2}%</div>
-                                    </div>
-                                </p>
-                                <p>BGMS
-                                <div className='bar'>
-                                        <div className='bar1'>
-                                            <ProgressBar percentage={progress3}/>
+                                        <div className='bar2'>{progress}%</div>
+                                    </div>          
+                                    </p>
+                                    <p>Orientasi Divisi
+                                    <div className='bar'>
+                                            <div className='bar1'>
+                                                <ProgressBar percentage={progress2}/>
+                                            </div>
+                                            <div className='bar2'>{progress2}%</div>
                                         </div>
-                                        <div className='bar2'>{progress3}%</div>
-                                    </div>
-                                </p>
-                                <p>Neop 
-                                <div className='bar'>
-                                        <div className='bar1'>
-                                            <ProgressBar percentage={progress4}/>
+                                    </p>
+                                    <p>BGMS
+                                    <div className='bar'>
+                                            <div className='bar1'>
+                                                <ProgressBar percentage={progress3}/>
+                                            </div>
+                                            <div className='bar2'>{progress3}%</div>
                                         </div>
-                                        <div className='bar2'>{progress4}%</div>
-                                    </div>
-                                </p>
+                                    </p>
+                                    <p>Neop 
+                                    <div className='bar'>
+                                            <div className='bar1'>
+                                                <ProgressBar percentage={progress4}/>
+                                            </div>
+                                            <div className='bar2'>{progress4}%</div>
+                                        </div>
+                                    </p>
+                                </div>
+                                <div className='updateprogress'>
+                                    *Last Update 15 November 2023
+                                </div>
                             </div>
-                            <div className='right-container'>
-                                *Last Update 15 November 2023
+                            <div  className='right-container'>
+                                <p>test</p>
                             </div>
-                        </div>
                                 
 
 
