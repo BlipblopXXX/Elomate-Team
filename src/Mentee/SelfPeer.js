@@ -14,14 +14,14 @@ const roles = [
 ];
 
 const cards = [
-    { title: 'SOLUTION Culture', selectedphase: 'option1' },
-    { title: '8 Behaviour Compentencies', selectedphase: 'option1' },
-    { title: 'SOLUTION Culture', selectedphase: 'option2' },
-    { title: '8 Behaviour Compentencies', selectedphase: 'option2' },
-    { title: 'SOLUTION Culture', selectedphase: 'option3' },
-    { title: '8 Behaviour Compentencies', selectedphase: 'option3' },
-    { title: 'SOLUTION Culture', selectedphase: 'option4' },
-    { title: '8 Behaviour Compentencies', selectedphase: 'option4' }
+    { title: 'SOLUTION Culture', selectedphase: 'option1', no: 'Batch ' },
+    { title: '8 Behaviour Compentencies', selectedphase: 'option1', no: 'Batch ' },
+    { title: 'SOLUTION Culture', selectedphase: 'option2', no: 'Batch ' },
+    { title: '8 Behaviour Compentencies', selectedphase: 'option2', no: 'Batch ' },
+    { title: 'SOLUTION Culture', selectedphase: 'option3', no: 'Batch ' },
+    { title: '8 Behaviour Compentencies', selectedphase: 'option3', no: 'Batch ' },
+    { title: 'SOLUTION Culture', selectedphase: 'option4', no: 'Batch ' },
+    { title: '8 Behaviour Compentencies', selectedphase: 'option4', no: 'Batch ' }
 ];
 
 const SelfQuestion = [
@@ -72,12 +72,6 @@ function SelfPeer() {
     const [selectedPhase, setSelectedPhase] = useState('option1');
     const [selectedRole, setSelectedRole] = useState('Self');
 
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.toLocaleString('default', { month: 'long' });
-    const year = today.getFullYear();
-    const formattedDate = `${day} ${month} ${year}`;
-
     const handlePhaseChange = (event) => {
         setSelectedPhase(event.target.value);
     };
@@ -111,11 +105,6 @@ function SelfPeer() {
             return null;
         }
     };
-    
-
-    // const handleQuestion = (title, title2) => {
-    //     setSelectedQuestion({ title: title, title2: title2 });
-    // };
 
     const handlePeerSelected = (person) => {
         setSelectedPeer(person);
@@ -131,7 +120,7 @@ function SelfPeer() {
                     <img className="selfpeer-img" src="/src/files/icons/TaskImg.png" alt="Task" />
                     <div className="selfpeer-text">
                         <div className="selfpeer-title">{selfpeer.title}</div>
-                        <div className="selfpeer-date">{formattedDate}</div>
+                        <div className="selfpeer-batch">{selfpeer.no}</div>
                     </div>
                 </div>
                 <div className="TwinButton">
@@ -143,10 +132,9 @@ function SelfPeer() {
 
     const renderQuestion = () => {
         const questions1 = SelfQuestion.filter(item => item.title2 === selectedQuestion);
-        const questions2= PeerQuestion.filter(item => item.title2 === selectedQuestion);
+        const questions2 = PeerQuestion.filter(item => item.title2 === selectedQuestion);
 
-        if (selectedRole ==='Self'){
-
+        if (selectedRole === 'Self') {
             return questions1.map((question, index) => (
                 <div key={index}>
                     {index + 1}. {question.question}
@@ -159,7 +147,7 @@ function SelfPeer() {
                     </div>
                 </div>
             ));
-        } else if (selectedRole === 'Peer'){
+        } else if (selectedRole === 'Peer') {
             return questions2.map((question, index) => (
                 <div key={index}>
                     {index + 1}. {question.question}
@@ -175,7 +163,6 @@ function SelfPeer() {
         } else {
             return null;
         }
-        
     };
 
     const renderPage = () => {
@@ -211,7 +198,7 @@ function SelfPeer() {
                         </div>
                     </div>
                 );
-             case 'second':
+            case 'second':
                 return (
                     <div className="selfpeer">
                         <div className="title2">
@@ -272,4 +259,3 @@ function SelfPeer() {
 }
 
 export default SelfPeer;
-
