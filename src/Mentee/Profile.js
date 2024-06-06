@@ -17,9 +17,9 @@ import { MonthView } from 'react-calendar';
 const Additional = [
     {
       activities: [
-        { activity: 'Social Activity1', role: 'Peran', description: 'Deskripsi', },
-        { activity: 'Social Activity2', role: 'Peran', description: 'Deskripsi', },
-        { activity: 'Social Activity3', role: 'Peran', description: 'Deskripsi', },
+        { activity: 'Social Activity1', Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi', },
+        { activity: 'Social Activity2', Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi', },
+        { activity: 'Social Activity3', Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi', },
       ]
     
     }
@@ -90,15 +90,19 @@ function Profile() {
                                             <div className="Social-Activity">
                                                 {item.activities.map((AdditionalActivities, index) => (
                                                 <div key={index} className="Social-activity">
+                                                     
                                                     <div className="activity-details">
                                                         <div className='activity-row'>
-                                                            <img src='/src/files/icons/'/><div className="activity">{AdditionalActivities.activity}</div>
+                                                            <div className="activity">{AdditionalActivities.activity}</div>
                                                         </div>
                                                         <div className='activity-row'>
-                                                            <img src='/src/files/icons/'/><div className="Peran">{AdditionalActivities.role}</div>
-                                                            </div>
+                                                            <img src='/src/files/icons/dateadditional.png'/><div className="24 Juli 2024">{AdditionalActivities.Date}</div>
+                                                        </div>
                                                         <div className='activity-row'>
-                                                            <img src='/src/files/icons/'/><div className="Deskripsi">{AdditionalActivities.description} </div>
+                                                            <img src='/src/files/icons/Roleadditional.png'/><div className="Peran">{AdditionalActivities.role}</div>
+                                                        </div>
+                                                        <div className='activity-row'>
+                                                            <img src='/src/files/icons/desc.png'/><div className="Deskripsi">{AdditionalActivities.description} </div>
                                                         </div>
                                                     </div>
                                                     <div>
