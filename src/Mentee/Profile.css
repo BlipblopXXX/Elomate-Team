@@ -6,11 +6,11 @@
 
 .profile .form {
     background-color: white;
-    width: 160.3vh;
+    width: 172.1vh;
 }
 
 .profile .profileup {
-    background-color: white;
+    background-color: pink;
     display: flex;
     flex-direction: row;
 }
@@ -22,9 +22,6 @@
     height: 20vh;
 }
 
-.profile .EditProfile{
-    width: 3%;
-}
 
 .profile .input {
     margin-top: 1%;
@@ -40,7 +37,7 @@
     font-size: small;
     display: flex;
     flex-direction: row;
-    margin-left: 89%;
+    margin-left: 90%;
     color: darkgray;
 }
 
@@ -48,8 +45,9 @@
     font-size: small;
     display: flex;
     flex-direction: row;
-    margin-left: 95%;
-    color: darkgrey;
+    margin-left: 29.25%;
+    color: darkgray;
+    float: right;
 
 }
 
@@ -87,45 +85,68 @@
     border-radius: 20px; 
 }
 
-.profile .profiledown{
-    flex: 8;
-    margin-left: 2%;
-}
+  .profile .editprofile-container{
+    padding: 2%;
+    margin: 1%;
+    border: 1px solid black;
+  }
 
-.profile .progress-bar {
-    width: 100%;
-    height: 15px;
-    background-color: #DEDEDE;
-    border-radius: 20px;
-    overflow: hidden;
-    padding: 5px;
+
+  .profile .bot-container{
+    margin-top:  1%;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    
+
+  }
+
+  .profile .title-container{
+    font-size: 23px;
+  }
+
+  .profile .card-container{
+    font-size: 15px;
+
+  }
+  
+.profile .Social-Activity {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+  
+.profile .Social-activity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7.5px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+  
+.profile .activity-details {
+  display: flex;
+  flex-direction: column;
+}
+  
+.profile .activity {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 1px;
   }
     
-  .profile .progresss {
-    height: 100%;
-    border-radius: 15px;
-    background-color: #1f87ba;
+  .profile .peran,
+  .profile .deskripsi {
+    font-size: 13px;
+    color: #555;
   }
-  
-  .profile .bar {
+
+  .profile .activity-row{
     display: flex;
     flex-direction: row;
-    margin-top: 2%;
-  }
-  
-  .profile .bar1 {
-    flex: 8;
-  }
-  
-  .profile .bar2 {
-    flex: 2;
-    margin-left: 10%;
-  }
-
-  .profile .updateprogress {
-    font-size: small;
-    color: #898686;
-
   }
 
 
