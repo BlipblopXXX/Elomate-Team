@@ -137,7 +137,9 @@
     font-size: 15px;
     margin-bottom: 1px;
   }
-    
+   
+  
+  .profile .date,
   .profile .peran,
   .profile .deskripsi {
     font-size: 13px;
@@ -149,5 +151,4 @@
     flex-direction: row;
   }
 
-
-
+  
