@@ -1,70 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
+import { MonthView } from 'react-calendar';
 
+// const AdditionalActivities = [
+//     {name: 'Social activity1', title: '1'},
+//     {name: 'Social activity2', title: '2'},
+//     {name: 'Social activity3', title: '3'},
+// ]
+
+// const Additional = [
+//     {name: 'Social activity1', title: '1'},
+//     {name: 'Social activity2', title: '2'},
+//     {name: 'Social activity3', title: '3'},
+// ]
+
+const Additional = [
+    {
+      activities: [
+        { activity: 'Social Activity1', role: 'Peran', description: 'Deskripsi', },
+        { activity: 'Social Activity2', role: 'Peran', description: 'Deskripsi', },
+        { activity: 'Social Activity3', role: 'Peran', description: 'Deskripsi', },
+      ]
+    
+    }
+]
 function Profile() {
     const [currentPage, setCurrentPage] = useState('main');
     const handleMain = () => {
-        setCurrentPage('Main');
+        setCurrentPage('main');
     }
     const handleSecond = () => {
-        setCurrentPage('Second');
+        setCurrentPage('second');
     }
     const handleThree = () => {
-        setCurrentPage('Three');
+        setCurrentPage('three');
     }
     const handleFour = () => {
-        setCurrentPage('Four');
+        setCurrentPage('four');
     }
     const handleFive = () => {
-        setCurrentPage('Five');
+        setCurrentPage('five');
     }
-
-    const [progress, setProgress] = useState(0);
-    const [progress2, setProgress2] = useState(0);
-    const [progress3, setProgress3] = useState(0);
-    const [progress4, setProgress4] = useState(0);
-
-    const ProgressBar = ({ percentage }) => {
-        return (
-          <div className="progress-bar">
-            <div
-              className="progresss"
-              style={{ width: `${percentage}%` }}
-            />
-          </div>
-        );
-    }
-     // Simulate progress increase over time
-     setTimeout(() => {
-        if (progress < 100) {
-          setProgress(progress + 10);
-        }
-        }, 1000);
-        // Simulate progress increase over time
-    setTimeout(() => {
-        if (progress2 < 100) {
-          setProgress2(progress2 + 20);
-        }
-        }, 1000);
-        // Simulate progress increase over time
-    setTimeout(() => {
-        if (progress3 < 100) {
-          setProgress3(progress3 + 20);
-        }
-        }, 1000);
-        // Simulate progress increase over time
-    setTimeout(() => {
-        if (progress4 < 100) {
-          setProgress4(progress4 + 20);
-        }
-        }, 1000);
-
-
 
     const handleEditAccount = () => {
-        handleSecond();
-        
+        setCurrentPage('second');
     }
+
+    
 
     const renderPage = () => {
         switch (currentPage) {
@@ -77,10 +59,10 @@ function Profile() {
                         </div>
                         <div className="form">
                             <hr />
-                            <div className='EditProfile' onClick={handleEditAccount}> Edit Profile </div>
                             <div className="profileup">
                                 <img className="picture" src="/src/files/profile/Profile1.png" />
                                 <div className="input">
+                                
                                     <div className="input-name"><b>Nama :</b></div>
                                     <hr />
                                     <div className="input-nrp"><b>NRP :</b></div>
@@ -97,74 +79,68 @@ function Profile() {
                                     <hr />
                                     <div className="input-Email"><b>Email :</b></div>
                                 </div>
+                                <div className='EditProfile' onClick={handleEditAccount}> Edit Profile </div>
                             </div>
                             <hr />
-
-                        <div className='bot-container'>
-                            <div className='left-container'>
-                                <div className='judul-container'>
-                                    <div><strong> Mandatory Course Progress </strong></div>
-                                </div>
-                                <div className="profiledown">
-                                    <p>General Development      
-                                    <div className='bar'>
-                                        <div className='bar1'>
-                                            <ProgressBar percentage={progress}/>
-                                        </div>
-                                        <div className='bar2'>{progress}%</div>
-                                    </div>          
-                                    </p>
-                                    <p>Orientasi Divisi
-                                    <div className='bar'>
-                                            <div className='bar1'>
-                                                <ProgressBar percentage={progress2}/>
+                            <div className='bot-container'>
+                                <div><strong className='title-container'> Additional Activities </strong></div>
+                                <div className='card-container'>
+                                    {Additional.map((item) => (
+                                        <div className="Social-activity">
+                                            <div className="Social-Activity">
+                                                {item.activities.map((AdditionalActivities, index) => (
+                                                <div key={index} className="Social-activity">
+                                                    <div className="activity-details">
+                                                        <div className='activity-row'>
+                                                            <img src='/src/files/icons/'/><div className="activity">{AdditionalActivities.activity}</div>
+                                                        </div>
+                                                        <div className='activity-row'>
+                                                            <img src='/src/files/icons/'/><div className="Peran">{AdditionalActivities.role}</div>
+                                                            </div>
+                                                        <div className='activity-row'>
+                                                            <img src='/src/files/icons/'/><div className="Deskripsi">{AdditionalActivities.description} </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <img className='viewButton' src='/src/files/icons/buttonview.png'/>
+                                                        <button>del</button>
+                                                        <button>edit</button>
+                                                    </div>
+                                                </div>
+                                                ))}
                                             </div>
-                                            <div className='bar2'>{progress2}%</div>
                                         </div>
-                                    </p>
-                                    <p>BGMS
-                                    <div className='bar'>
-                                            <div className='bar1'>
-                                                <ProgressBar percentage={progress3}/>
-                                            </div>
-                                            <div className='bar2'>{progress3}%</div>
-                                        </div>
-                                    </p>
-                                    <p>Neop 
-                                    <div className='bar'>
-                                            <div className='bar1'>
-                                                <ProgressBar percentage={progress4}/>
-                                            </div>
-                                            <div className='bar2'>{progress4}%</div>
-                                        </div>
-                                    </p>
+                                    ))}
                                 </div>
-                                <div className='updateprogress'>
-                                    *Last Update 15 November 2023
                                 </div>
-                            </div>
-                            <div  className='right-container'>
-                                <p>test</p>
-                            </div>
-                                
-
-
 
                             </div>
                         </div>
+                    );
+            case 'second':
+                return(
+                    <div className='profile'>
+                        <div className='editprofile-container'>test</div>
                     </div>
-                );
+                )
+                
+            case 'three':
+                return null;
+            case 'four':
+                return null;
+            case 'five':
+                return null;
             default:
                 return null;
-        }
+        };
     }
-
+    
     return(
-        <div className="App">
+        <div className='App'>
             {renderPage()}
         </div>
     );
 }
+    
 
 export default Profile;
-
