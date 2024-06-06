@@ -103,8 +103,8 @@ function Profile() {
                                                     </div>
                                                     <div>
                                                         <img className='viewButton' src='/src/files/icons/buttonview.png'/>
-                                                        <button>del</button>
-                                                        <button>edit</button>
+                                                        <img className='deletbutton'src='/src/files/icons/deletebutton.png'/>
+                                                        <img className='editbutton'src='/src/files/icons/editbutton.png'/>
                                                     </div>
                                                 </div>
                                                 ))}
