@@ -57,9 +57,10 @@ const PeerQuestion = [
 ];
 
 const PeerList = [
-    { nama: 'Naufal Romiz', status: 'Done', PeerAssessment: 'Isi Penilaian' },
-    { nama: 'Ali Alban', status: 'Not Yet', PeerAssessment: 'Isi Penilaian' },
-    { nama: 'Emmanuela Evelyn', status: 'Not Yet', PeerAssessment: 'Isi Penilaian' }
+    { nama: 'Naufal Romiz', status: 'Done' },
+    { nama: 'Ali Alban', status: 'Not Yet' },
+    { nama: 'Emmanuela Evelyn', status: 'Not Yet' },
+    { nama: 'Doni', status: 'Done' }
 ];
 
 function SelfPeer() {
@@ -92,13 +93,13 @@ function SelfPeer() {
         if (selectedRole === 'Self' && task.title === 'SOLUTION Culture') {
             setCurrentPage('second');
             setSelectedQuestion('Solution');
-        } else if (selectedRole === 'Self' && task.title === '8 Behaviour Compentencies'){
+        } else if (selectedRole === 'Self' && task.title === '8 Behaviour Compentencies') {
             setCurrentPage('second');
             setSelectedQuestion('8 Behaviour Compentency');
-        } else if (selectedRole === 'Peer' && task.title === 'SOLUTION Culture'){
+        } else if (selectedRole === 'Peer' && task.title === 'SOLUTION Culture') {
             setCurrentPage('peerList');
             setSelectedQuestion('Solution');
-        }  else if (selectedRole === 'Peer' && task.title === '8 Behaviour Compentencies'){
+        } else if (selectedRole === 'Peer' && task.title === '8 Behaviour Compentencies') {
             setCurrentPage('peerList');
             setSelectedQuestion('8 Behaviour Compentency');
         } else {
@@ -107,8 +108,10 @@ function SelfPeer() {
     };
 
     const handlePeerSelected = (person) => {
-        setSelectedPeer(person);
-        setCurrentPage('second');
+        if (person.status === 'Not Yet') {
+            setSelectedPeer(person);
+            setCurrentPage('second');
+        }
     };
 
     const renderCard = () => {
@@ -117,7 +120,8 @@ function SelfPeer() {
         return filteredphase.map((selfpeer, index) => (
             <div key={index} className="selfpeer-item">
                 <div className="description">
-                    <img className="selfpeer-img" src="/src/files/icons/TaskImg.png" alt="Task" />
+                    <img className="selfpeer-img" src="/src/files/icons/TaskImg.png" alt="
+                    Task" />
                     <div className="selfpeer-text">
                         <div className="selfpeer-title">{selfpeer.title}</div>
                         <div className="selfpeer-batch">{selfpeer.no}</div>
@@ -233,14 +237,17 @@ function SelfPeer() {
                         <div className="table-header">
                             <div className="peer-name">Nama</div>
                             <div className="peer-status">Status</div>
-                            <div className="peer-assessment">Peer Assessment</div>
                         </div>
                         <div className="peer-list">
                             {peerList.map((person, index) => (
-                                <div key={index} className="peer-item" onClick={() => handlePeerSelected(person)}>
+                                <div
+                                    key={index}
+                                    className={`peer-item ${person.status === 'Done' ? 'disabled' : ''}`}
+                                    onClick={() => handlePeerSelected(person)}
+                                    style={{ cursor: person.status === 'Done' ? 'not-allowed' : 'pointer' }}
+                                >
                                     <div className="peer-name">{person.nama}</div>
                                     <div className="peer-status">{person.status}</div>
-                                    <div className="peer-assessment">{person.PeerAssessment}</div>
                                 </div>
                             ))}
                         </div>
@@ -259,3 +266,4 @@ function SelfPeer() {
 }
 
 export default SelfPeer;
+
