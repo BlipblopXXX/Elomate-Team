@@ -274,13 +274,12 @@
     display: flex;
 }
 
-/*Peer list styles*/
-.peer-list {
+.selfpeer .peer-list {
     width: 100%;
     margin: 20px 0;
 }
 
-.peer-item {
+.selfpeer .peer-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -290,24 +289,23 @@
     transition: background-color 0.3s;
 }
 
-.peer-item:hover {
+.selfpeer .peer-item:hover {
     background-color: #f0f0f0;
 }
 
-.peer-name,
-.peer-status,
-.peer-assessment {
+.selfpeer .peer-name,
+.selfpeer .peer-status,
+.selfpeer .peer-assessment {
     flex: 1;
     text-align: left;
 }
 
-.peer-status,
-.peer-assessment {
+.selfpeer .peer-status,
+.selfpeer .peer-assessment {
     text-align: center;
 }
 
-/* Table header styles */
-.table-header {
+.selfpeer .table-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -316,13 +314,13 @@
     border-bottom: 2px solid #ccc;
 }
 
-.table-header div {
+.selfpeer .table-header div {
     flex: 1;
     text-align: left;
     font-weight: bold;
 }
 
-.table-header .peer-status,
-.table-header .peer-assessment {
+.selfpeer .table-header .peer-status,
+.selfpper .table-header .peer-assessment {
     text-align: center;
 }
