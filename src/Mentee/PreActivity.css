@@ -229,4 +229,26 @@
     width: 153vh;
     height: 69vh;
     border: 1px solid #ccc;
+    text-align: center;
+}
+
+.preactivity4 .title4 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.preactivity4 .backbutton {
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 3%;
+    cursor: pointer;
+}
+
+.preactivity4 .prereadingfill {
+    margin: 2%;
+    background-color: white;
+    width: 153vh;
+    height: 69vh;
+    border: 1px solid #ccc;
 }
