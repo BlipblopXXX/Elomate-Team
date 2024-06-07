@@ -229,14 +229,14 @@
     margin-top: 1%;
 }
 
-.assign-details-row {
+.mentoring .assign-details-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 20px 0;
 }
 
-.assign-card {
+.mentoring .assign-card {
     flex: 1 1 calc(33.333% - 20px);
     margin: 10px;
     background-color: #fff;
@@ -248,46 +248,46 @@
     flex-direction: column;
 }
 
-.assign-desc1 {
+.mentoring .assign-desc1 {
     display: flex;
     padding: 16px;
     align-items: center;
 }
 
-.assign-img {
+.mentoring .assign-img {
     width: 80px;
     height: 80px;
     border-radius: 8px;
     margin-right: 16px;
 }
 
-.assign-info {
+.mentoring .assign-info {
     flex: 1;
 }
 
-.assign-title {
+.mentoring .assign-title {
     font-size: 18px;
     font-weight: bold;
 }
 
-.assign-desc2 {
+.mentoring .assign-desc2 {
     padding: 16px;
     border-top: 1px solid #ddd;
 }
 
-.assign-statusdet {
+.mentoring .assign-statusdet {
     font-weight: bold;
 }
 
-.assign-status {
+.mentoring .assign-status {
     font-size: 16px;
 }
 
-.assign-status.Completed {
+.mentoring .assign-status.Completed {
     color: green;
 }
 
-.assign-status.Not-Completed {
+.mentoring .assign-status.Not-Completed {
     color: rgb(150, 150, 150);
 }
 
