@@ -225,7 +225,18 @@ function Mentoring() {
     const [lessonError, setLessonError] = useState('');
     const [catatanError, setCatatanError] = useState('');
 
-    
+    // Fungsi untuk menghapus jadwal yang sudah selesai dari daftar ongoing
+    // const removeScheduleFromOngoing = (index) => {
+    //     const updatedSchedules = [...schedules];
+    //     updatedSchedules.splice(index, 1);
+    //     setSchedules(updatedSchedules);
+    // };
+
+    // // Fungsi untuk menambahkan jadwal yang selesai ke daftar closed
+    // const addScheduleToClosed = (schedule) => {
+    //     const updatedClosedSchedules = [schedule, ...closedSchedules];
+    //     setClosedSchedules(updatedClosedSchedules);
+    // };
 
     const handleSubmitFormButton = () => {
         // Clear previous errors
