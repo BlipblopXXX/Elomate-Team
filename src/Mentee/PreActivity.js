@@ -31,15 +31,18 @@ const courses = [
 ]
 
 const activity = [
-    {name: 'On Boarding', title: '1', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'On Boarding', title: '2', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'On Boarding', title: '3', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'SOLUTION Culture', title: '1', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'SOLUTION Culture', title: '2', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'SOLUTION Culture', title: '3', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'Behaviour Competencies', title: '1'},
-    {name: 'Behaviour Competencies', title: '2'},
-    {name: 'Behaviour Competencies', title: '3'},
+    {name: 'On Boarding', title: '1', pdfSrc: '/src/files/INCLASS/ON-BOARDING/ON BOARDING-DAY1.png'},
+    {name: 'SOLUTION Culture', title: '1', pdfSrc: '/src/files/INCLASS/SOLUTION CULTURE/SOLUTION CULTURE-DAY1.png'},
+    {name: 'SOLUTION Culture', title: '2', pdfSrc: '/src/files/INCLASS/SOLUTION CULTURE/SOLUTION CULTURE-DAY2.png'},
+    {name: 'SOLUTION Culture', title: '3', pdfSrc: '/src/files/INCLASS/SOLUTION CULTURE/SOLUTION CULTURE-DAY3.png'},
+    {name: 'SOLUTION Culture', title: '4', pdfSrc: '/src/files/INCLASS/SOLUTION CULTURE/SOLUTION CULTURE-DAY4.png'},
+    {name: 'SOLUTION Culture', title: '5', pdfSrc: '/src/files/INCLASS/SOLUTION CULTURE/SOLUTION CULTURE-DAY5.png'},
+    {name: 'SOLUTION Culture', title: '6', pdfSrc: '/src/files/INCLASS/SOLUTION CULTURE/SOLUTION CULTURE-DAY6.png'},
+    {name: 'Behaviour Competencies', title: '1', pdfSrc: '/src/files/INCLASS/BEHAVIOUR COMPETENCIES/BEHAVIOUR COMPETENCIES-DAY1.png'},
+    {name: 'Behaviour Competencies', title: '2', pdfSrc: '/src/files/INCLASS/BEHAVIOUR COMPETENCIES/BEHAVIOUR COMPETENCIES-DAY2.png'},
+    {name: 'Behaviour Competencies', title: '3', pdfSrc: '/src/files/INCLASS/BEHAVIOUR COMPETENCIES/BEHAVIOUR COMPETENCIES-DAY3.png'},
+    {name: 'Behaviour Competencies', title: '4', pdfSrc: '/src/files/INCLASS/BEHAVIOUR COMPETENCIES/BEHAVIOUR COMPETENCIES-DAY4.png'},
+    {name: 'Behaviour Competencies', title: '5', pdfSrc: '/src/files/INCLASS/BEHAVIOUR COMPETENCIES/BEHAVIOUR COMPETENCIES-DAY5.png'},
     {name: 'Business Process UT', title: '1'},
     {name: 'Business Process UT', title: '2'},
     {name: 'Business Process UT', title: '3'},
@@ -91,12 +94,12 @@ const activity = [
 ];
 
 const prereading = [
-    {name: 'On Boarding', title: 'On Boarding 1'},
-    {name: 'On Boarding', title: 'On Boarding 2'},
-    {name: 'On Boarding', title: 'On Boarding 3'},
-    {name: 'On Boarding', title: 'On Boarding 4'},
-    {name: 'On Boarding', title: 'On Boarding 5'},
-    {name: 'On Boarding', title: 'On Boarding 6'},
+    {name: 'On Boarding', title: 'On Boarding 1', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'On Boarding', title: 'On Boarding 2', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'On Boarding', title: 'On Boarding 3', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'On Boarding', title: 'On Boarding 4', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'On Boarding', title: 'On Boarding 5', pdfSrc: '/src/files/pdf/Activity.pdf'},
+    {name: 'On Boarding', title: 'On Boarding 6', pdfSrc: '/src/files/pdf/Activity.pdf'},
     {name: 'SOLUTION Culture', title: 'SOLUTION Culture 1'},
     {name: 'SOLUTION Culture', title: 'SOLUTION Culture 2'},
     {name: 'SOLUTION Culture', title: 'SOLUTION Culture 3'},
@@ -241,6 +244,11 @@ function PreActivity() {
         setCurrentActivity(activity);
         setCurrentPage('third');
     };
+    
+    const handleGoDownload = (prereading) => {
+        setCurrentPreReading(prereading);
+        setCurrentPage('fourth');
+    };
 
     useEffect(() => {
         if (selectedPhase === 'option1') {
@@ -275,23 +283,6 @@ function PreActivity() {
         setPreReadingButtonClicked(true);
         setShowContentA(false);
         setShowContentB(true);
-    };
-
-    const handleDownload = () => {
-        const selectedPreReading = currentPreReading;
-    
-        const blob = new Blob([selectedPreReading.title], { type: 'text/plain' });
-    
-        const url = window.URL.createObjectURL(blob);
-
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${selectedPreReading.title}.txt`;
-        document.body.appendChild(link);
-    
-        link.click();
-    
-        document.body.removeChild(link);
     };
 
     const getDescription = () => {
@@ -339,11 +330,11 @@ function PreActivity() {
     
         return (
             <div className="pre-reading-card-container">
-                {selectedPreReadings.map((preReading, index) => (
+                {selectedPreReadings.map((prereading, index) => (
                     <div key={index} className="pre-reading-card">
                         <img className="pre-reading-img" src="/src/files/icons/CourseImg.png" />
-                        <div className="pre-reading-title">{preReading.title}</div>
-                        <img className="pre-reading-download" onClick={handleDownload} src="/src/files/icons/Download.png" />
+                        <div className="pre-reading-title">{prereading.title}</div>
+                        <img className="pre-reading-download" onClick={() => handleGoDownload(prereading)} src="/src/files/icons/nextbutton.png" />
                     </div>
                 ))}
             </div>
@@ -440,7 +431,7 @@ function PreActivity() {
                             <div className="activityfill">
                                 <iframe 
                                     src={currentActivity.pdfSrc} 
-                                    width="100%" 
+                                    width="94%" 
                                     height="100%" 
                                     frameBorder="0"
                                 ></iframe>
@@ -448,6 +439,26 @@ function PreActivity() {
                         )}
                     </div>
                 );
+            case 'fourth':
+                return (
+                    <div className="preactivity4">
+                        <div className="title4">
+                            <h><b>Pre-Activity</b></h>
+                        </div>
+                        <hr />
+                        <img className="backbutton" onClick={handleSecond} src="/src/files/icons/backbutton.png" alt="Back" />
+                        {currentPreReading && (
+                            <div className="prereadingfill">
+                                <iframe 
+                                    src={currentPreReading.pdfSrc} 
+                                    width="100%" 
+                                    height="100%" 
+                                    frameBorder="0"
+                                ></iframe>
+                            </div>
+                        )}
+                    </div>
+                )
             default:
                 return null;
         }
