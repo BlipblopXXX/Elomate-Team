@@ -13,7 +13,7 @@ import './Profile.css';
 //     {name: 'Social activity3', title: '3'},
 // ]
 
-function Profile() {
+    function Profile() {
 
     const Additional = [
         {
@@ -23,6 +23,14 @@ function Profile() {
             { activity: 'Social Activity3', Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi', },
           ]
         
+        }
+    ]
+
+    const SocialActivity = [
+        {
+            ViewAdditional: [
+                { Date: '15 juli 2024', Role: 'Peran', description: 'Deskripi kegiatan'}
+            ]
         }
     ]
     
@@ -94,6 +102,34 @@ function Profile() {
     const handleInputConfirmPassword = (event) => {
         setConfirmPassword(event.target.value);
     };
+
+    const handleeditbutton = (event) => {
+        handleFour();
+    }
+
+    const [Activity, setActivity] = useState('');
+    const handleInputActivity = (event) => {
+        setActivity(event.target.value);
+    };
+
+    const [Role, setRole] = useState('');
+    const handleInputRole = (event) => {
+        setRole(event.target.value);
+    };
+
+    const [Description, setDescription] = useState('');
+    const handleInputDescription = (event) => {
+        setDescription(event.target.value);
+    };
+
+    const [Attachment, setAttachment] = useState('');
+    const handleInputAttachment = (event) => {
+        setAttachment(event.target.value);
+    };
+
+        const handleviewbutton = (event) => {
+            handleFive();
+        }
 
     const [currentPage, setCurrentPage] = useState('main');
     const handleMain = () => {
@@ -180,9 +216,9 @@ function Profile() {
                                                         </div>
                                                     </div>
                                                     <div className='buttons'>
-                                                        <img className='editbutton'src='/src/files/icons/editbutton.png'/>
-                                                        <img className='deletebutton'src='/src/files/icons/deletebutton.png'/>
-                                                        <img className='viewButton' src='/src/files/icons/buttonview.png'/>
+                                                        <img className='editbutton' onClick={handleeditbutton} src='/src/files/icons/editbutton.png'/>
+                                                        <img className='deletebutton' src='/src/files/icons/deletebutton.png'/>
+                                                        <img className='viewButton' onClick={handleviewbutton} src='/src/files/icons/buttonview.png'/>
                                                     </div>
                                                 </div>
                                                 ))}
@@ -384,9 +420,90 @@ function Profile() {
                     </div>
                 )
             case 'four':
-                return null;
+                return(
+                    <div className='profile'>
+                        <div className='title3'>
+                            <img className="backbutton" onClick={handleMain} src="/src/files/icons/backbutton.png"/>
+                            <h><b> Additional Activities</b></h>
+                        </div>
+                        <hr />
+                        <div className='addbutoon-container'>
+                            <label>
+                                <div>
+                                    <p className='judul'>Activity</p>
+                                    <label className= 'inputText'>
+                                        <input
+                                        type="text"
+                                        className='inputan'
+                                        value={Activity}
+                                        onChange={handleInputActivity} 
+                                        />
+                                    </label>
+                                </div>
+                            </label>
+                        </div>
+                        <p className='judul'>Date</p>
+                            <input
+                            type="date"
+                            className="dateInput"
+                            value={formatDate(date)}
+                            onChange={(e) => setDate(new date(e.target.value))} 
+                            />
+
+                            <p className='judul'> Role </p>
+                                <input
+                                type="text"
+                                className='inputan'
+                                value={Role}
+                                onChange={handleInputRole}
+                                 />
+                            
+                            <p className='judul'>Description</p>
+                                <input
+                                type="text"
+                                className='inputan'
+                                value={Description}
+                                onChange={handleInputDescription} 
+                                />
+
+                            <p className='judul'>Attachment</p>
+                                <input
+                                type="file"
+                                className='inputan'
+                                value={Attachment}
+                                onChange={handleInputAttachment} 
+                                />
+                                  <button className='saveButton' onClick={handleSaveButton}>
+                                Save
+                            </button>
+                    </div>
+                    
+                       
+
+                )
+                
             case 'five':
-                return null;
+                return(
+                    <div className='profile'>
+                        <div className='title3'>
+                            <img className="backbutton" onClick={handleMain} src="/src/files/icons/backbutton.png"/>
+                            <h><b> Additional Activities</b></h>
+                        </div>
+                        <hr />
+                        <div className='butoonview-container'>
+                        <div><strong className='title-container'> Social Activity </strong></div> 
+                        <div className='card-container'>
+                        <hr />
+                          </div>
+                        </div>
+                            <label>
+                                <div></div>
+                                </label>
+                                </div>
+                                            
+                        
+                )
+                
             default:
                 return null;
         };
@@ -395,7 +512,7 @@ function Profile() {
     return(
         <div className='App'>
             {renderPage()}
-        </div>
+            </div>
     );
 }
     
