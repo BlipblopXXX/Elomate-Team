@@ -83,7 +83,8 @@
 
 .finalreport td:nth-child(1),
 .finalreport td:nth-child(3),
-.finalreport td:nth-child(4) {
+.finalreport td:nth-child(4),
+.finalreport td:nth-child(5) {
     text-align: center;
 }
 
@@ -117,5 +118,38 @@
 .finalreport .graphic-title {
     margin-top: 1%;
     margin-left: 2%;
+    font-size: 25px;
+}
+
+.finalreport .graphic-divider {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.finalreport .kirkpatrick-chart {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.finalreport .graphic-solution {
+    width: 350px;
+    margin-right: 20%;
+    text-align: center;
+}
+
+.finalreport .solution-title {
+    margin-top: 1%;
+    font-size: 25px;
+}
+
+.finalreport .graphic-8bc {
+    width: 350px;
+    text-align: center;
+}
+
+.finalreport .bc-title {
+    margin-top: 1%;
     font-size: 25px;
 }
