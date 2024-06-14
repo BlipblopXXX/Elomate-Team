@@ -107,7 +107,6 @@ function Mentoring() {
         }
     };
 
-
     // Function to Fetch Schedules
     const fetchSchedules = async () => {
         try {
@@ -149,13 +148,9 @@ function Mentoring() {
     const [lesson, setLesson] = useState('');
     const [catatan, setCatatan] = useState('');
     const [file, setFile] = useState(null);
-    const [status, setStatus] = useState('');
-    const [mentoringID, setMentoringID] = useState('');
 
     const [schedules, setSchedules] = useState([])
     const [form, setForm] = useState([])
-
-
     const handleAddButtonClick = async () => {
         setDateError('');
         setTimeError('');
@@ -210,7 +205,7 @@ function Mentoring() {
             mentor: capitalizeWords(mentor),
             topic: capitalizeWords(topic),
             competencies: competencies.join(', '),
-            status: status,
+            status: 'Completed',
         };
     
         try {
@@ -229,8 +224,7 @@ function Mentoring() {
                     type: type,
                     mentor: mentor,
                     topic: topic,
-                    competencies: competencies,
-                    status: status,})
+                    competencies: competencies,}),
             });
     
             if (!response.ok) {
@@ -542,7 +536,7 @@ function Mentoring() {
                                                 {schedules.map(schedule => (
                                                     <tr key={schedule.MENTORINGID}>
                                                         <td>{schedule.TYPE}</td>
-                                                        <td>{schedule.DATE} / {schedule.START_TIME} WIB - {schedule.END_TIME} WIB</td> 
+                                                        <td>{schedule.DATE}</td> 
                                                         <td>{schedule.METHOD}</td>
                                                         <td>{schedule.MENTOR}</td>
                                                         <td>{schedule.TOPIC}</td>
@@ -573,22 +567,23 @@ function Mentoring() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {schedules.map(schedule => (
-                                                <tr key={schedule.MENTORINGID}>
-                                                    <td>{schedule.TYPE}</td>
-                                                    <td>{schedule.DATE} / {schedule.START_TIME} WIB - {schedule.END_TIME} WIB</td> 
-                                                    <td>{schedule.METHOD}</td>
-                                                    <td>{schedule.MENTOR}</td>
-                                                    <td>{schedule.TOPIC}</td>
-                                                    <td>{schedule.COMPETENCIES}</td>
-                                                    <td className='status'>{schedule.STATUS}</td>
+                                            {schedules.map((schedule, index) => (
+                                                <tr key={index}>
+                                                    <td>{schedule.type}</td>
+                                                    <td>{schedule.datetime}</td> 
+                                                    <td>{schedule.method}</td>
+                                                    <td>{schedule.mentor}</td>
+                                                    <td>{schedule.topic}</td>
+                                                    <td>{schedule.competencies}</td>
+                                                    <td className='status'>{schedule.status}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
                                     </table>        
                                 </div>
                             </div>
-                            )}            
+                            )}
+                                    
                     </div>
                 )
             case 'second' :
@@ -604,45 +599,46 @@ function Mentoring() {
                             <div className="form-container">
                                 <div className='upper'>
                                     
-                                        {schedules.map(schedule => (
+                                        {form.map((schedule) => (
                                             <div>
                                                 <div className='header'>
                                                     <div className='atas'>
                                                         <div className="bagian">
                                                             <p className='judul'>Type</p>   
-                                                            <div className='value'>{schedule.TYPE}</div>
+                                                            <div className='value'>{schedule.type}</div>
                                                         </div>
+
                                                         <div className="bagian">
                                                             <p className='judul'>Date</p>
-                                                            <div className='value'>{schedule.DATE}</div>
+                                                            <div className='value'>{schedule.date}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Mentor</p>
-                                                            <div className='value'>{schedule.MENTOR}</div>
+                                                            <div className='value'>{schedule.mentor}</div>
                                                         </div>
                                                     </div>
                                                     <div className='bawah'>
                                                         <div className="bagian">
                                                             <p className='judul'>Method</p>
-                                                            <div className='value'>{schedule.METHOD}</div>
+                                                            <div className='value'>{schedule.method}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Time</p>
-                                                            <div className='value'>{schedule.START_TIME} - {schedule.END_TIME}</div>
+                                                            <div className='value'>{schedule.time}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Topic</p>
-                                                            <div className='value'>{schedule.TOPIC}</div>
+                                                            <div className='value'>{schedule.topic}</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <hr/>
                                                 <p className='judul-form'><strong>Kompetensi Yang Dievaluasi</strong></p>
                                                 <div className="bagian"> 
-                                                    <div className='value1'>{schedule.COMPETENCIES}</div>
+                                                    <div className='value1'>{schedule.competencies}</div>
                                                 </div>
 
                                                 <p className='judul-form1'><strong>Lesson Learned Competencies</strong></p>
