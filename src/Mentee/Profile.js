@@ -26,11 +26,14 @@ import './Profile.css';
         }
     ]
 
-    const SocialActivity = [
+    const AdditionalView = [
         {
-            ViewAdditional: [
-                { Date: '15 juli 2024', Role: 'Peran', description: 'Deskripi kegiatan'}
-            ]
+          Additional: [
+            { Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi yang diikuti', },
+            { Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi yang diikuti', },
+            { Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi yang diikuti', },
+          ]
+        
         }
     ]
     
@@ -130,6 +133,10 @@ import './Profile.css';
         const handleviewbutton = (event) => {
             handleFive();
         }
+    const [Certificate, setCertificate] = useState('');
+    const handleInputCertificate = (event) => {
+        setCertificate(event.target.value);
+    };
 
     const [currentPage, setCurrentPage] = useState('main');
     const handleMain = () => {
@@ -477,8 +484,7 @@ import './Profile.css';
                                 Save
                             </button>
                     </div>
-                    
-                       
+                  
 
                 )
                 
@@ -492,15 +498,29 @@ import './Profile.css';
                         <hr />
                         <div className='butoonview-container'>
                         <div><strong className='title-container'> Social Activity </strong></div> 
-                        <div className='card-container'>
+                        <div className='Additional-container'>
+                            <div><strong>Date:</strong> {AdditionalView.Date}</div>
+                            <p><strong>Posted:</strong> {AdditionalView.role}</p>
+                            <p><strong>Description:</strong> {AdditionalView.description}</p>
+                            <p className='judul'>Certificate</p>
+                                <input
+                                type="file"
+                                className='inputan'
+                                value={Certificate}
+                                onChange={handleInputCertificate} 
+                                />
+                    
+                           
+
+                                    
+                                       
                         <hr />
                           </div>
-                        </div>
+                                </div>
                             <label>
                                 <div></div>
                                 </label>
-                                </div>
-                                            
+                                </div>                    
                         
                 )
                 
