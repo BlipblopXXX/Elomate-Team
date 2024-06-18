@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
 
-// const AdditionalActivities = [
-//     {name: 'Social activity1', title: '1'},
-//     {name: 'Social activity2', title: '2'},
-//     {name: 'Social activity3', title: '3'},
-// ]
-
-// const Additional = [
-//     {name: 'Social activity1', title: '1'},
-//     {name: 'Social activity2', title: '2'},
-//     {name: 'Social activity3', title: '3'},
-// ]
-
     function Profile() {
 
     const Additional = [
@@ -28,12 +16,9 @@ import './Profile.css';
 
     const AdditionalView = [
         {
-          Additional: [
-            { Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi yang diikuti', },
-            { Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi yang diikuti', },
+          Additionals: [
             { Date: '15 juli 2024', role: 'Peran', description: 'Deskripsi yang diikuti', },
           ]
-        
         }
     ]
     
@@ -497,30 +482,37 @@ import './Profile.css';
                         </div>
                         <hr />
                         <div className='butoonview-container'>
-                        <div><strong className='title-container'> Social Activity </strong></div> 
-                        <div className='Additional-container'>
-                            <div><strong>Date:</strong> {AdditionalView.Date}</div>
-                            <p><strong>Posted:</strong> {AdditionalView.role}</p>
-                            <p><strong>Description:</strong> {AdditionalView.description}</p>
-                            <p className='judul'>Certificate</p>
-                                <input
-                                type="file"
-                                className='inputan'
-                                value={Certificate}
-                                onChange={handleInputCertificate} 
-                                />
-                    
+                        <div><strong className='title-container'> Social Activity </strong></div>
+                        
+                        {AdditionalView.map((item) => (
+                            <div className="Additional-container">
+                                <div>
+                                    {item.Additionals.map((AdditionalView, index) => (
+                                    <div key={index}>
+                                        <p><strong>Date:</strong> {AdditionalView.Date}</p>
+                                        <p><strong>Posted:</strong> {AdditionalView.role}</p>
+                                        <p><strong>Description:</strong> {AdditionalView.description}</p>
+                                        <p className='judul'>Certificate</p>
+                                            <input
+                                            type="file"
+                                            className='inputan'
+                                            value={Certificate}
+                                            onChange={handleInputCertificate} 
+                                            />
+                                    </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
                            
 
                                     
                                        
                         <hr />
-                          </div>
-                                </div>
-                            <label>
-                                <div></div>
-                                </label>
-                                </div>                    
+                        </div>
+                    </div>
+  
+                                    
                         
                 )
                 
