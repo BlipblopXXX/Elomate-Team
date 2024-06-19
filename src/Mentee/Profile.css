@@ -152,12 +152,11 @@ width: 20vh;
   height: 15px;
   margin: 3%;
 }
-
 .profile .buttons {
   width: 28vh;
 }
 
-.profile .deletebutton, .viewbutton, .editbutton {
+.profile .viewbutton, .editbutton {
   margin: 2%;
 }
 
@@ -240,8 +239,16 @@ height: 50vh;
 margin: 2%;
 }
 
+.profile .deletebutton {
+  width: 20vh;
+  font-size: small;
+  display: flex;
+  flex-direction: row;
+  float: right;
+}
+
 .profile .Certificate-container{
-height: 55vh;
+height: 60vh;
 margin: 2%;
 width: 100%;
 
