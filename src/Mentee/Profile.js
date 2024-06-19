@@ -492,28 +492,28 @@ import './Profile.css';
                                         <p><strong>Date:</strong> {AdditionalView.Date}</p>
                                         <p><strong>Posted:</strong> {AdditionalView.role}</p>
                                         <p><strong>Description:</strong> {AdditionalView.description}</p>
-                                        <p className='judul'>Certificate</p>
-                                            <input
-                                            type="file"
-                                            className='inputan'
-                                            value={Certificate}
-                                            onChange={handleInputCertificate} 
-                                            />
+                                        <p className='judul'><strong>Certificate:</strong></p>
+                                        <div className='Certificate-container'>
+                                            <iframe
+                                                src="/src/files/pdf/Sertifbangkit.pdf"
+                                                width="100%"
+                                                height="110%"
+                                                frameBorder="0"
+                                            >
+                                            </iframe>
+                                            
+                                        </div>
                                     </div>
                                     ))}
                                 </div>
                             </div>
                         ))}
-                           
-
-                                    
+                                               
                                        
                         <hr />
                         </div>
                     </div>
-  
-                                    
-                        
+         
                 )
                 
             default:
