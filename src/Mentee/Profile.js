@@ -148,7 +148,9 @@ import './Profile.css';
         setCurrentPage('three');
     }
 
-    
+    const handledelete = (event) => {
+        handleFour();
+    }
 
     const renderPage = () => {
         switch (currentPage) {
@@ -209,7 +211,6 @@ import './Profile.css';
                                                     </div>
                                                     <div className='buttons'>
                                                         <img className='editbutton' onClick={handleeditbutton} src='/src/files/icons/editbutton.png'/>
-                                                        <img className='deletebutton' src='/src/files/icons/deletebutton.png'/>
                                                         <img className='viewButton' onClick={handleviewbutton} src='/src/files/icons/buttonview.png'/>
                                                     </div>
                                                 </div>
@@ -483,6 +484,10 @@ import './Profile.css';
                         <hr />
                         <div className='butoonview-container'>
                         <div><strong className='title-container'> Social Activity </strong></div>
+                        <div className='delete-container'>
+                                    <img className='deletebutton' onClick={handledelete} src='/src/files/icons/delete.png'/>
+                                        </div>
+
                         
                         {AdditionalView.map((item) => (
                             <div className="Additional-container">
@@ -508,12 +513,11 @@ import './Profile.css';
                                 </div>
                             </div>
                         ))}
-                                               
-                                       
+                                                
                         <hr />
                         </div>
                     </div>
-         
+      
                 )
                 
             default:
