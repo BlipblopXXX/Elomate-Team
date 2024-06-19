@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Mentoring.css';
-
 
 function Mentoring() {
     const [currentPage, setCurrentPage] = useState('main');
@@ -56,20 +55,20 @@ function Mentoring() {
     const formatDate = (date) => {
       let d = new Date(date),
         day = '' + d.getDate(),
-          month = '' + (d.getMonth() + 1),
-          year = d.getFullYear();
+        month = '' + (d.getMonth() + 1),
+        year = d.getFullYear();
   
       if (month.length < 2) 
           month = '0' + month;
-      if (day.length < 2) 
+      if (day.length < 2)
           day = '0' + day;
   
       return [year, month, day].join('-');
     }
 
 
-    const [time, setTime] = useState();
-    const [time1, setTime1] = useState();
+    const [start_time, setTime] = useState();
+    const [end_time, setTime1] = useState();
       
     const handleChange = (event) => {
         setTime(event.target.value);
@@ -89,14 +88,14 @@ function Mentoring() {
         setMethod(option);
     };
 
-    const [mentorName, setMentorName] = useState('');
+    const [mentor, setmentor] = useState('');
     const handleInputTopicChange = (event) => {
-        setTopicName(capitalizeWords(event.target.value));
+        settopic(capitalizeWords(event.target.value));
     };
 
-    const [topicName, setTopicName] = useState('');
+    const [topic, settopic] = useState('');
     const handleInputMentorChange = (event) => {
-        setMentorName(capitalizeWords(event.target.value));
+        setmentor(capitalizeWords(event.target.value));
     };
 
     const [competencies, setCompetencies] = useState([]);
@@ -108,13 +107,43 @@ function Mentoring() {
         }
     };
 
+    // Function to Fetch Schedules
+    const fetchSchedules = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://localhost:3001/mentoring?type=1', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message || 'Failed to fetch schedules');
+            }
+
+            const data = await response.json();
+            setSchedules(data.schedules);
+        } catch (error) {
+            console.error('Error fetching schedules:', error);
+            alert(error.message || 'Failed to fetch schedules');
+        }
+    };
+
+    // useEffect to fetch schedules when component mounts
+    useEffect(() => {
+        fetchSchedules();
+    }, []);
+
     const [dateError, setDateError] = useState('');
     const [timeError, setTimeError] = useState('');
     const [time1Error, setTime1Error] = useState('');
     const [typeError, setTypeError] = useState('');
     const [methodError, setMethodError] = useState('');
-    const [mentorNameError, setMentorNameError] = useState('');
-    const [topicNameError, setTopicNameError] = useState('');
+    const [mentorError, setmentorError] = useState('');
+    const [topicError, settopicError] = useState('');
     const [competenciesError, setCompetenciesError] = useState('');
     const [lesson, setLesson] = useState('');
     const [catatan, setCatatan] = useState('');
@@ -122,28 +151,27 @@ function Mentoring() {
 
     const [schedules, setSchedules] = useState([])
     const [form, setForm] = useState([])
-    const handleAddButtonClick = () => {
-
+    const handleAddButtonClick = async () => {
         setDateError('');
         setTimeError('');
         setTime1Error('');
         setTypeError('');
         setMethodError('');
-        setMentorNameError('');
-        setTopicNameError('');
+        setmentorError('');
+        settopicError('');
         setCompetenciesError('');
-
+    
         // Validation logic
         let valid = true;
         if (!date) {
             setDateError('*Date is required.');
             valid = false;
         }
-        if (!time) {
+        if (!start_time) {
             setTimeError('*Start time is required.');
             valid = false;
         }
-        if (!time1) {
+        if (!end_time) {
             setTime1Error('*End time is required.');
             valid = false;
         }
@@ -155,43 +183,73 @@ function Mentoring() {
             setMethodError('*Method is required.');
             valid = false;
         }
-        if (!mentorName.trim()) {
-            setMentorNameError('*Mentor name is required.');
+        if (!mentor.trim()) {
+            setmentorError('*Mentor name is required.');
             valid = false;
         }
-        if (!topicName.trim()) {
-            setTopicNameError('*Topic name is required.');
+        if (!topic.trim()) {
+            settopicError('*Topic name is required.');
             valid = false;
         }
         if (competencies.length === 0) {
             setCompetenciesError('*At least one competency is required.');
             valid = false;
         }
-
+    
         if (!valid) return;
-
+    
         const newSchedule = {
             type: type,
-            datetime: `${formatDate(date)}, ${time} WIB - ${time1} WIB`,
+            datetime: `${formatDate(date)}, ${start_time} WIB - ${end_time} WIB`,
             method: method,
-            mentorName: capitalizeWords(mentorName),
-            topicName: capitalizeWords(topicName),
+            mentor: capitalizeWords(mentor),
+            topic: capitalizeWords(topic),
             competencies: competencies.join(', '),
             status: 'Completed',
         };
+    
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://localhost:3001/mentoring', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    date: date,
+                    start_time: start_time,
+                    end_time: end_time,
+                    method: method,
+                    type: type,
+                    mentor: mentor,
+                    topic: topic,
+                    competencies: competencies,}),
+            });
+    
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message || 'Failed to add schedule');
+            }
+    
+            alert('Schedule added successfully!');
+            handleOngoingButtonClicked();
+    
+            setDate(new Date());
+            setTime('');
+            setTime1('');
+            setType(null);
+            setMethod(null);
+            setmentor('');
+            settopic('');
+            setCompetencies([]);
 
-        setSchedules([newSchedule, ...schedules]);
-        handleOngoingButtonClicked();
-
-        // setDate(new Date());
-        // setTime('');
-        // setTime1('');
-        // setType(null);
-        // setMethod(null);
-        // setMentorName('');
-        // setTopicName('');
-        // setCompetencies([]);
+        } catch (error) {
+            console.error('Error adding schedule:', error);
+            alert(error.message || 'Failed to add schedule');
+        }
     };
+    
 
     const handleFormButtonClick = () => {
 
@@ -199,14 +257,13 @@ function Mentoring() {
             type: type,
             method: method,
             date: `${formatDate(date)}`,
-            time: `${time} WIB - ${time1} WIB`,  
-            mentorName: capitalizeWords(mentorName),
-            topicName: capitalizeWords(topicName),
+            time: `${start_time} WIB - ${end_time} WIB`,  
+            mentor: capitalizeWords(mentor),
+            topic: capitalizeWords(topic),
             competencies: competencies.join(', '),
         };
 
         setForm([form]);
-
         handleSecond();
     }
 
@@ -305,7 +362,7 @@ function Mentoring() {
                                                 <input
                                                     type="time"
                                                     className="timeInput"
-                                                    value={time}
+                                                    value={start_time}
                                                     onChange={handleChange}
                                                 />
                                                 <div className="error">
@@ -317,7 +374,7 @@ function Mentoring() {
                                                 <input
                                                     type="time"
                                                     className="timeInput1"
-                                                    value={time1}
+                                                    value={end_time}
                                                     onChange={handleChangeEnd}
                                                 />
                                                 <div className="error">
@@ -386,12 +443,12 @@ function Mentoring() {
                                                 <input
                                                 type="text"
                                                 className='inputan'
-                                                value={mentorName}
+                                                value={mentor}
                                                 onChange={handleInputMentorChange}
                                                 /> 
                                             </label>
                                             <div className="error">
-                                                {mentorNameError}
+                                                {mentorError}
                                             </div>
                                         </div>
                                         <div>
@@ -400,12 +457,12 @@ function Mentoring() {
                                                 <input
                                                 type="text"
                                                 className='inputan'
-                                                value={topicName}
+                                                value={topic}
                                                 onChange={handleInputTopicChange}
                                                 />
                                             </label>
                                             <div className="error">
-                                                {topicNameError}
+                                                {topicError}
                                             </div>
                                         </div>
                                         <div className='competency'>
@@ -472,18 +529,18 @@ function Mentoring() {
                                                     <th>Mentor</th>
                                                     <th>Topic</th>
                                                     <th>Competencies</th>
-                                                    <th>Result</th>
+                                                    <th>Result</th> 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {schedules.map((schedule, index) => (
-                                                    <tr key={index}>
-                                                        <td>{schedule.type}</td>
-                                                        <td>{schedule.datetime}</td> 
-                                                        <td>{schedule.method}</td>
-                                                        <td>{schedule.mentorName}</td>
-                                                        <td>{schedule.topicName}</td>
-                                                        <td>{schedule.competencies}</td>
+                                                {schedules.map(schedule => (
+                                                    <tr key={schedule.MENTORINGID}>
+                                                        <td>{schedule.TYPE}</td>
+                                                        <td>{schedule.DATE} / {schedule.START_TIME} WIB - {schedule.END_TIME} WIB</td> 
+                                                        <td>{schedule.METHOD}</td>
+                                                        <td>{schedule.MENTOR}</td>
+                                                        <td>{schedule.TOPIC}</td>
+                                                        <td>{schedule.COMPETENCIES}</td>
                                                         <td><button className='formButton' onClick={handleFormButtonClick}>
                                                                 Feedback Form
                                                             </button></td>
@@ -491,7 +548,6 @@ function Mentoring() {
                                                 ))}
                                             </tbody>
                                         </table> 
-            
                                     </div>
                                 </div>
                             )}
@@ -511,15 +567,15 @@ function Mentoring() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {schedules.map((schedule, index) => (
-                                                <tr key={index}>
-                                                    <td>{schedule.type}</td>
-                                                    <td>{schedule.datetime}</td> 
-                                                    <td>{schedule.method}</td>
-                                                    <td>{schedule.mentorName}</td>
-                                                    <td>{schedule.topicName}</td>
-                                                    <td>{schedule.competencies}</td>
-                                                    <td className='status'>{schedule.status}</td>
+                                            {schedules.map(schedule => (
+                                                <tr key={schedule.MENTORINGID}>
+                                                    <td>{schedule.TYPE}</td>
+                                                    <td>{schedule.DATE} / {schedule.START_TIME} WIB - {schedule.END_TIME} WIB</td> 
+                                                    <td>{schedule.METHOD}</td>
+                                                    <td>{schedule.MENTOR}</td>
+                                                    <td>{schedule.TOPIC}</td>
+                                                    <td>{schedule.COMPETENCIES}</td>
+                                                    <td className='status'>{schedule.STATUS}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -543,46 +599,46 @@ function Mentoring() {
                             <div className="form-container">
                                 <div className='upper'>
                                     
-                                        {form.map((schedule) => (
+                                        {schedules.map(schedule => (
                                             <div>
                                                 <div className='header'>
                                                     <div className='atas'>
                                                         <div className="bagian">
                                                             <p className='judul'>Type</p>   
-                                                            <div className='value'>{schedule.type}</div>
+                                                            <div className='value'>{schedule.TYPE}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Date</p>
-                                                            <div className='value'>{schedule.date}</div>
+                                                            <div className='value'>{schedule.DATE}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Mentor</p>
-                                                            <div className='value'>{schedule.mentorName}</div>
+                                                            <div className='value'>{schedule.MENTOR}</div>
                                                         </div>
                                                     </div>
                                                     <div className='bawah'>
                                                         <div className="bagian">
                                                             <p className='judul'>Method</p>
-                                                            <div className='value'>{schedule.method}</div>
+                                                            <div className='value'>{schedule.METHOD}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Time</p>
-                                                            <div className='value'>{schedule.time}</div>
+                                                            <div className='value'>{schedule.START_TIME} WIB - {schedule.END_TIME} WIB</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Topic</p>
-                                                            <div className='value'>{schedule.topicName}</div>
+                                                            <div className='value'>{schedule.TOPIC}</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <hr/>
                                                 <p className='judul-form'><strong>Kompetensi Yang Dievaluasi</strong></p>
                                                 <div className="bagian"> 
-                                                    <div className='value1'>{schedule.competencies}</div>
+                                                    <div className='value1'>{schedule.COMPETENCIES}</div>
                                                 </div>
 
                                                 <p className='judul-form1'><strong>Lesson Learned Competencies</strong></p>
@@ -626,6 +682,9 @@ function Mentoring() {
                                                 <button className='submitButton' onClick={handleSubmitFormButton}>
                                                     Submit
                                                 </button>
+                                                <iframe>
+                                                    src:
+                                                </iframe>
                                             </div>
                                         ))}
                                 </div>
