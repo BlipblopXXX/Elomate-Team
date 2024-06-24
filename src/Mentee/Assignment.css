@@ -46,42 +46,101 @@
     border-radius: 4px;
 }
 
-.assignment1 .course {
-    background-color: white;
-    margin: 2%;
-    padding: 1%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+.assignment1 .progress-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 2% 0;
 }
 
-.assignment1 .description{
+.assignment1 .progress-item {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+}
+
+.assignment1 .progress-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.assignment1 .progress-value {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.assignment1 .progress-name {
+    margin-top: 8px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.assignment1 .course-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.assignment1 .course {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.assignment1 .course:hover {
+    transform: scale(1.05);
+}
+
+.assignment1 .description {
+    display: flex;
+    align-items: center;
 }
 
 .assignment1 .courseimg {
-    width: 5%;
+    width: 50px;
+    height: 50px;
+    margin-right: 16px;
 }
 
-.assignment1 .course-text{
-    margin-left: 1%;
+.assignment1 .course-text {
+    flex: 1;
 }
 
 .assignment1 .course-name {
+    font-size: 16px;
     font-weight: bold;
-    font-size: 18px;
 }
 
 .assignment1 .course-no-batch {
-    font-size: 16px;
-    margin-top: 4px;
+    font-size: 14px;
+    color: #666;
 }
 
 .assignment1 .course-button {
     text-align: center;
-    margin-top: 8px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.assignment1 .course-button:hover {
+    background-color: #45a049;
 }
 
 .assignment2 .title2 {
@@ -96,12 +155,46 @@
     width: 3%;
     cursor: pointer;
 }
-
+    
 .assignment2 .assign-selected {
     margin-top: 1%;
     margin-left: 2%;
     margin-bottom: 2%;
 }
+
+.assignment2 .progress-divider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.assignment2 .progress-bar-container {
+    width: 95%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.assignment2 .progress-bar {
+    height: 20px;
+    background-color: #4caf50;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+}
+
+.assignment2 .progress-text {
+    margin-top: 0.5%;
+    margin-left: 1%;
+    font-weight: bold;
+}
+
+.assignment2 .selected-details {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
 
 .assignment2 .assign-selected .selected-name{
     font-size: 20px;
@@ -113,54 +206,70 @@
 }
 
 .assignment2 .assign-details-container {
-    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .assignment2 .assign-details {
     display: flex;
     flex-direction: column;
-    background-color: white;
-    padding: 1%;
-    border-radius: 10px;
-    width: 29%;
-    margin: 1%;
+    width: 300px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 16px 0;
 }
 
-.assignment2 .assign-details .assign-desc1 {
+.assignment2 .assign-desc1 {
     display: flex;
-    flex-direction: row;
+    align-items: center;
 }
 
-.assignment2 .assign-details  .assign-description {
-    margin-top: 1%;
-    margin-left: 3%;
+.assignment2 .assign-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 16px;
 }
 
-.assignment2 .assign-details .assign-title{
-    margin-top: 10%;
-    font-weight: bold;
+.assignment2 .assign-description {
+    flex: 1;
+}
+
+.assignment2 .assign-title {
     font-size: 16px;
-    margin-bottom: 15%;
+    font-weight: bold;
 }
 
-.assignment2 .assign-details .assign-no {
-    font-size: 13px;
+.assignment2 .assign-no {
+    font-size: 14px;
+    color: #666;
 }
 
-.assignment2 .assign-details .assign-duedet {
-    margin-top: 5%;
-    font-size: 13px;
+.assignment2 .assign-desc2 {
+    margin-top: 16px;
 }
 
-.assignment2 .assign-details .assign-due {
-    font-size: 13px;
-}
-
-.assignment2 .assign-details .assign-statusdet{
+.assignment2 .assign-duedet, .assign-statusdet {
     font-size: 14px;
     font-weight: bold;
 }
 
-.assignment2 .assign-details .assign-status{
+.assignment2 .assign-due, .assign-status {
     font-size: 14px;
+    color: #666;
+}
+
+.assignment2 .assign-status.completed {
+    color: green;
+}
+
+.assignment2 .assign-status.overdue {
+    color: red;
+}
+
+.assignment2 .assign-status.pending {
+    color: orange;
 }
