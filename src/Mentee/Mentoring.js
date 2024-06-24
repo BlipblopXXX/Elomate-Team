@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Mentoring.css';
 
 function Mentoring() {
@@ -148,6 +149,8 @@ function Mentoring() {
     const [lesson, setLesson] = useState('');
     const [catatan, setCatatan] = useState('');
     const [file, setFile] = useState(null);
+    const [mentoringID, setMentoringID] = useState('');
+    const [status, setStatus] = useState('On Going');
 
     const [schedules, setSchedules] = useState([])
     const [form, setForm] = useState([])
@@ -211,8 +214,8 @@ function Mentoring() {
         try {
             const token = localStorage.getItem('token');
             const response = await fetch('http://localhost:3001/mentoring', {
-                method: 'POST',
-                headers: {
+                    method: 'POST',
+                    headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
@@ -251,7 +254,9 @@ function Mentoring() {
     };
     
 
-    const handleFormButtonClick = () => {
+    const handleFormButtonClick = async (mentoringID) => {
+
+        const token = localStorage.getItem('token');
 
         const form = {
             type: type,
@@ -262,8 +267,33 @@ function Mentoring() {
             topic: capitalizeWords(topic),
             competencies: competencies.join(', '),
         };
+        
+            try {
+                const response = await fetch(`http://localhost:3001/mentoring/${mentoringID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(form),
+                });
+                if (response.ok) {
+                    fetchSchedules(1);
+                    setForm({
+                        lesson: '',
+                        catatan: '',
+                        file: null,
+                    });
+                    setCurrentPage('closed');
+                } else {
+                    console.error('Failed to submit feedback:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+            }
 
-        setForm([form]);
+        // setForm([form]);
+
         handleSecond();
     }
 
@@ -541,7 +571,7 @@ function Mentoring() {
                                                         <td>{schedule.MENTOR}</td>
                                                         <td>{schedule.TOPIC}</td>
                                                         <td>{schedule.COMPETENCIES}</td>
-                                                        <td><button className='formButton' onClick={handleFormButtonClick}>
+                                                        <td><button className='formButton' onClick={() => handleFormButtonClick(schedule.MENTORINGID)}>
                                                                 Feedback Form
                                                             </button></td>
                                                     </tr>
@@ -575,7 +605,7 @@ function Mentoring() {
                                                     <td>{schedule.MENTOR}</td>
                                                     <td>{schedule.TOPIC}</td>
                                                     <td>{schedule.COMPETENCIES}</td>
-                                                    <td className='status'>{schedule.STATUS}</td>
+                                                    <td className='status'>{schedule.STATUS === 'completed' ? 'Completed' : 'On Going'}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -600,7 +630,7 @@ function Mentoring() {
                                 <div className='upper'>
                                     
                                         {schedules.map(schedule => (
-                                            <div>
+                                            <div key={schedule.MENTORINGID}>
                                                 <div className='header'>
                                                     <div className='atas'>
                                                         <div className="bagian">
@@ -682,9 +712,6 @@ function Mentoring() {
                                                 <button className='submitButton' onClick={handleSubmitFormButton}>
                                                     Submit
                                                 </button>
-                                                <iframe>
-                                                    src:
-                                                </iframe>
                                             </div>
                                         ))}
                                 </div>
