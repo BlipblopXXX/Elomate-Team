@@ -46,44 +46,103 @@
     border-radius: 4px;
 }
 
-.preactivity1 .course {
-    background-color: white;
-    margin: 2%;
-    padding: 1%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+.preactivity1 .progress-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 2% 0;
 }
 
-.preactivity1 .description{
+.preactivity1 .progress-item {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preactivity1 .progress-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.preactivity1 .progress-value {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.preactivity1 .progress-name {
+    margin-top: 8px;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+.preactivity1 .course-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.preactivity1 .course {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.preactivity1 .course:hover {
+    transform: scale(1.05);
+}
+
+.preactivity1 .description {
+    display: flex;
+    align-items: center;
 }
 
 .preactivity1 .courseimg {
-    width: 5%;
+    width: 50px;
+    height: 50px;
+    margin-right: 16px;
 }
 
-.preactivity1 .course-text{
-    margin-left: 1%;
+.preactivity1 .course-text {
+    flex: 1;
 }
 
 .preactivity1 .course-name {
+    font-size: 16px;
     font-weight: bold;
-    font-size: 18px;
 }
 
 .preactivity1 .course-no-batch {
-    font-size: 16px;
-    margin-top: 4px;
+    font-size: 14px;
+    color: #666;
 }
 
 .preactivity1 .course-button {
     text-align: center;
-    margin-top: 8px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
     border-radius: 4px;
     cursor: pointer;
 }
 
+.preactivity1 .course-button:hover {
+    background-color: #45a049;
+}
 .preactivity2 .title2 {
     margin-top: 1%;
     margin-left: 2%;
