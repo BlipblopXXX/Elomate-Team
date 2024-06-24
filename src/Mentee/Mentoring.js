@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './Mentoring.css';
 
 function Mentoring() {
@@ -151,6 +150,7 @@ function Mentoring() {
     const [file, setFile] = useState(null);
     const [mentoringID, setMentoringID] = useState('');
     const [status, setStatus] = useState('On Going');
+    const [selectedMentoringID, setSelectedMentoringID] = useState(null);
 
     const [schedules, setSchedules] = useState([])
     const [form, setForm] = useState([])
@@ -293,7 +293,7 @@ function Mentoring() {
             }
 
         // setForm([form]);
-
+        setSelectedMentoringID(mentoringID);
         handleSecond();
     }
 
@@ -617,6 +617,7 @@ function Mentoring() {
                     </div>
                 )
             case 'second' :
+                const selectedMentoring = schedules.find(schedule => schedule.MENTORINGID === selectedMentoringID);
                 return(
                     <div className="mentoring">
                         <div className="title2">
@@ -629,46 +630,46 @@ function Mentoring() {
                             <div className="form-container">
                                 <div className='upper'>
                                     
-                                        {schedules.map(schedule => (
-                                            <div key={schedule.MENTORINGID}>
+                                        {selectedMentoring &&  (
+                                            <div key={selectedMentoring.MENTORINGID}>
                                                 <div className='header'>
                                                     <div className='atas'>
                                                         <div className="bagian">
                                                             <p className='judul'>Type</p>   
-                                                            <div className='value'>{schedule.TYPE}</div>
+                                                            <div className='value'>{selectedMentoring.TYPE}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Date</p>
-                                                            <div className='value'>{schedule.DATE}</div>
+                                                            <div className='value'>{selectedMentoring.DATE}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Mentor</p>
-                                                            <div className='value'>{schedule.MENTOR}</div>
+                                                            <div className='value'>{selectedMentoring.MENTOR}</div>
                                                         </div>
                                                     </div>
                                                     <div className='bawah'>
                                                         <div className="bagian">
                                                             <p className='judul'>Method</p>
-                                                            <div className='value'>{schedule.METHOD}</div>
+                                                            <div className='value'>{selectedMentoring.METHOD}</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Time</p>
-                                                            <div className='value'>{schedule.START_TIME} WIB - {schedule.END_TIME} WIB</div>
+                                                            <div className='value'>{selectedMentoring.START_TIME} WIB - {selectedMentoring.END_TIME} WIB</div>
                                                         </div>
 
                                                         <div className="bagian">
                                                             <p className='judul'>Topic</p>
-                                                            <div className='value'>{schedule.TOPIC}</div>
+                                                            <div className='value'>{selectedMentoring.TOPIC}</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <hr/>
                                                 <p className='judul-form'><strong>Kompetensi Yang Dievaluasi</strong></p>
                                                 <div className="bagian"> 
-                                                    <div className='value1'>{schedule.COMPETENCIES}</div>
+                                                    <div className='value1'>{selectedMentoring.COMPETENCIES}</div>
                                                 </div>
 
                                                 <p className='judul-form1'><strong>Lesson Learned Competencies</strong></p>
@@ -713,7 +714,7 @@ function Mentoring() {
                                                     Submit
                                                 </button>
                                             </div>
-                                        ))}
+                                        )}
                                 </div>
                             </div>
                         </div>
