@@ -210,6 +210,35 @@ const prereading = [
     {name: 'Personal Branding', title: 'Personal Branding 6'}
 ];
 
+const progress = [
+    { selectedTopic: 'General Development', order: '1', name: 'On Boarding', value: 100 },
+    { selectedTopic: 'General Development', order: '2', name: 'SOLUTION Culture', value: 50 },
+    { selectedTopic: 'General Development', order: '3', name: 'Behaviour Competencies', value: 0 },
+    { selectedTopic: 'General Development', order: '4', name: 'Business Process UT', value: 0 },
+    { selectedTopic: 'General Development', order: '5', name: 'Kebhinekaan', value: 0 },
+    { selectedTopic: 'General Development', order: '6', name: 'BMS', value: 0 },
+    { selectedTopic: 'General Development', order: '7', name: 'Basic Mentoring', value: 0 },
+    { selectedTopic: 'General Development', order: '8', name: 'Project Management', value: 0 },
+    { selectedTopic: 'Orientasi Divisi', order: '1', name: 'Business Process Divisi', value: 0 },
+    { selectedTopic: 'Orientasi Divisi', order: '2', name: 'Functional BMC', value: 0 },
+    { selectedTopic: 'Orientasi Divisi', order: '3', name: 'Case Studies', value: 0 },
+    { selectedTopic: 'BGMS', order: '1', name: 'Character Building', value: 0 },
+    { selectedTopic: 'BGMS', order: '2', name: 'Teamwork', value: 0 },
+    { selectedTopic: 'BGMS', order: '3', name: 'Drive & Courage', value: 0 },
+    { selectedTopic: 'NEOP', order: '1', name: 'Executive Sharing', value: 0 },
+    { selectedTopic: 'NEOP', order: '2', name: 'Corporate Value', value: 0 },
+    { selectedTopic: 'NEOP', order: '3', name: 'AHEMCE Value Chain', value: 0 },
+    { selectedTopic: 'NEOP', order: '4', name: 'Business Process AHEMCE', value: 0 },
+    { selectedTopic: 'NEOP', order: '5', name: 'Personal Branding', value: 0 },
+    { selectedTopic: 'Review1', order: '1', name: 'Review 1', value: 0 },
+    { selectedTopic: 'Project', order: '1', name: 'Final Project', value: 0},
+    { selectedTopic: 'Review2', order: '1', name: 'Review 2', value: 0 },
+    { selectedTopic: 'Review2', order: '2', name: 'Review 3', value: 0 },
+    { selectedTopic: 'Review2', order: '3', name: 'Review 4', value: 0 },
+    { selectedTopic: 'Review2', order: '4', name: 'Review 5', value: 0 },
+    { selectedTopic: 'Review2', order: '5', name: 'Final Review', value: 0 },
+];
+
 function PreActivity() {
     const [currentPage, setCurrentPage] = useState('main');
     const [selectedPhase, setSelectedPhase] = useState('option1');
@@ -287,21 +316,30 @@ function PreActivity() {
 
     const getDescription = () => {
         const filteredCourses = courses.filter(course => course.selectedPhase === selectedPhase && course.selectedTopic === selectedTopic);
+
         return (
-            <div>
-                {filteredCourses.map(course => (
-                    <div key={course.id} className="course">
-                        <div className="description">
-                            <img className="courseimg" src="/src/files/icons/CourseImg.png" alt="Course" />
-                            <div className="course-text">
-                                <div className="course-name">{course.name}</div>
-                                <div className="course-no-batch">{course.no}</div>
+            <div className="course-container">
+                {filteredCourses.map(course => {
+                    const courseProgress = progress.find(prog => prog.name === course.name);
+                    const progressValue = courseProgress ? courseProgress.value : 0;
+
+                    return (
+                        <div key={course.name} className="course" onClick={() => handleCourseClick(course)}>
+                            <div className="description">
+                                <img className="courseimg" src="/src/files/icons/CourseImg.png" alt="Course" />
+                                <div className="course-text">
+                                    <div className="course-name">{course.name}</div>
+                                    <div className="course-no-batch">{course.no}</div>
+                                </div>
+                                <div className="progress-circle" style={{ background: `conic-gradient(#4caf50 ${progressValue * 3.6}deg, #e0e0e0 0deg)` }}>
+                                    <div className="progress-value">{progressValue}%</div>
+                                </div>
                             </div>
+                            <hr />
+                            <div className="course-button" onClick={handleSecond}>Click to View the activity</div>
                         </div>
-                        <hr/>
-                        <div className="course-button" onClick={() => handleCourseClick(course)}>Click to View the activity</div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         );
     };
@@ -432,7 +470,7 @@ function PreActivity() {
                                 <iframe 
                                     src={currentActivity.pdfSrc} 
                                     width="94%" 
-                                    height="100%" 
+                                    height="100%"
                                     frameBorder="0"
                                 ></iframe>
                             </div>
