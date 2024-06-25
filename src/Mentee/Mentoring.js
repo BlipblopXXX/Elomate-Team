@@ -145,15 +145,11 @@ function Mentoring() {
     const [mentorError, setmentorError] = useState('');
     const [topicError, settopicError] = useState('');
     const [competenciesError, setCompetenciesError] = useState('');
-    const [lesson, setLesson] = useState('');
-    const [catatan, setCatatan] = useState('');
-    const [file, setFile] = useState(null);
     const [mentoringID, setMentoringID] = useState('');
-    const [status, setStatus] = useState('On Going');
     const [selectedMentoringID, setSelectedMentoringID] = useState(null);
 
     const [schedules, setSchedules] = useState([])
-    const [form, setForm] = useState([])
+    
     const handleAddButtonClick = async () => {
         setDateError('');
         setTimeError('');
@@ -253,35 +249,39 @@ function Mentoring() {
         }
     };
     
+    const [status, setStatus] = useState('On Going');
+    const [form, setForm] = useState({
+        lesson: '',
+        notes: '',
+        file: null,
+    });
+    const [lesson, setLesson] = useState('');
+    const [notes, setNotes] = useState('');
+    const [file, setFile] = useState(null);
 
     const handleFormButtonClick = async (mentoringID) => {
 
         const token = localStorage.getItem('token');
 
         const form = {
-            type: type,
-            method: method,
-            date: `${formatDate(date)}`,
-            time: `${start_time} WIB - ${end_time} WIB`,  
-            mentor: capitalizeWords(mentor),
-            topic: capitalizeWords(topic),
-            competencies: competencies.join(', '),
+            lesson_learned: lesson,
+            mentor_notes: notes,
         };
         
             try {
                 const response = await fetch(`http://localhost:3001/mentoring/${mentoringID}`, {
-                    method: 'PUT',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
-                    },
+                    }, 
                     body: JSON.stringify(form),
                 });
                 if (response.ok) {
                     fetchSchedules(1);
                     setForm({
                         lesson: '',
-                        catatan: '',
+                        notes: '',
                         file: null,
                     });
                     setCurrentPage('closed');
@@ -301,6 +301,13 @@ function Mentoring() {
         setFile(event.target.files[0]);
     };
 
+    const [ongoingSchedules, setOngoingSchedules] = useState([]);
+    const [closedSchedules, setClosedSchedules] = useState([]);
+    useEffect(() => {
+        fetchSchedules(1); // Load ongoing schedules initially
+        fetchSchedules(2); // Load closed schedules initially
+    }, []);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         if (file) {
@@ -310,25 +317,11 @@ function Mentoring() {
     };
 
     const [lessonError, setLessonError] = useState('');
-    const [catatanError, setCatatanError] = useState('');
+    const [notesError, setNotesError] = useState('');
 
-    // Fungsi untuk menghapus jadwal yang sudah selesai dari daftar ongoing
-    // const removeScheduleFromOngoing = (index) => {
-    //     const updatedSchedules = [...schedules];
-    //     updatedSchedules.splice(index, 1);
-    //     setSchedules(updatedSchedules);
-    // };
-
-    // // Fungsi untuk menambahkan jadwal yang selesai ke daftar closed
-    // const addScheduleToClosed = (schedule) => {
-    //     const updatedClosedSchedules = [schedule, ...closedSchedules];
-    //     setClosedSchedules(updatedClosedSchedules);
-    // };
-
-    const handleSubmitFormButton = () => {
-        // Clear previous errors
+    const handleSubmitFormButton = async () => {
         setLessonError('');
-        setCatatanError('');
+        setNotesError('');
 
         let valid = true;
 
@@ -338,25 +331,53 @@ function Mentoring() {
             valid = false;
         }
 
-        // Validate catatan input
-        if (!catatan.trim()) {
-            setCatatanError('*Catatan is required.');
+        // Validate notes input
+        if (!notes.trim()) {
+            setNotesError('*notes is required.');
             valid = false;
         }
 
         if (!valid) return;
 
-        // Proceed with form submission if valid
-        // Handle form submission here
-        console.log('Form submitted:', { lesson, catatan, file });
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch(`http://localhost:3001/mentoring/${selectedMentoringID}`, {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    lesson_learned: lesson,
+                    mentor_notes: notes,
+                }),
 
-        // Reset form after submission
-        setLesson('');
-        setCatatan('');
-        setFile(null);
+            });
+        
+            if (!response.ok) {
+                fetchSchedules(1);
+                setForm({
+                    lesson_learned: lesson,
+                    mentor_notes: notes,
+                });
+                setCurrentPage('closed');
+            } else {
+                console.error('Failed to submit feedback:', response.statusText);
+            }
+        
+            alert('Submit Feedback Form successfully!');
 
-        handleMain();
-        handleClosedButtonClick();
+            // Reset form after submission
+            setLesson('');
+            setNotes('');
+            setFile(null);
+
+            handleMain();
+            handleClosedButtonClick();
+        } catch (error) {
+            console.error('Error submit:', error);
+            alert(error.message || 'Failed Submit');
+        }
     };
 
     const renderPage = () => {
@@ -688,20 +709,20 @@ function Mentoring() {
                                                         {lessonError}     
                                                     </div>
                                                 </div>
-                                                <p className='judul-form1'><strong>Catatan Mentor</strong></p>
+                                                <p className='judul-form1'><strong>notes Mentor</strong></p>
                                                 <div> 
-                                                    <p className="form-desc">Catatan terkait hal yang sudah improve dan area of development</p>
+                                                    <p className="form-desc">notes terkait hal yang sudah improve dan area of development</p>
                                                 </div>
                                                 <div>
                                                     <input
                                                         className='answer'
                                                         type="text"
                                                         placeholder="Your Answer"
-                                                        value={catatan}
-                                                        onChange={(e) => setCatatan(e.target.value)}
+                                                        value={notes}
+                                                        onChange={(e) => setNotes(e.target.value)}
                                                     />
                                                     <div className="error">
-                                                        {catatanError}     
+                                                        {notesError}     
                                                     </div>
                                                 </div>
                                                 <p className='judul-form1'><strong>Attachment</strong></p>
