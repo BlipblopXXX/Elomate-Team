@@ -31,56 +31,56 @@ const courses = [
 ]
 
 const assign = [
-    {name: 'On Boarding', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'On Boarding', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'SOLUTION Culture', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'SOLUTION Culture', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Behaviour Competencies', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Behaviour Competencies', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Business Process UT', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Business Process UT', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Kebhinekaan', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Kebhinekaan', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'BMS', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'BMS', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Basic Mentoring', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Basic Mentoring', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Project Management', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Project Management', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Business Process Divisi', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Business Process Divisi', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Functional BMC', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Functional BMC', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Case Studies', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Case Studies', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Character Building', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Character Building', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Teamwork', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Teamwork', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Drive & Courage', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Drive & Courage', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Executive Sharing', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Executive Sharing', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Corporate Value', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Corporate Value', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'AHEMCE Value Chain', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'AHEMCE Value Chain', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Business Process AHEMCE', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Business Process AHEMCE', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Personal Branding', title: 'Pre-Test', due: '17 March 2024', status: 'Completed'},
-    {name: 'Personal Branding', title: 'Post-Test', due: '30 March 2024', status: 'Not Completed'},
-    {name: 'Review 1', title: 'Meet', due: '-', status: 'Completed'},
-    {name: 'Review 1', title: 'Case', due: '-', status: 'Not Completed'},
-    {name: 'Review 2', title: 'Meet', due: '-', status: 'Completed'},
-    {name: 'Review 2', title: 'Case', due: '-', status: 'Not Completed'},
-    {name: 'Review 3', title: 'Meet', due: '-', status: 'Completed'},
-    {name: 'Review 3', title: 'Case', due: '-', status: 'Not Completed'},
-    {name: 'Review 4', title: 'Meet', due: '-', status: 'Completed'},
-    {name: 'Review 4', title: 'Case', due: '-', status: 'Not Completed'},
-    {name: 'Review 5', title: 'Meet', due: '-', status: 'Completed'},
-    {name: 'Review 5', title: 'Case', due: '-', status: 'Not Completed'},
-    {name: 'Final Review', title: 'Meet', due: '-', status: 'Completed'},
-    {name: 'Final Review', title: 'Case', due: '-', status: 'Not Completed'},
+    {name: 'On Boarding', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'On Boarding', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'SOLUTION Culture', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'SOLUTION Culture', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Behaviour Competencies', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Behaviour Competencies', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process UT', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process UT', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Kebhinekaan', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Kebhinekaan', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'BMS', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'BMS', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Basic Mentoring', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Basic Mentoring', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Project Management', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Project Management', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process Divisi', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process Divisi', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Functional BMC', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Functional BMC', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Case Studies', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Case Studies', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Character Building', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Character Building', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Teamwork', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Teamwork', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Drive & Courage', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Drive & Courage', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Executive Sharing', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Executive Sharing', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Corporate Value', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Corporate Value', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'AHEMCE Value Chain', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'AHEMCE Value Chain', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process AHEMCE', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process AHEMCE', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Personal Branding', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Personal Branding', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 1', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 1', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 2', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 2', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 3', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 3', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 4', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 4', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 5', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 5', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Final Review', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Final Review', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
 ]
 
 const progress = [
@@ -117,14 +117,27 @@ function Assignment() {
     const [selectedPhase, setSelectedPhase] = useState('option1');
     const [selectedTopic, setSelectedTopic] = useState('General Development');
     const [selectedAssign, setSelectedAssign] = useState(null);
+    const [selectedCourse, setSelectedCourse] = useState(null);
+    const [selectedTest, setSelectedTest] = useState(null);
 
     const handleMain = () => {
         setCurrentPage('main');
         setSelectedAssign(null);
+        setSelectedTest(null);
     };
 
     const handleSecond = () => {
         setCurrentPage('second');
+    };
+
+    const handleStart = () => {
+        setCurrentPage('fourth');
+    };
+
+    const handleThird = (assign) => {
+        setCurrentPage('third');
+        setSelectedAssign(assign.name);
+        setSelectedTest(assign.title);
     };
 
     useEffect(() => {
@@ -134,6 +147,12 @@ function Assignment() {
             setSelectedTopic('Project');
         }
     }, [selectedPhase]);
+
+    useEffect(() => {
+        if (currentPage === 'third' && selectedCourse) {
+            setSelectedAssign(selectedCourse.name);
+        }
+    }, [currentPage, selectedCourse]);
 
     const handlePhaseChange = (event) => {
         setSelectedPhase(event.target.value);
@@ -145,6 +164,7 @@ function Assignment() {
 
     const handleCourseClick = (course) => {
         setSelectedAssign(course.name);
+        setSelectedCourse(course);
     };
 
     const getDescription = () => {
@@ -182,7 +202,7 @@ function Assignment() {
             const selected = courses.find(item => item.name === selectedAssign);
             const courseProgress = progress.find(prog => prog.name === selectedAssign);
             const progressValue = courseProgress ? courseProgress.value : 0;
-            
+
             if (selected) {
                 return (
                     <div className="selected-details">
@@ -203,12 +223,12 @@ function Assignment() {
 
     const renderAssignDetails = () => {
         if (selectedAssign) {
-            const assignDetails = assign.filter(assign => assign.name === selectedAssign);
+            const assignDetails = assign.filter(a => a.name === selectedAssign);
             return assignDetails.map((assign, index) => {
                 const course = courses.find(course => course.name === selectedAssign);
                 if (course) {
                     return (
-                        <div key={index} className="assign-details">
+                        <div key={index} className="assign-details" onClick={() => handleThird(assign)}>
                             <div className="assign-desc1">
                                 <img className="assign-img" src="/src/files/icons/CourseImg.png" alt="Assignment" />
                                 <div className="assign-description">
@@ -228,6 +248,51 @@ function Assignment() {
                 }
                 return null;
             });
+        }
+        return null;
+    };
+
+    const renderAssignSelected = () => {
+        if (selectedAssign) {
+            const selectedAssignDetails = assign.filter(a => a.name === selectedAssign && a.title === selectedTest);
+
+            return (
+                <div>
+                    {selectedAssignDetails.map((assignDetail, index) => (
+                        <div key={index} className="assign-selected-details">
+                            <div className="assign-title">
+                                <span className="assign-detail-value">{assignDetail.title} Course</span>
+                            </div>
+                            <hr />
+                            <div className="assign-top">
+                                <div className="assign-detail">
+                                    <span className="assign-detail-label">Start: </span>
+                                    <span className="assign-detail-value">{assignDetail.start}</span>
+                                </div>
+                                <div className="assign-detail-due">
+                                    <span className="assign-detail-label">Due: </span>
+                                    <span className="assign-detail-value">{assignDetail.due}</span>
+                                </div>
+                                <div className="assign-detail">
+                                    <span className="assign-detail-label">Time: </span>
+                                    <span className="assign-detail-value">{assignDetail.time} minutes</span>
+                                </div>
+                            </div>
+                            <div className="assign-bottom">
+                                <div className="assign-detail">
+                                    <span className="assign-detail-label">Type: </span>
+                                    <span className="assign-detail-value">{assignDetail.type}</span>
+                                </div>
+                                <div className="assign-detail">
+                                    <span className="assign-detail-label">Question Count: </span>
+                                    <span className="assign-detail-value">{assignDetail.qcount}</span>
+                                </div>
+                                <div className="assign-button">Start</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
         }
         return null;
     };
@@ -302,6 +367,38 @@ function Assignment() {
                         </div>
                     </div>
                 );
+            case 'third':
+                return (
+                    <div className="assignment3">
+                        <div className="title3">
+                            <h><b>Assignment</b></h>
+                        </div>
+                        <hr />
+                        <img className="backbutton" onClick={handleSecond} src="/src/files/icons/backbutton.png" alt="Back" />
+                        <div className="description">
+                            <div className="course-text">
+                                {selectedCourse && (
+                                    <>
+                                        <div className="course-name">{selectedCourse.name}</div>
+                                        <div className="course-no-batch">{selectedCourse.no}</div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                        <div className="assign-selected-container">
+                            {renderAssignSelected()}
+                        </div>
+                    </div>
+                );
+            case 'fourth':
+                return(
+                    <div className="assignment4">
+                        <div className="title4">
+                            <h><b>Assignment</b></h>
+                        </div>
+                        <hr />
+                    </div>
+                )
             default:
                 return null;
         }
