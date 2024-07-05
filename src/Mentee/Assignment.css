@@ -221,6 +221,12 @@
     border-radius: 8px;
     background-color: #fff;
     margin: 16px 0;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.assignment2 .assign-details:hover {
+    transform: scale(1.05);
 }
 
 .assignment2 .assign-desc1 {
@@ -272,4 +278,109 @@
 
 .assignment2 .assign-status.pending {
     color: orange;
+}
+
+.assignment3 .title3 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.assignment3 .backbutton {
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 3%;
+    cursor: pointer;
+}
+
+.assignment3 .course-name {
+    font-weight: bold;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 20px;
+}
+
+.assignment3 .course-no-batch {
+    margin-left: 2%;
+    font-size: 16px;
+}
+
+.assignment3 .assign-fill {
+    margin: 2%;
+    padding: 1%;
+    width: 150.5vh;
+    height: 55vh;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.assignment3 .assign-selected-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.assignment3 .assign-selected-details {
+    margin-bottom: 10px;
+}
+
+.assignment3 .assign-title {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.assignment3 .assign-top {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.assignment3 .assign-bottom {
+    display: flex;
+    flex-direction: row;
+}
+
+.assignment3 .assign-detail {
+    display: flex;
+    flex-direction: column;
+    width: 50vh;
+}
+
+.assignment3 .assign-detail-due {
+    display: flex;
+    flex-direction: column;
+    width: 50vh;
+    margin-left: 2.1%;
+}
+
+.assignment3 .assign-detail-label {
+    font-weight: bold;
+}
+
+.assignment3 .assign-detail-value {
+    margin-bottom: 0.5%;
+    margin-top: 1%;
+}
+
+.assignment3 .assign-button {
+    text-align: center;
+    margin-top: 16px;
+    width: 100px;
+    padding: 8px 16px;
+    background-color: rgb(107, 107, 222);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.assignment4 .title4 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
 }
