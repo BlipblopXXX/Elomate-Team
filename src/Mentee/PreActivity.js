@@ -94,120 +94,120 @@ const activity = [
 ];
 
 const prereading = [
-    {name: 'On Boarding', title: 'On Boarding 1', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'On Boarding', title: 'On Boarding 2', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'On Boarding', title: 'On Boarding 3', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'On Boarding', title: 'On Boarding 4', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'On Boarding', title: 'On Boarding 5', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'On Boarding', title: 'On Boarding 6', pdfSrc: '/src/files/pdf/Activity.pdf'},
-    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 1'},
-    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 2'},
-    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 3'},
-    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 4'},
-    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 5'},
-    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 6'},
-    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 1'},
-    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 2'},
-    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 3'},
-    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 4'},
-    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 5'},
-    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 6'},
-    {name: 'Business Process UT',  title: 'Business Process UT 1'},
-    {name: 'Business Process UT',  title: 'Business Process UT 2'},
-    {name: 'Business Process UT',  title: 'Business Process UT 3'},
-    {name: 'Business Process UT',  title: 'Business Process UT 4'},
-    {name: 'Business Process UT',  title: 'Business Process UT 5'},
-    {name: 'Business Process UT',  title: 'Business Process UT 6'},
-    {name: 'Kebhinekaan', title: 'Kebhinekaan 1'},
-    {name: 'Kebhinekaan', title: 'Kebhinekaan 2'},
-    {name: 'Kebhinekaan', title: 'Kebhinekaan 3'},
-    {name: 'Kebhinekaan', title: 'Kebhinekaan 4'},
-    {name: 'Kebhinekaan', title: 'Kebhinekaan 5'},
-    {name: 'Kebhinekaan', title: 'Kebhinekaan 6'},
-    {name: 'BMS', title: 'BMS 1'},
-    {name: 'BMS', title: 'BMS 2'},
-    {name: 'BMS', title: 'BMS 3'},
-    {name: 'BMS', title: 'BMS 4'},
-    {name: 'BMS', title: 'BMS 5'},
-    {name: 'BMS', title: 'BMS 6'},
-    {name: 'Basic Mentoring', title: 'Basic Mentoring 1'},
-    {name: 'Basic Mentoring', title: 'Basic Mentoring 2'},
-    {name: 'Basic Mentoring', title: 'Basic Mentoring 3'},
-    {name: 'Basic Mentoring', title: 'Basic Mentoring 4'},
-    {name: 'Basic Mentoring', title: 'Basic Mentoring 5'},
-    {name: 'Basic Mentoring', title: 'Basic Mentoring 6'},
-    {name: 'Project Management', title: 'Project Management 1'},
-    {name: 'Project Management', title: 'Project Management 2'},
-    {name: 'Project Management', title: 'Project Management 3'},
-    {name: 'Project Management', title: 'Project Management 4'},
-    {name: 'Project Management', title: 'Project Management 5'},
-    {name: 'Project Management', title: 'Project Management 6'},
-    {name: 'Business Process Divisi', title: 'Business Process Divisi 1'},
-    {name: 'Business Process Divisi', title: 'Business Process Divisi 2'},
-    {name: 'Business Process Divisi', title: 'Business Process Divisi 3'},
-    {name: 'Business Process Divisi', title: 'Business Process Divisi 4'},
-    {name: 'Business Process Divisi', title: 'Business Process Divisi 5'},
-    {name: 'Business Process Divisi', title: 'Business Process Divisi 6'},
-    {name: 'Functional BMC', title: 'Functional BMC 1'},
-    {name: 'Functional BMC', title: 'Functional BMC 2'},
-    {name: 'Functional BMC', title: 'Functional BMC 3'},
-    {name: 'Functional BMC', title: 'Functional BMC 4'},
-    {name: 'Functional BMC', title: 'Functional BMC 5'},
-    {name: 'Functional BMC', title: 'Functional BMC 6'},
-    {name: 'Case Studies', title: 'Case Studies 1'},
-    {name: 'Case Studies', title: 'Case Studies 2'},
-    {name: 'Case Studies', title: 'Case Studies 3'},
-    {name: 'Case Studies', title: 'Case Studies 4'},
-    {name: 'Case Studies', title: 'Case Studies 5'},
-    {name: 'Case Studies', title: 'Case Studies 6'},
-    {name: 'Character Building', title: 'Character Building 1'},
-    {name: 'Character Building', title: 'Character Building 2'},
-    {name: 'Character Building', title: 'Character Building 3'},
-    {name: 'Character Building', title: 'Character Building 4'},
-    {name: 'Character Building', title: 'Character Building 5'},
-    {name: 'Character Building', title: 'Character Building 6'},
-    {name: 'Teamwork', title: 'Teamwork 1'},
-    {name: 'Teamwork', title: 'Teamwork 2'},
-    {name: 'Teamwork', title: 'Teamwork 3'},
-    {name: 'Teamwork', title: 'Teamwork 4'},
-    {name: 'Teamwork', title: 'Teamwork 5'},
-    {name: 'Teamwork', title: 'Teamwork 6'},
-    {name: 'Drive & Courage', title: 'Drive & Courage 1'},
-    {name: 'Drive & Courage', title: 'Drive & Courage 2'},
-    {name: 'Drive & Courage', title: 'Drive & Courage 3'},
-    {name: 'Drive & Courage', title: 'Drive & Courage 4'},
-    {name: 'Drive & Courage', title: 'Drive & Courage 5'},
-    {name: 'Drive & Courage', title: 'Drive & Courage 6'},
-    {name: 'Executive Sharing', title: 'Executive Sharing 1'},
-    {name: 'Executive Sharing', title: 'Executive Sharing 2'},
-    {name: 'Executive Sharing', title: 'Executive Sharing 3'},
-    {name: 'Executive Sharing', title: 'Executive Sharing 4'},
-    {name: 'Executive Sharing', title: 'Executive Sharing 5'},
-    {name: 'Executive Sharing', title: 'Executive Sharing 6'},
-    {name: 'Corporate Value', title: 'Corporate Value 1'},
-    {name: 'Corporate Value', title: 'Corporate Value 2'},
-    {name: 'Corporate Value', title: 'Corporate Value 3'},
-    {name: 'Corporate Value', title: 'Corporate Value 4'},
-    {name: 'Corporate Value', title: 'Corporate Value 5'},
-    {name: 'Corporate Value', title: 'Corporate Value 6'},
-    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 1'},
-    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 2'},
-    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 3'},
-    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 4'},
-    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 5'},
-    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 6'},
-    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 1'},
-    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 2'},
-    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 3'},
-    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 4'},
-    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 5'},
-    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 6'},
-    {name: 'Personal Branding', title: 'Personal Branding 1'},
-    {name: 'Personal Branding', title: 'Personal Branding 2'},
-    {name: 'Personal Branding', title: 'Personal Branding 3'},
-    {name: 'Personal Branding', title: 'Personal Branding 4'},
-    {name: 'Personal Branding', title: 'Personal Branding 5'},
-    {name: 'Personal Branding', title: 'Personal Branding 6'}
+    {name: 'On Boarding', title: 'On Boarding 1', pdfSrc: '/src/files/pdf/Activity.pdf', status: 'Completed'},
+    {name: 'On Boarding', title: 'On Boarding 2', pdfSrc: '/src/files/pdf/Activity.pdf', status: 'Incompleted'},
+    {name: 'On Boarding', title: 'On Boarding 3', pdfSrc: '/src/files/pdf/Activity.pdf', status: 'Completed'},
+    {name: 'On Boarding', title: 'On Boarding 4', pdfSrc: '/src/files/pdf/Activity.pdf', status: 'Incompleted'},
+    {name: 'On Boarding', title: 'On Boarding 5', pdfSrc: '/src/files/pdf/Activity.pdf', status: 'Completed'},
+    {name: 'On Boarding', title: 'On Boarding 6', pdfSrc: '/src/files/pdf/Activity.pdf', status: 'Incompleted'},
+    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 1', status: 'Completed'},
+    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 2', status: 'Incompleted'},
+    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 3', status: 'Completed'},
+    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 4', status: 'Incompleted'},
+    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 5', status: 'Completed'},
+    {name: 'SOLUTION Culture', title: 'SOLUTION Culture 6', status: 'Incompleted'},
+    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 1', status: 'Completed'},
+    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 2', status: 'Incompleted'},
+    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 3', status: 'Completed'},
+    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 4', status: 'Incompleted'},
+    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 5', status: 'Completed'},
+    {name: 'Behaviour Competencies',  title: 'Behaviour Competencies 6', status: 'Incompleted'},
+    {name: 'Business Process UT',  title: 'Business Process UT 1', status: 'Completed'},
+    {name: 'Business Process UT',  title: 'Business Process UT 2', status: 'Incompleted'},
+    {name: 'Business Process UT',  title: 'Business Process UT 3', status: 'Completed'},
+    {name: 'Business Process UT',  title: 'Business Process UT 4', status: 'Incompleted'},
+    {name: 'Business Process UT',  title: 'Business Process UT 5', status: 'Completed'},
+    {name: 'Business Process UT',  title: 'Business Process UT 6', status: 'Incompleted'},
+    {name: 'Kebhinekaan', title: 'Kebhinekaan 1', status: 'Completed'},
+    {name: 'Kebhinekaan', title: 'Kebhinekaan 2', status: 'Incompleted'},
+    {name: 'Kebhinekaan', title: 'Kebhinekaan 3', status: 'Completed'},
+    {name: 'Kebhinekaan', title: 'Kebhinekaan 4', status: 'Incompleted'},
+    {name: 'Kebhinekaan', title: 'Kebhinekaan 5', status: 'Completed'},
+    {name: 'Kebhinekaan', title: 'Kebhinekaan 6', status: 'Incompleted'},
+    {name: 'BMS', title: 'BMS 1', status: 'Completed'},
+    {name: 'BMS', title: 'BMS 2', status: 'Incompleted'},
+    {name: 'BMS', title: 'BMS 3', status: 'Completed'},
+    {name: 'BMS', title: 'BMS 4', status: 'Incompleted'},
+    {name: 'BMS', title: 'BMS 5', status: 'Completed'},
+    {name: 'BMS', title: 'BMS 6', status: 'Incompleted'},
+    {name: 'Basic Mentoring', title: 'Basic Mentoring 1', status: 'Completed'},
+    {name: 'Basic Mentoring', title: 'Basic Mentoring 2', status: 'Incompleted'},
+    {name: 'Basic Mentoring', title: 'Basic Mentoring 3', status: 'Completed'},
+    {name: 'Basic Mentoring', title: 'Basic Mentoring 4', status: 'Incompleted'},
+    {name: 'Basic Mentoring', title: 'Basic Mentoring 5', status: 'Completed'},
+    {name: 'Basic Mentoring', title: 'Basic Mentoring 6', status: 'Incompleted'},
+    {name: 'Project Management', title: 'Project Management 1', status: 'Completed'},
+    {name: 'Project Management', title: 'Project Management 2', status: 'Incompleted'},
+    {name: 'Project Management', title: 'Project Management 3', status: 'Completed'},
+    {name: 'Project Management', title: 'Project Management 4', status: 'Incompleted'},
+    {name: 'Project Management', title: 'Project Management 5', status: 'Completed'},
+    {name: 'Project Management', title: 'Project Management 6', status: 'Incompleted'},
+    {name: 'Business Process Divisi', title: 'Business Process Divisi 1', status: 'Completed'},
+    {name: 'Business Process Divisi', title: 'Business Process Divisi 2', status: 'Incompleted'},
+    {name: 'Business Process Divisi', title: 'Business Process Divisi 3', status: 'Completed'},
+    {name: 'Business Process Divisi', title: 'Business Process Divisi 4', status: 'Incompleted'},
+    {name: 'Business Process Divisi', title: 'Business Process Divisi 5', status: 'Completed'},
+    {name: 'Business Process Divisi', title: 'Business Process Divisi 6', status: 'Incompleted'},
+    {name: 'Functional BMC', title: 'Functional BMC 1', status: 'Completed'},
+    {name: 'Functional BMC', title: 'Functional BMC 2', status: 'Incompleted'},
+    {name: 'Functional BMC', title: 'Functional BMC 3', status: 'Completed'},
+    {name: 'Functional BMC', title: 'Functional BMC 4', status: 'Incompleted'},
+    {name: 'Functional BMC', title: 'Functional BMC 5', status: 'Completed'},
+    {name: 'Functional BMC', title: 'Functional BMC 6', status: 'Incompleted'},
+    {name: 'Case Studies', title: 'Case Studies 1', status: 'Completed'},
+    {name: 'Case Studies', title: 'Case Studies 2', status: 'Incompleted'},
+    {name: 'Case Studies', title: 'Case Studies 3', status: 'Completed'},
+    {name: 'Case Studies', title: 'Case Studies 4', status: 'Incompleted'},
+    {name: 'Case Studies', title: 'Case Studies 5', status: 'Completed'},
+    {name: 'Case Studies', title: 'Case Studies 6', status: 'Incompleted'},
+    {name: 'Character Building', title: 'Character Building 1', status: 'Completed'},
+    {name: 'Character Building', title: 'Character Building 2', status: 'Incompleted'},
+    {name: 'Character Building', title: 'Character Building 3', status: 'Completed'},
+    {name: 'Character Building', title: 'Character Building 4', status: 'Incompleted'},
+    {name: 'Character Building', title: 'Character Building 5', status: 'Completed'},
+    {name: 'Character Building', title: 'Character Building 6', status: 'Incompleted'},
+    {name: 'Teamwork', title: 'Teamwork 1', status: 'Completed'},
+    {name: 'Teamwork', title: 'Teamwork 2', status: 'Incompleted'},
+    {name: 'Teamwork', title: 'Teamwork 3', status: 'Completed'},
+    {name: 'Teamwork', title: 'Teamwork 4', status: 'Incompleted'},
+    {name: 'Teamwork', title: 'Teamwork 5', status: 'Completed'},
+    {name: 'Teamwork', title: 'Teamwork 6', status: 'Incompleted'},
+    {name: 'Drive & Courage', title: 'Drive & Courage 1', status: 'Completed'},
+    {name: 'Drive & Courage', title: 'Drive & Courage 2', status: 'Incompleted'},
+    {name: 'Drive & Courage', title: 'Drive & Courage 3', status: 'Completed'},
+    {name: 'Drive & Courage', title: 'Drive & Courage 4', status: 'Incompleted'},
+    {name: 'Drive & Courage', title: 'Drive & Courage 5', status: 'Completed'},
+    {name: 'Drive & Courage', title: 'Drive & Courage 6', status: 'Incompleted'},
+    {name: 'Executive Sharing', title: 'Executive Sharing 1', status: 'Completed'},
+    {name: 'Executive Sharing', title: 'Executive Sharing 2', status: 'Incompleted'},
+    {name: 'Executive Sharing', title: 'Executive Sharing 3', status: 'Completed'},
+    {name: 'Executive Sharing', title: 'Executive Sharing 4', status: 'Incompleted'},
+    {name: 'Executive Sharing', title: 'Executive Sharing 5', status: 'Completed'},
+    {name: 'Executive Sharing', title: 'Executive Sharing 6', status: 'Incompleted'},
+    {name: 'Corporate Value', title: 'Corporate Value 1', status: 'Completed'},
+    {name: 'Corporate Value', title: 'Corporate Value 2', status: 'Incompleted'},
+    {name: 'Corporate Value', title: 'Corporate Value 3', status: 'Completed'},
+    {name: 'Corporate Value', title: 'Corporate Value 4', status: 'Incompleted'},
+    {name: 'Corporate Value', title: 'Corporate Value 5', status: 'Completed'},
+    {name: 'Corporate Value', title: 'Corporate Value 6', status: 'Incompleted'},
+    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 1', status: 'Completed'},
+    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 2', status: 'Incompleted'},
+    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 3', status: 'Completed'},
+    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 4', status: 'Incompleted'},
+    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 5', status: 'Completed'},
+    {name: 'AHEMCE Value Chain', title: 'AHEMCE Value Chain 6', status: 'Incompleted'},
+    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 1', status: 'Completed'},
+    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 2', status: 'Incompleted'},
+    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 3', status: 'Completed'},
+    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 4', status: 'Incompleted'},
+    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 5', status: 'Completed'},
+    {name: 'Business Process AHEMCE', title: 'Business Process AHEMCE 6', status: 'Incompleted'},
+    {name: 'Personal Branding', title: 'Personal Branding 1', status: 'Completed'},
+    {name: 'Personal Branding', title: 'Personal Branding 2', status: 'Incompleted'},
+    {name: 'Personal Branding', title: 'Personal Branding 3', status: 'Completed'},
+    {name: 'Personal Branding', title: 'Personal Branding 4', status: 'Incompleted'},
+    {name: 'Personal Branding', title: 'Personal Branding 5', status: 'Completed'},
+    {name: 'Personal Branding', title: 'Personal Branding 6', status: 'Incompleted'}
 ];
 
 const progress = [
@@ -279,6 +279,10 @@ function PreActivity() {
         setCurrentPage('fourth');
     };
 
+    const handleMark = () => {
+        setCurrentPage('second');
+    }
+
     useEffect(() => {
         if (selectedPhase === 'option1') {
             setSelectedTopic('General Development');
@@ -297,7 +301,6 @@ function PreActivity() {
 
     const handleCourseClick = (course) => {
         setSelectedCourse(course);
-        handleSecond();
     };
 
     const handleActivityButtonClick = () => {
@@ -344,6 +347,27 @@ function PreActivity() {
         );
     };
 
+    const renderSelected = () => {
+        const selectedProgress = progress.filter(item => item.name === selectedCourse.name);
+    
+        return (
+            <div>
+                {selectedProgress.map(course => {
+                    const courseProgress = progress.find(prog => prog.name === course.name);
+                    const progressValue = courseProgress ? courseProgress.value : 0;
+                    return (
+                        <div className="progress-divider">
+                            <div className="progress-bar-container">
+                                <div className="progress-bar" style={{ width: `${progressValue}%` }}></div>
+                            </div>
+                            <div className="progress-text">{progressValue}%</div>
+                        </div>
+                    )
+                })}
+            </div>
+        );
+    };
+
     const getActivity = () => {
         if (!selectedCourse) return null;
     
@@ -366,13 +390,23 @@ function PreActivity() {
     
         const selectedPreReadings = prereading.filter(item => item.name === selectedCourse.name);
     
+        const handleDownload = (prereading) => {
+            if (prereading.status === 'Incompleted') {
+                handleGoDownload(prereading);
+            }
+        };
+    
         return (
             <div className="pre-reading-card-container">
                 {selectedPreReadings.map((prereading, index) => (
                     <div key={index} className="pre-reading-card">
                         <img className="pre-reading-img" src="/src/files/icons/CourseImg.png" />
                         <div className="pre-reading-title">{prereading.title}</div>
-                        <img className="pre-reading-download" onClick={() => handleGoDownload(prereading)} src="/src/files/icons/nextbutton.png" />
+                        {prereading.status === 'Incompleted' ? (
+                            <img className="pre-reading-download" onClick={() => handleDownload(prereading)} src="/src/files/icons/nextbutton.png" />
+                        ) : (
+                            <img className="pre-reading-downloadno" src="/src/files/icons/Done.png" />
+                        )}
                     </div>
                 ))}
             </div>
@@ -440,6 +474,9 @@ function PreActivity() {
                                 )}
                             </div>
                         </div>
+                        <div className="assign-selected">
+                            {renderSelected()}
+                        </div>
                         <div className="button">
                             <div className={`activity-button ${activityButtonClicked ? 'active' : ''}`} onClick={handleActivityButtonClick}>Activity</div>
                             <div className={`prereading-button ${preReadingButtonClicked ? 'active' : ''}`} onClick={handlePreReadingButtonClick}>Pre-Reading</div>
@@ -484,7 +521,10 @@ function PreActivity() {
                             <h><b>Pre-Activity</b></h>
                         </div>
                         <hr />
-                        <img className="backbutton" onClick={handleSecond} src="/src/files/icons/backbutton.png" alt="Back" />
+                        <div className="mark-divider">
+                            <img className="backbutton" onClick={handleSecond} src="/src/files/icons/backbutton.png" alt="Back" />
+                            <div className="mark-button" onClick={handleMark}>Mark As Read</div>
+                        </div>
                         {currentPreReading && (
                             <div className="prereadingfill">
                                 <iframe 
