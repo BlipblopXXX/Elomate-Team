@@ -168,6 +168,39 @@
     font-size: 15px;
 }
 
+.preactivity2 .assign-selected {
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+
+.preactivity2 .progress-divider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.preactivity2 .progress-bar-container {
+    width: 95%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.preactivity2 .progress-bar {
+    height: 20px;
+    background-color: #4caf50;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+}
+
+.preactivity2 .progress-text {
+    margin-top: 0.5%;
+    margin-left: 1%;
+    font-weight: bold;
+}
+
 .preactivity2 .button{
     display: flex;
     flex-direction: row;
@@ -269,6 +302,12 @@
     cursor: pointer;
 }
 
+.preactivity2 .pre-reading-downloadno {
+    width: 30px;
+    height: auto;
+    cursor: not-allowed;
+}
+
 .preactivity3 .title3 {
     margin-top: 1%;
     margin-left: 2%;
@@ -297,10 +336,28 @@
     font-size: 25px;
 }
 
+.preactivity4 .mark-divider {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+}
+
 .preactivity4 .backbutton {
     margin-top: 1%;
     margin-left: 2%;
     width: 3%;
+    cursor: pointer;
+}
+
+.preactivity4 .mark-button {
+    margin-left: 74%;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(107, 107, 222);
+    width: 200px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
     cursor: pointer;
 }
 
