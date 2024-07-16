@@ -10,24 +10,44 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [password, setPassword] = useState('');
+  const [batch, setBatch] = useState('');
   const [currentPage, setCurrentPage] = useState('register');
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (currentPage === 'register') {
         if (password !== confirmPassword) {
             alert('Password and Confirm Password must match');
             return;
         }
-        console.log("Fullname:", fullname);
-        console.log("Email:", email);
-        console.log("Phone Number:", phoneNumber);
-        console.log("Username:", username);
-        console.log("Password:", password);
-        console.log("Confirm Password:", confirmPassword);
-        alert('Registration Successfull!');
-    } else if (currentPage === 'register') {
-      setCurrentPage('login');
+        try {
+            const response = await fetch('http://localhost:3001/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nama: fullname,
+                    nrp: username,
+                    email: email,
+                    phone_number: phoneNumber,
+                    password: password,
+                    confirm_pass: confirmPassword,
+                    batch: batch
+                }),
+            });
+
+            if (response.ok) {
+                alert('Registration Successful!');
+                setCurrentPage('login');
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to register user');
+        }
     }
   };
 
@@ -58,7 +78,7 @@ function Register() {
                   />
                   <input
                     type="text"
-                    placeholder="Username/NRP"
+                    placeholder="NRP"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
@@ -85,6 +105,12 @@ function Register() {
                     placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Batch"
+                    value={batch}
+                    onChange={(e) => setBatch(e.target.value)}
                   />
                   <div className="button">
                     <button type="submit"><b>Register</b></button>
