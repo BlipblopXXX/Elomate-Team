@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Main.css';
 import App from '../App';
 import EAP from './EAP';
@@ -18,6 +19,31 @@ import Profile from './Profile';
 function Main() {
     const [currentPage, setCurrentPage] = useState('home');
     const [currentScreen, setCurrentScreen] = useState('dashboard');
+    const [batchNumber, setBatchNumber] = useState('');
+
+    useEffect(() => {
+        const fetchBatch = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                const response = await axios.get("http://localhost:3001/profile", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                const data = response.data;
+                console.log("Fetched profile data:", data);
+                const userProfile = data.user;
+
+                setBatchNumber(userProfile.BATCH);
+            } catch (error) {
+                console.error("Error fetching profile data:", error);
+            }
+        };
+
+        fetchBatch();
+    }, []);
+
 
     const handleLogout = () => {
         setCurrentPage('login');
@@ -134,7 +160,7 @@ function Main() {
                                         </div>
                                         <div className="role-details">
                                             <p><b>Management Trainee</b></p>
-                                            <p>United Tractors</p>
+                                            <p>Batch {batchNumber}</p>
                                         </div>
                                     </div>
                                     <div className="toolbutton">
