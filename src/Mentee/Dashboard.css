@@ -48,6 +48,9 @@
 .dashboard .progress-down {
   flex: 8;
   margin-left: 2%;
+  height: auto;
+  overflow-y: auto;
+  margin-bottom: 3%;
 }
 
 .dashboard .progress-bar {
@@ -107,6 +110,7 @@
 
 .dashboard .todolist-down {
   flex: 8;
+  overflow-y: auto;
 }
 
 .dashboard .agenda {
@@ -144,6 +148,7 @@
 .dashboard .agenda-down {
   flex: 8;
   background-color: white;
+  overflow-y: auto;
 }
 
 .dashboard .list-table {
