@@ -1,7 +1,29 @@
 import './Dashboard.css';
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 function Dashboard() {
+    const [progressData, setProgressData] = useState([]);
+
+    useEffect(() => {
+        const fetchProgress = async () => {
+            try {
+              const token = localStorage.getItem("token");
+              const response = await axios.get("http://localhost:3001/program", {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+              setProgressData(response.data.programs);
+              console.log(response.data.programs);
+            } catch (error) {
+              console.error("Error fetching forum data:", error);
+            }
+          };
+      
+          fetchProgress();
+    }, []);
 
     const today = new Date();
 
@@ -11,32 +33,16 @@ function Dashboard() {
 
     const formattedDate = `${day} ${month} ${year}`;
 
-    const [progress, setProgress] = useState(0);
-    const [progress2, setProgress2] = useState(0);
-
     const ProgressBar = ({ percentage }) => {
         return (
-          <div className="progress-bar">
-            <div
-              className="progresss"
-              style={{ width: `${percentage}%` }}
-            />
-          </div>
+            <div className="progress-bar">
+                <div
+                    className="progresss"
+                    style={{ width: `${percentage}%` }}
+                />
+            </div>
         );
-      };
-
-    // Simulate progress increase over time
-    setTimeout(() => {
-        if (progress < 100) {
-          setProgress(progress + 10);
-        }
-        }, 1000);
-        // Simulate progress increase over time
-    setTimeout(() => {
-        if (progress2 < 100) {
-          setProgress2(progress2 + 20);
-        }
-        }, 1000);
+    };
 
             const todo = [
               { id: 1, title: 'Tugas 1', date: '27-04-2024' },
@@ -55,6 +61,14 @@ function Dashboard() {
                 }
               ];
 
+    const groupedPrograms = progressData.reduce((acc, program) => {
+        if (!acc[program.PHASE]) {
+            acc[program.PHASE] = [];
+        }
+        acc[program.PHASE].push(program);
+        return acc;
+    }, {});
+
     return(
         <div className="dashboard">
             <div className="title">
@@ -69,22 +83,26 @@ function Dashboard() {
                         </div>
                     </div>
                     <div className="progress-down">
-                        <p>Nama Program       
-                            <div className='bar'>
-                                <div className='bar1'>
-                                    <ProgressBar percentage={progress}/>
+                        <div>
+                            {Object.keys(groupedPrograms).map((phase, index) => (
+                                <div key={index}>
+                                    <div className="phase-title">
+                                        <h2>{phase}</h2>
+                                    </div>
+                                    {groupedPrograms[phase].map((program, idx) => (
+                                        <div key={idx} className="program-item">
+                                            <p>{program.NAMA}</p>
+                                            <div className='bar'>
+                                                <div className='bar1'>
+                                                    <ProgressBar percentage={program.SCORE} />
+                                                </div>
+                                                <div className='bar2'>{program.SCORE}%</div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                                <div className='bar2'>{progress}%</div>
-                            </div>          
-                        </p>
-                        <p>Nama Program
-                        <div className='bar'>
-                                <div className='bar1'>
-                                    <ProgressBar percentage={progress2}/>
-                                </div>
-                                <div className='bar2'>{progress2}%</div>
-                            </div>
-                        </p>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className="todolist">
