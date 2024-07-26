@@ -244,6 +244,28 @@
     flex: 1;
 }
 
+.assignment2 .progress-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.progress-circle.completed {
+    background-color: rgb(16, 191, 16);
+}
+
+.progress-circle.incompleted {
+    background-color: red;
+}
+
+.progress-circle.pending {
+    background-color: orange;
+}
+
 .assignment2 .assign-title {
     font-size: 16px;
     font-weight: bold;
@@ -272,7 +294,7 @@
     color: green;
 }
 
-.assignment2 .assign-status.overdue {
+.assignment2 .assign-status.incompleted {
     color: red;
 }
 
