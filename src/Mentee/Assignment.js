@@ -2,85 +2,85 @@ import React, { useState, useEffect } from 'react';
 import './Assignment.css';
 
 const courses = [
-    {selectedPhase: 'option1', selectedTopic: 'General Development', name: 'On Boarding', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'General Development', name: 'SOLUTION Culture', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'General Development', name: 'Behaviour Competencies', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'General Development', name: 'Business Process UT', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'General Development', name: 'Kebhinekaan', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'General Development', name: 'BMS', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'General Development', name: 'Basic Mentoring', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'General Development', name: 'Project Management', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'Orientasi Divisi', name: 'Business Process Divisi', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'Orientasi Divisi', name: 'Functional BMC', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'Orientasi Divisi', name: 'Case Studies', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'BGMS', name: 'Character Building', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'BGMS', name: 'Teamwork', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'BGMS', name: 'Drive & Courage', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'NEOP', name: 'Executive Sharing', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'NEOP', name: 'Corporate Value', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'NEOP', name: 'AHEMCE Value Chain', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'NEOP', name: 'Business Process AHEMCE', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'NEOP', name: 'Personal Branding', no: 'No Batch'},
-    {selectedPhase: 'option1', selectedTopic: 'Review1', name: 'Review 1', no: 'No Batch'},
-    {selectedPhase: 'option2', selectedTopic: 'Project', name: 'Final Project', no: 'No Batch'},
-    {selectedPhase: 'option2', selectedTopic: 'Review2', name: 'Review 2', no: 'No Batch'},
-    {selectedPhase: 'option2', selectedTopic: 'Review2', name: 'Review 3', no: 'No Batch'},
-    {selectedPhase: 'option2', selectedTopic: 'Review2', name: 'Review 4', no: 'No Batch'},
-    {selectedPhase: 'option2', selectedTopic: 'Review2', name: 'Review 5', no: 'No Batch'},
-    {selectedPhase: 'option2', selectedTopic: 'Review2', name: 'Final Review', no: 'No Batch'}
+    {selectedPhase: 'Phase 10', selectedTopic: 'General Development', name: 'On Boarding', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'General Development', name: 'SOLUTION Culture', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'General Development', name: 'Behaviour Competencies', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'General Development', name: 'Business Process UT', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'General Development', name: 'Kebhinekaan', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'General Development', name: 'BMS', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'General Development', name: 'Basic Mentoring', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'General Development', name: 'Project Management', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'Orientasi Divisi', name: 'Business Process Divisi', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'Orientasi Divisi', name: 'Functional BMC', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'Orientasi Divisi', name: 'Case Studies', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'BGMS', name: 'Character Building', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'BGMS', name: 'Teamwork', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'BGMS', name: 'Drive & Courage', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'NEOP', name: 'Executive Sharing', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'NEOP', name: 'Corporate Value', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'NEOP', name: 'AHEMCE Value Chain', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'NEOP', name: 'Business Process AHEMCE', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'NEOP', name: 'Personal Branding', no: 'No Batch'},
+    {selectedPhase: 'Phase 10', selectedTopic: 'Review1', name: 'Review 1', no: 'No Batch'},
+    {selectedPhase: 'Phase 20 + 70', selectedTopic: 'Project', name: 'Final Project', no: 'No Batch'},
+    {selectedPhase: 'Phase 20 + 70', selectedTopic: 'Review2', name: 'Review 2', no: 'No Batch'},
+    {selectedPhase: 'Phase 20 + 70', selectedTopic: 'Review2', name: 'Review 3', no: 'No Batch'},
+    {selectedPhase: 'Phase 20 + 70', selectedTopic: 'Review2', name: 'Review 4', no: 'No Batch'},
+    {selectedPhase: 'Phase 20 + 70', selectedTopic: 'Review2', name: 'Review 5', no: 'No Batch'},
+    {selectedPhase: 'Phase 20 + 70', selectedTopic: 'Review2', name: 'Final Review', no: 'No Batch'}
 ]
 
 const assign = [
     {name: 'On Boarding', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'On Boarding', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'On Boarding', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'SOLUTION Culture', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'SOLUTION Culture', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'SOLUTION Culture', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Behaviour Competencies', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Behaviour Competencies', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Behaviour Competencies', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Business Process UT', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Business Process UT', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process UT', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Kebhinekaan', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Kebhinekaan', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Kebhinekaan', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'BMS', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'BMS', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'BMS', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Basic Mentoring', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Basic Mentoring', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Basic Mentoring', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Project Management', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Project Management', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Project Management', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Business Process Divisi', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Business Process Divisi', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process Divisi', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Functional BMC', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Functional BMC', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Functional BMC', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Case Studies', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Case Studies', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Case Studies', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Character Building', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Character Building', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Character Building', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Teamwork', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Teamwork', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Teamwork', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Drive & Courage', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Drive & Courage', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Drive & Courage', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Executive Sharing', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Executive Sharing', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Executive Sharing', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Corporate Value', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Corporate Value', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Corporate Value', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'AHEMCE Value Chain', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'AHEMCE Value Chain', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'AHEMCE Value Chain', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Business Process AHEMCE', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Business Process AHEMCE', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Business Process AHEMCE', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Personal Branding', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Personal Branding', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Personal Branding', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 1', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 1', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 1', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 2', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 2', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 2', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 3', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 3', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 3', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 4', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 4', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 4', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 5', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 5', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 5', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Final Review', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Final Review', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Overdue', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Final Review', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
 ]
 
 const progress = [
@@ -114,7 +114,7 @@ const progress = [
 
 function Assignment() {
     const [currentPage, setCurrentPage] = useState('main');
-    const [selectedPhase, setSelectedPhase] = useState('option1');
+    const [selectedPhase, setSelectedPhase] = useState('Phase 10');
     const [selectedTopic, setSelectedTopic] = useState('General Development');
     const [selectedAssign, setSelectedAssign] = useState(null);
     const [selectedCourse, setSelectedCourse] = useState(null);
@@ -141,9 +141,9 @@ function Assignment() {
     };
 
     useEffect(() => {
-        if (selectedPhase === 'option1') {
+        if (selectedPhase === 'Phase 10') {
             setSelectedTopic('General Development');
-        } else if (selectedPhase === 'option2') {
+        } else if (selectedPhase === 'Phase 20 + 70') {
             setSelectedTopic('Project');
         }
     }, [selectedPhase]);
@@ -227,6 +227,7 @@ function Assignment() {
             return assignDetails.map((assign, index) => {
                 const course = courses.find(course => course.name === selectedAssign);
                 if (course) {
+                    const statusClass = assign.status.toLowerCase();
                     return (
                         <div key={index} className="assign-details" onClick={() => handleThird(assign)}>
                             <div className="assign-desc1">
@@ -235,13 +236,15 @@ function Assignment() {
                                     <div className="assign-title">{assign.title}</div>
                                     <div className="assign-no">{course.no}</div>
                                 </div>
+                                <div className={`progress-circle ${statusClass}`} >
+                                </div>
                             </div>
                             <div className="assign-desc2">
                                 <div className="assign-duedet">Due</div>
                                 <div className="assign-due">{assign.due}</div>
                                 <hr />
                                 <div className="assign-statusdet">Status</div>
-                                <div className={`assign-status ${assign.status.toLowerCase()}`}>{assign.status}</div>
+                                <div className={`assign-status ${statusClass}`}>{assign.status}</div>
                             </div>
                         </div>
                     );
@@ -319,14 +322,14 @@ function Assignment() {
                             <div className="phase">
                                 <label htmlFor="phaseDropdown">Phase</label>
                                 <select className="phaseselect" id="phaseDropdown" value={selectedPhase} onChange={handlePhaseChange}>
-                                    <option value="option1">Phase 10</option>
-                                    <option value="option2">Phase 20 + 70</option>
+                                    <option value="Phase 10">Phase 10</option>
+                                    <option value="Phase 20 + 70">Phase 20 + 70</option>
                                 </select>
                             </div>
                             <div className="topic">
                                 <label htmlFor="topicDropdown">Topic</label>
                                 <select className="topicselect" id="topicDropdown" value={selectedTopic} onChange={handleTopicChange}>
-                                    {selectedPhase === "option1" && (
+                                    {selectedPhase === "Phase 10" && (
                                         <>
                                             <option value="General Development">General Development</option>
                                             <option value="Orientasi Divisi">Orientasi Divisi</option>
@@ -335,7 +338,7 @@ function Assignment() {
                                             <option value="Review1">Review</option>
                                         </>
                                     )}
-                                    {selectedPhase === "option2" && (
+                                    {selectedPhase === "Phase 20 + 70" && (
                                         <>
                                             <option value="Project">Project</option>
                                             <option value="Review2">Review</option>
