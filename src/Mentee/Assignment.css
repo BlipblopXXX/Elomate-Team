@@ -280,13 +280,9 @@
     margin-top: 16px;
 }
 
-.assignment2 .assign-bottomdivider {
+.assign-bottomdivider {
     display: flex;
-    flex-direction: row;
-}
-
-.assignment2 .assign-duecombo{
-    margin-right: 40%;
+    justify-content: space-between;
 }
 
 .assignment2 .assign-duedet, .assign-statusdet {
