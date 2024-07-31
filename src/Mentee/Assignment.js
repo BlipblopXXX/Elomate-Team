@@ -229,7 +229,7 @@ function Assignment() {
                 if (course) {
                     const statusClass = assign.status.toLowerCase();
                     return (
-                        <div key={index} className="assign-details" onClick={() => handleThird(assign)}>
+                        <div key={index} className="assign-details">
                             <div className="assign-desc1">
                                 <img className="assign-img" src="/src/files/icons/CourseImg.png" alt="Assignment" />
                                 <div className="assign-description">
@@ -240,11 +240,18 @@ function Assignment() {
                                 </div>
                             </div>
                             <div className="assign-desc2">
-                                <div className="assign-duedet">Due</div>
-                                <div className="assign-due">{assign.due}</div>
+                                <div className="assign-bottomdivider">
+                                    <div className="assign-duecombo">
+                                        <div className="assign-duedet">Due</div>
+                                        <div className="assign-due">{assign.due}</div>
+                                    </div>
+                                    <div>
+                                        <div className="assign-statusdet">Status</div>
+                                        <div className={`assign-status ${statusClass}`}>{assign.status}</div>
+                                    </div>
+                                </div>
                                 <hr />
-                                <div className="assign-statusdet">Status</div>
-                                <div className={`assign-status ${statusClass}`}>{assign.status}</div>
+                                <div className="course-button" onClick={() => handleThird(assign)}>Click to View the activity</div>
                             </div>
                         </div>
                     );
