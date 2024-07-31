@@ -280,6 +280,15 @@
     margin-top: 16px;
 }
 
+.assignment2 .assign-bottomdivider {
+    display: flex;
+    flex-direction: row;
+}
+
+.assignment2 .assign-duecombo{
+    margin-right: 40%;
+}
+
 .assignment2 .assign-duedet, .assign-statusdet {
     font-size: 14px;
     font-weight: bold;
@@ -288,6 +297,20 @@
 .assignment2 .assign-due, .assign-status {
     font-size: 14px;
     color: #666;
+}
+
+.assignment2 .course-button {
+    text-align: center;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.assignment2 .course-button:hover {
+    background-color: #45a049;
 }
 
 .assignment2 .assign-status.completed {
