@@ -69,17 +69,17 @@ const assign = [
     {name: 'Business Process AHEMCE', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Personal Branding', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Personal Branding', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 1', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 1', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 1', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 2', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 2', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 2', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 3', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 3', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 3', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 4', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 4', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 4', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 5', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 5', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 5', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Final Review', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Final Review', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Final Review', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
 ]
 
@@ -245,7 +245,7 @@ function Assignment() {
                                         <div className="assign-duedet">Due</div>
                                         <div className="assign-due">{assign.due}</div>
                                     </div>
-                                    <div>
+                                    <div className="assign-statuscombo">
                                         <div className="assign-statusdet">Status</div>
                                         <div className={`assign-status ${statusClass}`}>{assign.status}</div>
                                     </div>
