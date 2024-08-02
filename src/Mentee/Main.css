@@ -123,6 +123,15 @@
     filter: brightness(100%);
 }
 
+.home .toollist a.selected {
+    background-color: rgba(245, 164, 12, 0.84);
+    color: white;
+}
+
+.home .toollist a.selected img {
+    filter: brightness(100%);
+}
+
 .home .toollist .logout{
     margin-top: 45%;
 }
