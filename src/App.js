@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import MenteeMain from './Mentee/Main';
-import FasilitatorMain from './Mentee/Main';
+import FasilitatorMain from './Fasilitator/Main';
 import AdminMain from './Mentee/Main';
 import Register from './Register';
 import Verify from './Verify';
@@ -10,26 +10,43 @@ import Verify from './Verify';
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('mentee');
+  const [role, setRole] = useState('');
   const [currentPage, setCurrentPage] = useState('login');
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     if (!username || !password || !role) {
       alert('Username, password, dan peran harus diisi');
       return;
     }
-
+  
     try {
       const response = await axios.post('http://localhost:3001/login', { nrp: username, password: password });
-      const { data } = response;
-
-     
-      localStorage.setItem('token', data.token);
-
+      const { token, batch } = response.data;
   
-      setCurrentPage(role);
+      console.log('Role:', role);  // Log untuk memastikan nilai role
+      console.log('Batch:', batch);  // Log untuk memastikan nilai batch
+  
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+  
+      if (batch === undefined) {
+        alert('Batch tidak ditemukan dalam respons');
+        return;
+      }
+  
+      // Check the batch value and navigate accordingly
+      if (role === 'fasilitator' && batch === '0') {
+        setCurrentPage('fasilitator');
+      } else if (role === 'mentee' && batch > '0') {
+        setCurrentPage('mentee');
+      } else if (role === 'admin' && batch === '999') {
+        setCurrentPage('admin');
+      } else {
+        alert('Role atau batch tidak valid');
+      }
     } catch (error) {
       console.error('Gagal login:', error);
       if (error.response) {
