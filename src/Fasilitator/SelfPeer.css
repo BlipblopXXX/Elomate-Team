@@ -1,0 +1,229 @@
+.selfpeer1 .judul1 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 13px;
+    margin-bottom: none;
+}
+
+
+.selfpeer2 .judul2{
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 10px;
+    display:flex;
+    align-items: center;
+    object-fit: contain;
+    
+}
+
+.selfpeer2 .judul2 img{
+    width: 3%;
+    height: 3%;
+    align-self: center;
+    cursor: pointer;
+    margin-right: 1%;
+    object-fit: contain;
+    
+
+}
+
+.selfpeer1 .dropdown .phasetitle {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+.selfpeer1 .dropdown .phasetitle .phaseselect {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.selfpeer1 .table-assessment {
+    border-radius: 8px;
+    box-shadow: rgba(0,0,0,0.1);
+    padding: 25px;
+    overflow-x: auto;
+}
+
+ .selfpeer1 .table-assessment .table-header {
+    display: flex;
+    background-color: #ffc400;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #c3c3c3;
+    text-align: center;
+}
+
+.selfpeer1 .table-assessment .table-header div {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.selfpeer1 .table-assessment .list-assessment {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #c3c3c3;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.selfpeer1 .table-assessment .list-assessment .assessment-row {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s;
+    text-align: center;
+    align-items: center;
+}
+
+.selfpeer1 .table-assessment .list-assessment .assessment-row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.selfpeer1 .table-assessment .list-assessment .assessment-row div {
+    flex: 1;
+    padding: 10px;
+}
+
+.selfpeer1 .table-assessment .list-assessment .assessment-row button {
+    background-color: #0080ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 125px; /* Tetapkan lebar tetap */
+    height: 30px; /* Tetapkan tinggi tetap */
+    font-weight: bold;
+    display: inline-block; /* Pastikan tombol tidak meregang */
+    text-align: center; /* Pusatkan teks di dalam tombol */
+  }
+  
+
+.selfpeer1 .table-assessment .list-assessment .assessment-row button.done {
+    background-color: #bdbdbd;
+}
+
+.selfpeer2 .buttonPosition {
+    display: flex;
+    justify-content: center; /* Memusatkan secara horizontal */
+    align-items: center; /* Memusatkan secara vertikal */
+    
+}
+
+.selfpeer2 .btnGhost {
+    border: 1px solid #D4D4D4;
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin: 20px;
+    background-color: transparent;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color  ease;
+   
+}
+
+.selfpeer2 .btnGhost:hover {
+    background-color: #D4D4D4;
+    color: black;
+}
+
+.btnGhost.selected {
+    background-color: #3A89FD; /* Warna hijau sebagai tanda tombol telah dipilih */
+    color: white;
+}
+
+
+.selfpeer2 .submitButton {
+    display: flex;
+    justify-content: center; /* Center button horizontally */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+.selfpeer2 .submitButton .submit {
+    background-color: #3A89FD;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 7px;
+    font-size: medium;
+    width: 120px;
+    padding: 8px 10px;
+}
+
+.selfpeer2 .submitButton .submit:hover {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #D4D4D4;
+    color: black;
+}
+
+.selfpeer2 .question-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .selfpeer2 .question-wrapper .question-container {
+    background-color: white;
+    width: 50%;
+    border-radius: 15px;
+    border: 1px solid #DEE2E6;
+    padding: 10px;
+    margin: 40px 10px 5% 100px; /* Sesuaikan margin */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .selfpeer2 .question-wrapper .question-container-scale {
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+    width: 300px;
+    height: fit-content;
+    border: 1px solid #DEE2E6;
+    margin: 40px 80px 0 10px; 
+    font-size: medium;
+}
+
+.selfpeer2 .question-container-scale .numberOne {
+    background-color: #FF0000;
+}
+
+.selfpeer2 .question-container-scale .numberTwo {
+    background-color: #FF720D;
+}
+
+.selfpeer2 .question-container-scale .numberThree {
+    background-color: #FFCA0D;
+}
+
+.selfpeer2 .question-container-scale .numberFour {
+    background-color: #9EFF00;
+}
+
+.selfpeer2 .question-container-scale .numberFive {
+    background-color: #12FF0D;
+}
+
+.selfpeer2 .question-container-scale .numberOne,
+.selfpeer2 .question-container-scale .numberTwo,
+.selfpeer2 .question-container-scale .numberThree,
+.selfpeer2 .question-container-scale .numberFour,
+.selfpeer2 .question-container-scale .numberFive {
+    border-radius: 50%;
+    padding: 3px 9px;
+    width:3%;
+    text-wrap: nowrap;
+    word-spacing: px;
+    font-size: medium;
+    margin-left: 15px;
+    display: flex;
+}
