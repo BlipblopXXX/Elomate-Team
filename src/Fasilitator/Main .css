@@ -1,0 +1,144 @@
+.home .maintitle {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.home .maintitle .elomate {
+    margin-left: 5%;
+}
+
+.home .maintitle .user {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.home .maintitle .user .icon1 {
+    margin-top: 4px;
+    height: 5vh;
+    cursor: pointer;
+}
+
+.home .maintitle .user .icon2 {
+    margin-left: 10px;
+    height: 6vh;
+    cursor: pointer;
+}
+
+.home .maintitle .user .icon3 {
+    margin-left: 30px;
+    height: 5vh;
+    cursor: pointer;
+}
+
+.home .maintitle .user .user-text {
+    font-size: 10px;
+}
+
+.home .maintitle .user .user-text p {
+    margin-left: 8px;
+}
+
+.home .divider {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+
+.home .toolbar {
+    flex: 0.25;
+    background-color: rgb(255, 204, 0);
+    width: 20%;
+    height: calc(100vh - 60px);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.home .toollist {
+    padding: 10%;
+    display: flex;
+    font-size: large;
+    color: white;
+    flex-direction: column;
+}
+
+.home .toollist .role {
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(245, 164, 12, 0.84);
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 2%;
+}
+
+.home .toollist .role img {
+    filter: brightness(100%);
+}
+
+.home .toollist .role-title {
+    margin-left: 2%;
+}
+
+.home .toollist .role-details {
+    margin-left: 2%;
+}
+
+.home .toollist .toolbutton {
+    display: flex;
+    flex-direction: column;
+}
+
+.home .toollist a {
+    padding: 2%;
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+}
+
+.home .toollist img {
+    width: 10%;
+    filter: brightness(0%);
+    transition: filter 0.01s ease;
+}
+
+.home .toollist a:hover {
+    background-color: rgba(245, 164, 12, 0.84);
+    color: white;
+}
+
+.home .toollist a:hover img{
+    filter: brightness(100%);
+}
+
+.home .toollist .logout{
+    margin-top: 45%;
+}
+
+.home .toolbar .ut {
+    margin-left: 5%;
+}
+
+.home .filler{
+    background-color: whitesmoke;
+    flex: 1;
+    position: relative;
+    margin-left: 20%;
+    overflow-y: auto;
+    width: calc(100% - 20%);
+    height: 100vh;
+    max-width: calc(100% - 20%);
+    max-height: calc(100vh - 60px);
+}
