@@ -20,6 +20,7 @@ function Main() {
     const [currentPage, setCurrentPage] = useState('home');
     const [currentScreen, setCurrentScreen] = useState('dashboard');
     const [batchNumber, setBatchNumber] = useState('');
+    const [selectedTool, setSelectedTool] = useState('dashboard');
 
     useEffect(() => {
         const fetchBatch = async () => {
@@ -59,46 +60,57 @@ function Main() {
 
     const handleDashboard = () => {
         setCurrentScreen('dashboard');
+        setSelectedTool('dashboard');
     };
 
     const handleSchedule = () => {
         setCurrentScreen('schedule');
+        setSelectedTool('schedule');
     };
 
     const handleParticipant = () => {
         setCurrentScreen('participant');
+        setSelectedTool('participant');
     };
 
     const handlePreActivity = () => {
         setCurrentScreen('preactivity');
+        setSelectedTool('preactivity');
     }
 
     const handleForum = () => {
         setCurrentScreen('forum');
+        setSelectedTool('forum');
     }
 
     const handleAssignment = () => {
         setCurrentScreen('assignment');
+        setSelectedTool('assignment');
     }
 
     const handleSelfPeer = () => {
         setCurrentScreen('selfpeer');
+        setSelectedTool('selfpeer');
     }
 
     const handleFinalReport = () => {
         setCurrentScreen('finalreport');
+        setSelectedTool('finalreport');
     }
 
     const handleAnnouncement = () => {
         setCurrentScreen('announcement');
+        setSelectedTool('announcement');
     }
 
     const handleMentoring = () => {
         setCurrentScreen('mentoring');
+        setSelectedTool('mentoring');
     }
 
     const handleProfile = () => {
         setCurrentScreen('profile');
+        setSelectedTool('profile');
     }
 
     const renderScreen = () => {
@@ -164,17 +176,17 @@ function Main() {
                                         </div>
                                     </div>
                                     <div className="toolbutton">
-                                        <a href="#" className="dashboard" onClick={handleDashboard}><img src="/src/files/icons/Dashboard.png"/> Dashboard</a>
-                                        <a href="#" className="schedule" onClick={handleSchedule}><img src="/src/files/icons/Schedule.png"/> Schedule</a>
-                                        <a href="#" className="preactivity" onClick={handlePreActivity}><img src="/src/files/icons/PreActivity.png"/> Pre-Activity</a>
-                                        <a href="#" className="assignment" onClick={handleAssignment}><img src="/src/files/icons/Assignment.png"/> Assignment</a>
-                                        <a href="#" className="selfpeer" onClick={handleSelfPeer}><img src="/src/files/icons/SelfPeer.png"/> Assessment</a>
-                                        <a href="#" className="mentoring" onClick={handleMentoring}><img src="/src/files/icons/Mentoring.png"/> Mentoring</a>
-                                        <a href="#" className="finalreport" onClick={handleFinalReport}><img src="/src/files/icons/FinalReport.png"/> Final Report</a>
-                                        <a href="#" className="participant" onClick={handleParticipant}><img src="/src/files/icons/Participant.png"/> Participant Data</a>
-                                        <a href="#" className="forum" onClick={handleForum}><img src="/src/files/icons/Forum.png" /> Forum</a>
-                                        <a href="#" className="announcement" onClick={handleAnnouncement}><img src="/src/files/icons/Announcement.png"/> Announcement</a>
-                                        <a href="#" className="logout" onClick={handleLogout}><img src="/src/files/icons/Logout.png"/> Logout</a>
+                                    <a href="#" className={`dashboard ${selectedTool === 'dashboard' ? 'selected' : ''}`} onClick={handleDashboard}><img src="/src/files/icons/Dashboard.png"/> Dashboard</a>
+                                    <a href="#" className={`schedule ${selectedTool === 'schedule' ? 'selected' : ''}`} onClick={handleSchedule}><img src="/src/files/icons/Schedule.png"/> Schedule</a>
+                                    <a href="#" className={`preactivity ${selectedTool === 'preactivity' ? 'selected' : ''}`} onClick={handlePreActivity}><img src="/src/files/icons/PreActivity.png"/> Pre-Activity</a>
+                                    <a href="#" className={`assignment ${selectedTool === 'assignment' ? 'selected' : ''}`} onClick={handleAssignment}><img src="/src/files/icons/Assignment.png"/> Assignment</a>
+                                    <a href="#" className={`selfpeer ${selectedTool === 'selfpeer' ? 'selected' : ''}`} onClick={handleSelfPeer}><img src="/src/files/icons/SelfPeer.png"/> Assessment</a>
+                                    <a href="#" className={`mentoring ${selectedTool === 'mentoring' ? 'selected' : ''}`} onClick={handleMentoring}><img src="/src/files/icons/Mentoring.png"/> Mentoring</a>
+                                    <a href="#" className={`finalreport ${selectedTool === 'finalreport' ? 'selected' : ''}`} onClick={handleFinalReport}><img src="/src/files/icons/FinalReport.png"/> Final Report</a>
+                                    <a href="#" className={`participant ${selectedTool === 'participant' ? 'selected' : ''}`} onClick={handleParticipant}><img src="/src/files/icons/Participant.png"/> Participant Data</a>
+                                    <a href="#" className={`forum ${selectedTool === 'forum' ? 'selected' : ''}`} onClick={handleForum}><img src="/src/files/icons/Forum.png" /> Forum</a>
+                                    <a href="#" className={`announcement ${selectedTool === 'announcement' ? 'selected' : ''}`} onClick={handleAnnouncement}><img src="/src/files/icons/Announcement.png"/> Announcement</a>
+                                    <a href="#" className="logout" onClick={handleLogout}><img src="/src/files/icons/Logout.png"/> Logout</a>
                                     </div>
                                 </div>
                                 <img className="ut" src="/src/files/images/LogoUnitedTractors.png" alt="United Tractors Logo" />
