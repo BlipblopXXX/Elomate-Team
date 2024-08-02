@@ -1,0 +1,178 @@
+.schedule .title {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.schedule .request {
+    margin-left: 77%;
+    width: 22%;
+}
+
+.schedule .container {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: row;
+}
+
+.schedule .container .calendar {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 20%;
+    margin-left: 2%;
+}
+
+.schedule .container .description {
+    position: relative;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 69%;
+}
+
+.schedule .description-container {
+    display: flex;
+    align-items: center;
+}
+
+.schedule .circle-container {
+    width: 6%;
+    border-radius: 50%;
+    border: 1px solid black;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.schedule .circle-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    font-size: 12px;
+}
+
+.schedule .circle-day {
+    font-size: 16px;
+}
+
+.schedule .circle-date {
+    font-size: 18px;
+}
+
+.schedule .event-details {
+    margin-left: 20px;
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.schedule .event {
+    margin-bottom: 20px;
+}
+
+.schedule .event-details {
+    margin-top: 20px;
+}
+
+.schedule .event {
+    padding: 15px;
+    border: 3px solid skyblue;
+    border-radius: 5px;
+}
+
+.schedule .event.deadline-event {
+    border-color: red;
+}
+
+.schedule .event + .event {
+    margin-top: 20px;
+}
+
+.schedule .event img{
+    margin-right: 5px;
+}
+
+.schedule .event-title{
+    margin-bottom: 8px;
+}
+
+.schedule .event-place img{
+    margin-right: 10px;
+}
+
+.schedule .event-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.schedule .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.schedule .header img {
+    width: 13%;
+    cursor: pointer;
+}
+
+.schedule .days {
+    display: flex;
+}
+
+.schedule .day {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.schedule .day.has-event {
+    position: relative;
+}
+
+.schedule .notification-dot {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15%;
+    height: 15%;
+    background-color: gold;
+    border-radius: 50%;
+}
+
+.schedule .notification-dot.red-dot {
+    background-color: red;
+}
+
+.schedule .grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.schedule .grid .empty {
+    visibility: hidden;
+}
+
+.schedule .grid .day {
+    text-align: center;
+    padding: 15%;
+    width: 70%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.schedule .grid .day:hover {
+    color: white;
+    background-color: gray;
+}
+
+.schedule .grid .day.selected {
+    color: white;
+    background-color: rgb(0, 157, 255);
+}

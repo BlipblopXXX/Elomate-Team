@@ -1,0 +1,313 @@
+.preactivity1 .title1 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.preactivity1 .selecttile {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+}
+
+.preactivity1 .selecttile .phase {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+.preactivity1 .selecttile .phaseselect {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    width: 400px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.preactivity1 .selecttile .topic {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: 15%;
+}
+
+.preactivity1 .selecttile .topicselect {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    width: 400px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.preactivity1 .progress-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 2% 0;
+}
+
+.preactivity1 .progress-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preactivity1 .progress-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.preactivity1 .progress-value {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.preactivity1 .progress-name {
+    margin-top: 8px;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+.preactivity1 .course-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.preactivity1 .course {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.preactivity1 .course:hover {
+    transform: scale(1.05);
+}
+
+.preactivity1 .description {
+    display: flex;
+    align-items: center;
+}
+
+.preactivity1 .courseimg {
+    width: 50px;
+    height: 50px;
+    margin-right: 16px;
+}
+
+.preactivity1 .course-text {
+    flex: 1;
+}
+
+.preactivity1 .course-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.preactivity1 .course-no-batch {
+    font-size: 14px;
+    color: #666;
+}
+
+.preactivity1 .course-button {
+    text-align: center;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.preactivity1 .course-button:hover {
+    background-color: #45a049;
+}
+.preactivity2 .title2 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.preactivity2 .backbutton {
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 3%;
+    cursor: pointer;
+}
+
+.preactivity2 .course-name {
+    font-weight: bold;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 20px;
+}
+
+.preactivity2 .course-no-batch {
+    margin-left: 2%;
+    font-size: 15px;
+}
+
+.preactivity2 .button{
+    display: flex;
+    flex-direction: row;
+}
+
+.preactivity2 .activity-button {
+    font-size: 17px;
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 1%;
+    padding: 0.5%;
+    width: 8%;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.preactivity2 .prereading-button {
+    font-size: 17px;
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 1%;
+    padding: 0.5%;
+    width: 8%;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.preactivity2 .activity-button.active,
+.preactivity2 .prereading-button.active {
+    color: gold;
+}
+
+.preactivity2 .activity-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.preactivity2 .activity-card {
+    width: 120px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.preactivity2 .activity-card:hover {
+    background-color: #eaeaea;
+}
+
+.preactivity2 .activity-img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.preactivity2 .activity-title {
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    color: #333;
+}
+
+.preactivity2 .pre-reading-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+  
+.preactivity2 .pre-reading-card {
+    background-color: white;
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: 255px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.preactivity2 .pre-reading-img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+}
+  
+.preactivity2 .pre-reading-title {
+    flex: 1;
+    font-size: 15px;
+}
+
+.preactivity2 .pre-reading-download {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+}
+
+.preactivity3 .title3 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.preactivity3 .backbutton {
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 3%;
+    cursor: pointer;
+}
+
+.preactivity3 .activityfill {
+    margin: 2%;
+    background-color: white;
+    width: 153vh;
+    height: 69vh;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.preactivity4 .title4 {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.preactivity4 .backbutton {
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 3%;
+    cursor: pointer;
+}
+
+.preactivity4 .prereadingfill {
+    margin: 2%;
+    background-color: white;
+    width: 153vh;
+    height: 69vh;
+    border: 1px solid #ccc;
+}

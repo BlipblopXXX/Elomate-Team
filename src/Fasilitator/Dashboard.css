@@ -1,0 +1,239 @@
+.dashboard .title {
+  margin-top: 1%;
+  margin-left: 2%;
+  font-size: 25px;
+}
+
+.dashboard .news {
+  background-color: rgba(128, 128, 128, 0.244);
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 1%;
+  padding: 10%;
+  border-radius: 10px;
+}
+
+.dashboard .divider-d {
+  display: flex;
+  flex: row;
+}
+
+.dashboard .progress {
+  flex: 0.35;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-left: 2%;
+  margin-right: 1%;
+  height: 80vh;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dashboard .progress-up {
+  flex: 1;
+  background-color: gold;
+  border-radius: 10px 10px 0 0;
+  align-content: center;
+}
+
+.dashboard .progress-title {
+  margin-top: 1%;
+  margin-left: 3%;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.dashboard .progress-down {
+  flex: 8;
+  margin-left: 2%;
+}
+
+.dashboard .progress-bar {
+  width: 100%;
+  height: 15px;
+  background-color: #DEDEDE;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 5px;
+}
+  
+.dashboard .progresss {
+  height: 100%;
+  border-radius: 15px;
+  background-color: #1f87ba;
+}
+
+.dashboard .bar {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+}
+
+.dashboard .bar1 {
+  flex: 8;
+}
+
+.dashboard .bar2 {
+  flex: 2;
+  margin-left: 10%;
+}
+  
+
+.dashboard .todolist {
+  flex: 0.35;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  height: 80vh;
+}
+
+.dashboard .todolist-up {
+  flex: 1;
+  background-color: gold;
+  border-radius: 10px 10px 0 0; 
+  align-content: center;
+}
+
+.dashboard .todolist-title {
+  margin-top: 2%;
+  margin-left: 3%;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.dashboard .todolist-down {
+  flex: 8;
+}
+
+.dashboard .agenda {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1%;
+  margin-right: 2%;
+  border-radius: 10px;
+  height: 80vh;
+}
+
+.dashboard .agenda-up {
+  flex: 1;
+  background-color: gold;
+  border-radius: 10px 10px 0 0;
+  align-content: center; 
+}
+
+.dashboard .agenda-title {
+  margin-top: 2%;
+  margin-left: 3%;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.dashboard .agenda-date {
+  margin-top: 1%;
+  margin-left: 3%;
+  font-size: 16px;
+  color: white;
+}
+
+.dashboard .agenda-down {
+  flex: 8;
+  background-color: white;
+}
+
+.dashboard .list-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+  
+.dashboard .list-table th,
+.dashboard .list-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  border-radius: 0;
+}
+
+.dashboard .list-table .th1,
+.dashboard .list-table .td1 {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 0.01vh;
+  text-align: left;
+}
+
+.dashboard .list-table .th2,
+.dashboard .list-table .td2 {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 12vh;
+  text-align: left;
+}
+  
+.dashboard .list-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.dashboard .upcoming-activities {
+  display: flex;
+}
+  
+.dashboard .day-activities {
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 100%;  
+}
+  
+.dashboard .day {
+  padding: 10px;
+  font-size: 15px;
+}
+  
+.dashboard .activities {
+  display: flex;
+  flex-direction: column;
+}
+  
+.dashboard .activity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7.5px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+  
+.dashboard .activity-details {
+  display: flex;
+  flex-direction: column;
+}
+  
+.dashboard .class-name {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 1px;
+}
+  
+.dashboard .room,
+.dashboard .time {
+  font-size: 13px;
+  color: #555;
+}
+  
+.dashboard .time {
+  margin-left: 20px;
+}
+  
+.dashboard .separator {
+  border-top: 1px solid #ccc;
+  margin-top: 30px;
+}

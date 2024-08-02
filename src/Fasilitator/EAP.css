@@ -1,0 +1,26 @@
+.eap .title {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.eap .box {
+    background-color: black;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+    height: 84vh;
+    padding: 2%;
+    border-radius: 10px;
+}
+
+.eap .box a {
+    margin-left: 4%;
+    color: white;
+    font-size: 30px;
+}
+
+.eap .box .eapbutton {
+    margin-left: 6%;
+    margin-top: 25%;
+}

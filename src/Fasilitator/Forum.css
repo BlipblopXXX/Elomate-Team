@@ -1,0 +1,127 @@
+.forum {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.forum .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.forum hr {
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.forum button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.forum button:hover {
+    background-color: #0056b3;
+}
+
+.forum form {
+    margin-bottom: 20px;
+}
+
+.forum input,
+.forum textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.forum button[type="submit"] {
+    background-color: gold
+}
+
+.forum button[type="submit"]:hover {
+    background-color: rgb(181, 157, 21);
+}
+
+.forum .selectedpost {
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.forum .selectedpost h2 {
+    margin-top: 0;
+}
+
+.forum .selectedpost p {
+    margin-top: 10px;
+}
+
+.forum .backbutton {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 2%;
+}
+
+.forum .backbutton:hover {
+    opacity: 0.8;
+}
+
+.forum .comments {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.forum .post {
+    background-color: #ffffff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.forum .post:hover {
+    background-color: #f8f9fa;
+}
+
+.forum .post h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.forum .post p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.forum .post p:last-child {
+    margin-bottom: 0;
+}
+
+.forum .search-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.forum .search-container input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.forum .search-container button {
+    background-color: gold;
+}
+
+.forum .search-container button:hover {
+    background-color: rgb(175, 155, 40);
+}

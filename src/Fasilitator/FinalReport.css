@@ -1,0 +1,155 @@
+.finalreport .title {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.finalreport .selecttile {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+}
+
+.finalreport .selecttile .phase {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-weight: bold;
+}
+
+.finalreport .selecttile .phaseselect {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    width: 400px;
+    padding: 8px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.finalreport .final-desc {
+    padding: 1%;
+}
+
+.finalreport .desc {
+    padding: 1%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: gold;
+    height: 3vh;
+}
+
+.finalreport .batch-title {
+    margin-left: 0%;
+    font-weight: bold;
+}
+
+.finalreport .batch {
+    margin-right: 25%;
+}
+
+.finalreport .batch-name {
+    margin-right: 10%;
+    font-weight: bold;
+}
+
+.finalreport .final-container {
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.finalreport table {
+    width: 100%;
+    border-collapse: separate;
+}
+
+.finalreport th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.finalreport th {
+    background-color: gold;
+}
+
+.finalreport th:first-child {
+    width: 50px;
+}
+
+.finalreport td:nth-child(1),
+.finalreport td:nth-child(3),
+.finalreport td:nth-child(4),
+.finalreport td:nth-child(5) {
+    text-align: center;
+}
+
+.finalreport tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.finalreport tbody tr:nth-child(odd) td {
+    background-color: white;
+}
+
+.finalreport tfoot {
+    font-weight: bold;
+}
+
+.finalreport tfoot td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: gold;
+}
+
+.finalreport tfoot td:first-child {
+    width: 50px;
+}
+
+.finalreport tfoot td:nth-child(2) {
+    text-align: center;
+}
+
+.finalreport .graphic-title {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.finalreport .graphic-divider {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.finalreport .kirkpatrick-chart {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.finalreport .graphic-solution {
+    width: 350px;
+    margin-right: 20%;
+    text-align: center;
+}
+
+.finalreport .solution-title {
+    margin-top: 1%;
+    font-size: 25px;
+}
+
+.finalreport .graphic-8bc {
+    width: 350px;
+    text-align: center;
+}
+
+.finalreport .bc-title {
+    margin-top: 1%;
+    font-size: 25px;
+}

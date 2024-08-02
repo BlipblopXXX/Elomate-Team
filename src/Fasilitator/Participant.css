@@ -1,0 +1,100 @@
+.participant .title {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 25px;
+}
+
+.participant-desc {
+    padding: 1%;
+}
+
+.desc {
+    padding: 1%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: gold;
+    height: 3vh;
+}
+
+.batch-title {
+    margin-right: 10%;
+    font-weight: bold;
+}
+
+.batch {
+    margin-right: 25%;
+}
+
+.total-title {
+    margin-right: 10%;
+    font-weight: bold;
+}
+
+.participant-container {
+    display: flex;
+    flex-direction: row;
+    padding: 1%;
+    overflow-x: auto;
+    margin-right: 3%;
+    width: 98%;
+    padding: 1%;
+}
+
+.person {
+    margin-top: 1%;
+    padding: 2%;
+    margin: 1%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.person-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.img {
+    align-self: center;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12%;
+}
+
+.name-title {
+    font-weight: bold;
+}
+
+.position {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12%;
+}
+
+.position-title {
+    font-weight: bold;
+}
+
+.uni {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12%;
+}
+
+.uni-title {
+    font-weight: bold;
+}
+
+.major {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12%;
+}
+
+.major-title {
+    font-weight: bold;
+}
