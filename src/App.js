@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import MenteeMain from './Mentee/Main';
@@ -10,34 +10,49 @@ import Verify from './Verify';
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('mentee');
   const [currentPage, setCurrentPage] = useState('login');
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/user-data');
+      const { username, password, role } = response.data;
+      setUsername(username);
+      setPassword(password);
+      setRole(role);
+    } catch (error) {
+      console.error('Failed to fetch user data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     if (!username || !password || !role) {
       alert('Username, password, dan peran harus diisi');
       return;
     }
-  
+
     try {
       const response = await axios.post('http://localhost:3001/login', { nrp: username, password: password });
       const { token, batch } = response.data;
-  
-      console.log('Role:', role);  // Log untuk memastikan nilai role
-      console.log('Batch:', batch);  // Log untuk memastikan nilai batch
-  
+
+      console.log('Role:', role);
+      console.log('Batch:', batch);
+
       if (token) {
         localStorage.setItem('token', token);
       }
-  
+
       if (batch === undefined) {
         alert('Batch tidak ditemukan dalam respons');
         return;
       }
-  
-      // Check the batch value and navigate accordingly
+
       if (role === 'fasilitator' && batch === '0') {
         setCurrentPage('fasilitator');
       } else if (role === 'mentee' && batch > '0') {
