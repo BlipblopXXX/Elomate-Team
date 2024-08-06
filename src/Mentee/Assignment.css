@@ -280,9 +280,13 @@
     margin-top: 16px;
 }
 
-.assign-bottomdivider {
+.assignment2 .assign-bottomdivider {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+}
+
+.assignment2 .assign-duecombo{
+    margin-right: 40%;
 }
 
 .assignment2 .assign-duedet, .assign-statusdet {
@@ -424,4 +428,106 @@
     margin-top: 1%;
     margin-left: 2%;
     font-size: 25px;
+}
+
+.assignment4 .backbutton {
+    margin-right: 2%;
+    width: 4%;
+    cursor: pointer;
+}
+
+.assignment4 {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.assignment4 h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.assignment4 hr {
+    border: none;
+    border-top: 2px solid #ddd;
+    margin: 20px 0;
+}
+
+.assignment4 .question-navigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+}
+
+.assignment4 .question-number {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.assignment4 .question-number:hover {
+    background-color: #0056b3;
+}
+
+.assignment4 .question-number.active {
+    background-color: #28a745;
+}
+
+.assignment4 .question-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.assignment4 .question {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.assignment4 .options {
+    margin-bottom: 20px;
+}
+
+.assignment4 .option {
+    margin-bottom: 10px;
+}
+
+.assignment4 .option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.assignment4 .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.assignment4 .navigation-buttons button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.assignment4 .navigation-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.assignment4 .navigation-buttons button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
