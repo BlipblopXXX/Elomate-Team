@@ -69,17 +69,17 @@ const assign = [
     {name: 'Business Process AHEMCE', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Personal Branding', title: 'Pre-Test', start: '1 Maret 2024', due: '17 March 2024', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Personal Branding', title: 'Post-Test', start: '1 Maret 2024', due: '30 March 2024', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 1', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 1', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 1', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 2', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 2', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 2', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 3', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 3', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 3', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 4', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 4', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 4', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Review 5', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Review 5', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Review 5', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
-    {name: 'Final Review', title: 'Notes', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
+    {name: 'Final Review', title: 'Meet', start: '1 Maret 2024', due: '-', status: 'Completed', time: 60, type: 'Pilihan Ganda' , qcount: 10},
     {name: 'Final Review', title: 'Case', start: '1 Maret 2024', due: '-', status: 'Incompleted', time: 60, type: 'Pilihan Ganda' , qcount: 10},
 ]
 
@@ -112,6 +112,29 @@ const progress = [
     { selectedTopic: 'Review2', order: '5', name: 'Final Review', value: 0 },
 ];
 
+const questions = [
+    {
+        question: 'Apa yang dimaksud dengan integritas dalam konteks karakter?',
+        options: ['A. Kejujuran', 'B. Keberanian', 'C. Kedisiplinan', 'D. Kesopanan']
+    },
+    {
+        question: 'Bagaimana cara membangun karakter yang kuat?',
+        options: ['A. Mengikuti aturan', 'B. Berlatih secara konsisten', 'C. Berbohong', 'D. Mengabaikan orang lain']
+    },
+    {
+        question: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        options: ['A. Lorem ipsum dolor sit amet', 'B. consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.', 'C. quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.', 'D. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.']
+    },
+    {
+        question: 'Bagaimana cara membangun karakter yang kuat?',
+        options: ['A. Mengikuti aturan', 'B. Berlatih secara konsisten', 'C. Berbohong', 'D. Mengabaikan orang lain']
+    },
+    {
+        question: 'Bagaimana cara membangun karakter yang kuat?',
+        options: ['A. Mengikuti aturan', 'B. Berlatih secara konsisten', 'C. Berbohong', 'D. Mengabaikan orang lain']
+    }, 
+]; 
+
 function Assignment() {
     const [currentPage, setCurrentPage] = useState('main');
     const [selectedPhase, setSelectedPhase] = useState('Phase 10');
@@ -119,6 +142,7 @@ function Assignment() {
     const [selectedAssign, setSelectedAssign] = useState(null);
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [selectedTest, setSelectedTest] = useState(null);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
 
     const handleMain = () => {
         setCurrentPage('main');
@@ -161,10 +185,31 @@ function Assignment() {
     const handleTopicChange = (event) => {
         setSelectedTopic(event.target.value);
     };
+ 
 
     const handleCourseClick = (course) => {
         setSelectedAssign(course.name);
         setSelectedCourse(course);
+    };
+
+    const handleStartClick = () => {
+        if (window.confirm('Apakah Anda yakin ingin memulai mengerjakan soal ini?')) {
+           handleStart();
+        }
+    };
+
+    const handleFinishClick = () => {
+        if (window.confirm('Apakah Anda yakin ingin menyelesaikan soal ini?')) {
+            handleSecond();
+        }
+    };
+
+    const handlePreviousClick = () => {
+        setCurrentQuestion((prev) => (prev > 0 ? prev - 1 : prev));
+    };
+
+    const handleNextClick = () => {
+        setCurrentQuestion((prev) => (prev < questions.length - 1 ? prev + 1 : prev));
     };
 
     const getDescription = () => {
@@ -245,7 +290,7 @@ function Assignment() {
                                         <div className="assign-duedet">Due</div>
                                         <div className="assign-due">{assign.due}</div>
                                     </div>
-                                    <div className="assign-statuscombo">
+                                    <div>
                                         <div className="assign-statusdet">Status</div>
                                         <div className={`assign-status ${statusClass}`}>{assign.status}</div>
                                     </div>
@@ -297,7 +342,7 @@ function Assignment() {
                                     <span className="assign-detail-label">Question Count: </span>
                                     <span className="assign-detail-value">{assignDetail.qcount}</span>
                                 </div>
-                                <div className="assign-button">Start</div>
+                                <div className="assign-button" onClick={handleStartClick}>Start</div>
                             </div>
                         </div>
                     ))}
@@ -404,9 +449,45 @@ function Assignment() {
                 return(
                     <div className="assignment4">
                         <div className="title4">
-                            <h><b>Assignment</b></h>
+                            <img className="backbutton" onClick={handleSecond} src="/src/files/icons/backbutton.png" alt="Back" />
+                            <h><b className='title'>Assignment</b></h>
                         </div>
                         <hr />
+                        <div className="question-navigation">
+                            {questions.map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`question-number ${currentQuestion === index ? 'active' : ''}`}
+                                    onClick={() => setCurrentQuestion(index)}
+                                >
+                                    {index + 1}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="question-container">
+                            <div className="question">
+                                {questions[currentQuestion].question}
+                            </div>
+                            <hr />
+                            <div className="options">
+                                {questions[currentQuestion].options.map((option, index) => (
+                                    <div key={index} className="option">
+                                        <input type="radio" id={`option${index}`} name="option" />
+                                        <label htmlFor={`option${index}`}>{option}</label>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="navigation-buttons">
+                                {currentQuestion > 0 && (
+                                    <button onClick={handlePreviousClick}>Previous</button>
+                                )}
+                                {currentQuestion < questions.length - 1 ? (
+                                    <button onClick={handleNextClick}>Next</button>
+                                ) : (
+                                    <button onClick={handleFinishClick}>Finish</button>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 )
             default:
