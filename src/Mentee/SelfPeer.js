@@ -354,7 +354,6 @@ const SelfPeer = () => {
                 <div className="progress-circle" style={{ background: `conic-gradient(#006aff ${averageProgress * 3.6}deg, #e0e0e0 0deg)` }}>
                   <div className="progress-value">{averageProgress}%</div>
                 </div>
-                z
               </div>
 
               <div className="TwinButton">
