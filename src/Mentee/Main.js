@@ -168,24 +168,24 @@ function Main() {
                                 <div className="toollist">
                                     <div className="role">
                                         <div className="role-title">
-                                            <p href="#"><img src="/src/files/icons/Role.png"/> Role</p>
+                                            <div href="#"><img src="/src/files/icons/Role.svg"/> Role</div>
                                         </div>
                                         <div className="role-details">
-                                            <p><b>Management Trainee</b></p>
-                                            <p>Batch {batchNumber}</p>
+                                            <div><b>Management Trainee</b></div>
+                                            <div>Batch {batchNumber}</div>
                                         </div>
                                     </div>
                                     <div className="toolbutton">
-                                    <a href="#" className={`dashboard ${selectedTool === 'dashboard' ? 'selected' : ''}`} onClick={handleDashboard}><img src="/src/files/icons/Dashboard.png"/> Dashboard</a>
-                                    <a href="#" className={`schedule ${selectedTool === 'schedule' ? 'selected' : ''}`} onClick={handleSchedule}><img src="/src/files/icons/Schedule.png"/> Schedule</a>
-                                    <a href="#" className={`preactivity ${selectedTool === 'preactivity' ? 'selected' : ''}`} onClick={handlePreActivity}><img src="/src/files/icons/PreActivity.png"/> Pre-Activity</a>
-                                    <a href="#" className={`assignment ${selectedTool === 'assignment' ? 'selected' : ''}`} onClick={handleAssignment}><img src="/src/files/icons/Assignment.png"/> Assignment</a>
-                                    <a href="#" className={`selfpeer ${selectedTool === 'selfpeer' ? 'selected' : ''}`} onClick={handleSelfPeer}><img src="/src/files/icons/SelfPeer.png"/> Assessment</a>
-                                    <a href="#" className={`mentoring ${selectedTool === 'mentoring' ? 'selected' : ''}`} onClick={handleMentoring}><img src="/src/files/icons/Mentoring.png"/> Mentoring</a>
-                                    <a href="#" className={`finalreport ${selectedTool === 'finalreport' ? 'selected' : ''}`} onClick={handleFinalReport}><img src="/src/files/icons/FinalReport.png"/> Final Report</a>
-                                    <a href="#" className={`participant ${selectedTool === 'participant' ? 'selected' : ''}`} onClick={handleParticipant}><img src="/src/files/icons/Participant.png"/> Participant Data</a>
-                                    <a href="#" className={`forum ${selectedTool === 'forum' ? 'selected' : ''}`} onClick={handleForum}><img src="/src/files/icons/Forum.png" /> Forum</a>
-                                    <a href="#" className={`announcement ${selectedTool === 'announcement' ? 'selected' : ''}`} onClick={handleAnnouncement}><img src="/src/files/icons/Announcement.png"/> Announcement</a>
+                                    <a href="#" className={`dashboard ${selectedTool === 'dashboard' ? 'selected' : ''}`} onClick={handleDashboard}><img src="/src/files/icons/Dashboard.svg"/> Dashboard</a>
+                                    <a href="#" className={`schedule ${selectedTool === 'schedule' ? 'selected' : ''}`} onClick={handleSchedule}><img src="/src/files/icons/schedule.svg"/> Schedule</a>
+                                    <a href="#" className={`preactivity ${selectedTool === 'preactivity' ? 'selected' : ''}`} onClick={handlePreActivity}><img src="/src/files/icons/activity.svg"/> Pre-Activity</a>
+                                    <a href="#" className={`assignment ${selectedTool === 'assignment' ? 'selected' : ''}`} onClick={handleAssignment}><img src="/src/files/icons/Assignment.svg"/> Assignment</a>
+                                    <a href="#" className={`selfpeer ${selectedTool === 'selfpeer' ? 'selected' : ''}`} onClick={handleSelfPeer}><img src="/src/files/icons/Assessment.svg"/> Assessment</a>
+                                    <a href="#" className={`mentoring ${selectedTool === 'mentoring' ? 'selected' : ''}`} onClick={handleMentoring}><img src="/src/files/icons/Mentoring.svg"/> Mentoring</a>
+                                    <a href="#" className={`finalreport ${selectedTool === 'finalreport' ? 'selected' : ''}`} onClick={handleFinalReport}><img src="/src/files/icons/Final-Report.svg"/> Final Report</a>
+                                    <a href="#" className={`participant ${selectedTool === 'participant' ? 'selected' : ''}`} onClick={handleParticipant}><img src="/src/files/icons/Participant.svg"/> Participant Data</a>
+                                    <a href="#" className={`forum ${selectedTool === 'forum' ? 'selected' : ''}`} onClick={handleForum}><img src="/src/files/icons/Forum.svg" /> Forum</a>
+                                    <a href="#" className={`announcement ${selectedTool === 'announcement' ? 'selected' : ''}`} onClick={handleAnnouncement}><img src="/src/files/icons/Announcement.svg"/> Announcement</a>
                                     <a href="#" className="logout" onClick={handleLogout}><img src="/src/files/icons/Logout.png"/> Logout</a>
                                     </div>
                                 </div>
