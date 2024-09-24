@@ -21,213 +21,275 @@ ChartJS.register(
 );
 
 const batchs = [
-    { batch: '1 November 2023', name: 'Naufal Ramiz' }
+    { batch: '1', count: '7' }
+];
+
+const data = [
+    {
+        id: 1,
+        nama: 'Naufal Romiz',
+        generalDevelopment: { status: 'Done', nilai: 90 },
+        orientasiDivisi: { status: 'Done', nilai: 90 },
+        bgms: { status: 'Done', nilai: 85 },
+        neop: { status: 'Done', nilai: 88 },
+    },
+    {
+        id: 2,
+        nama: 'Aiana Deborah',
+        generalDevelopment: { status: 'Not yet', nilai: '-' },
+        orientasiDivisi: { status: 'Done', nilai: 86 },
+        bgms: { status: 'Not yet', nilai: '-' },
+        neop: { status: 'Not yet', nilai: '-' },
+    },
+    {
+        id: 3,
+        nama: 'Rizki Alden',
+        generalDevelopment: { status: 'Done', nilai: 92 },
+        orientasiDivisi: { status: 'Done', nilai: 88 },
+        bgms: { status: 'Done', nilai: 90 },
+        neop: { status: 'Not yet', nilai: '-' },
+    },
+    {
+        id: 4,
+        nama: 'Sari Lestari',
+        generalDevelopment: { status: 'Not yet', nilai: '-' },
+        orientasiDivisi: { status: 'Not yet', nilai: '-' },
+        bgms: { status: 'Done', nilai: 80 },
+        neop: { status: 'Done', nilai: 82 },
+    },
+    {
+        id: 5,
+        nama: 'Doni Setiawan',
+        generalDevelopment: { status: 'Done', nilai: 87 },
+        orientasiDivisi: { status: 'Done', nilai: 85 },
+        bgms: { status: 'Done', nilai: 84 },
+        neop: { status: 'Done', nilai: 89 },
+    },
+    {
+        id: 6,
+        nama: 'Lina Maulida',
+        generalDevelopment: { status: 'Not yet', nilai: '-' },
+        orientasiDivisi: { status: 'Done', nilai: 91 },
+        bgms: { status: 'Not yet', nilai: '-' },
+        neop: { status: 'Done', nilai: 90 },
+    },
 ];
 
 const kirkpatrick = [
     { role: 'Self', assessment: 'SOLUTION Culture', serve: 4, organize: 4, leadership: 4, uniqueness: 4, totality: 4, innovative: 4, openmind: 4, networking: 5 },
     { role: 'Peer', assessment: 'SOLUTION Culture', serve: 4, organize: 4, leadership: 3, uniqueness: 4, totality: 4, innovative: 4, openmind: 5, networking: 5 },
+    { role: 'Mentor', assessment: 'SOLUTION Culture', serve: 4, organize: 5, leadership: 5, uniqueness: 4, totality: 5, innovative: 5, openmind: 5, networking: 5 },
     { role: 'Self', assessment: '8 Behaviour Competencies', vbs: 4, aj: 4, cf: 4, dc: 4, tw: 4, pda: 4, is: 4, lm: 4 },
-    { role: 'Peer', assessment: '8 Behaviour Competencies', vbs: 3, aj: 4, cf: 4, dc: 4, tw: 4, pda: 3, is: 4, lm: 4 }
-];
-
-const courses = [
-    { selectedValue: 'option1', course: 'General Development', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option1', course: 'Orientasi Divisi', score1: 88, score2: 85, status: 'Done' },
-    { selectedValue: 'option1', course: 'BGMS', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option1', course: 'NEOP', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option2', course: 'Case Study', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option2', course: 'Hands on Activity', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option3', course: 'Orientasi cabang/site', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option3', course: 'Mempelajari Business Process Divisi/Cabang/Site', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option3', course: 'Melakukan proses kerja di Divisi/Cabang/Site sesuai dengan KPI', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option4', course: 'Improvement bisnis proses', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option4', course: 'Customer Solution Management (CSM)', score1: 85, score2: 85, status: 'Done' }
+    { role: 'Peer', assessment: '8 Behaviour Competencies', vbs: 3, aj: 4, cf: 4, dc: 4, tw: 4, pda: 3, is: 4, lm: 4 },
+    { role: 'Mentor', assessment: '8 Behaviour Competencies', vbs: 4, aj: 5, cf: 5, dc: 4, tw: 5, pda: 5, is: 5, lm: 5 }
 ];
 
 function FinalReport() {
-    const [selectedValue, setselectedValue] = useState('option1');
+    const [currentPage, setCurrentPage] = useState('main');
+    const batches = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    const handleChange = (event) => {
-        setselectedValue(event.target.value);
+    const handleMain = () => {
+        setCurrentPage('main');
     };
 
-    const renderDesc = () => {
-        return batchs.map((batch, index) => (
-            <div key={index}>
-                <div className="desc">
-                    <div className="batch-title">Batch</div>
-                    <div className="batch">: {batch.batch}</div>
-                    <div className="batch-name">Nama Peserta</div>
-                    <div className="name">: {batch.name}</div>
-                </div>
-            </div>
-        ))
+    const handleBatchClick = () => {
+        setCurrentPage('second');
     };
 
-    const renderCourses = () => {
-        const totalScores = courses.reduce((accumulator, course) => {
-            return course.score1 !== null ? accumulator + course.score1 : accumulator;
-        }, 0);
+    const BatchCard = ({ batchName, onClick }) => (
+        <div className="batch-card" onClick={onClick}>
+            <img className="batch-icon" src="/src/files/icons/Batch.png"/>
+            <h3>Batch {batchName}</h3>
+        </div>
+    );
 
-        const validScoresCount = courses.reduce((count, course) => {
-            return course.score1 !== null ? count + 1 : count;
-        }, 0);
-
-        const averageScore = validScoresCount > 0 ? totalScores / validScoresCount : 0;
-
-        const totalScores2 = courses.reduce((accumulator, course) => {
-            return course.score2 !== null ? accumulator + course.score2 : accumulator;
-        }, 0);
-
-        const validScoresCount2 = courses.reduce((count, course) => {
-            return course.score2 !== null ? count + 1 : count;
-        }, 0);
-
-        const averageScore2 = validScoresCount2 > 0 ? totalScores2 / validScoresCount2 : 0;
-
-        const coursex = courses.filter(course => course.selectedValue === selectedValue);
-
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Course</th>
-                        <th>Pre-test</th>
-                        <th>Post-test</th>
-                        <th>Status</th>
+    const renderBatchTable = () => (
+        <table>
+            <thead>
+                <tr>
+                    <th>Batch</th>
+                    <th>Jumlah Peserta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {batchs.map((batch, index) => (
+                    <tr key={index}>
+                        <td>{batch.batch}</td>
+                        <td>{batch.count}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {coursex.map((course, index) => (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{course.course}</td>
-                            <td>{course.score1 || "-"}</td>
-                            <td>{course.score2 || "-"}</td>
-                            <td>{course.status}</td>
-                        </tr>
-                    ))}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colSpan="2">Rata-rata</td>
-                        <td>{averageScore.toFixed(2)}</td>
-                        <td>{averageScore2.toFixed(2)}</td>
-                        <td colSpan="2"></td>
-                    </tr>
-                </tfoot>
-            </table>
-        );
-    };
+                ))}</tbody>
+        </table>
+    );
 
-    const renderKirkpatrickChart = (assessmentType) => {
-        const filteredData = kirkpatrick.filter(item => item.assessment === assessmentType);
+    const renderParticipantsTable = () => (
+        <table>
+            <thead>
+                <tr>
+                    <th rowSpan={2}>No</th>
+                    <th rowSpan={2}>Nama</th>
+                    <th colSpan={2}>General Development</th>
+                    <th colSpan={2}>Orientasi Divisi</th>
+                    <th colSpan={2}>BGMS</th>
+                    <th colSpan={2}>NEOP</th>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <th>Nilai</th>
+                    <th>Status</th>
+                    <th>Nilai</th>
+                    <th>Status</th>
+                    <th>Nilai</th>
+                    <th>Status</th>
+                    <th>Nilai</th>
+                </tr>
+            </thead>
+            <tbody>
+                {data.map((participant, index) => (
+                    <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{participant.nama}</td>
+                        <td className={participant.generalDevelopment.status === 'Done' ? 'status-done' : 'status-not-yet'}>
+                            {participant.generalDevelopment.status}
+                        </td>
+                        <td>{participant.generalDevelopment.nilai}</td>
+                        <td className={participant.orientasiDivisi.status === 'Done' ? 'status-done' : 'status-not-yet'}>
+                            {participant.orientasiDivisi.status}
+                        </td>
+                        <td>{participant.orientasiDivisi.nilai}</td>
+                        <td className={participant.bgms.status === 'Done' ? 'status-done' : 'status-not-yet'}>
+                            {participant.bgms.status}
+                        </td>
+                        <td>{participant.bgms.nilai}</td>
+                        <td className={participant.neop.status === 'Done' ? 'status-done' : 'status-not-yet'}>
+                            {participant.neop.status}
+                        </td>
+                        <td>{participant.neop.nilai}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
     
-        let competencyLabels = [];
-        let datasets = [];
-    
-        if (assessmentType === 'SOLUTION Culture') {
-            competencyLabels = ["Serve", "Organize", "Leadership", "Uniqueness", "Totality", "Innovative", "OpenMind", "Networking"];
-        } else if (assessmentType === '8 Behaviour Competencies') {
-            competencyLabels = ["VBS", "AJ", "CF", "DC", "TW", "PDA", "IS", "LM"];
-        }
-    
-        const selfData = filteredData.find(item => item.role === 'Self');
-        const peerData = filteredData.find(item => item.role === 'Peer');
-    
-        if (selfData && peerData) {
-            const selfDataset = {
-                label: 'Self',
-                data: competencyLabels.map(label => selfData[label.toLowerCase()]),
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
-            };
-    
-            const peerDataset = {
-                label: 'Peer',
-                data: competencyLabels.map(label => peerData[label.toLowerCase()]),
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1,
-            };
-    
-            datasets = [selfDataset, peerDataset];
-        }
-    
-        const data = {
-            labels: competencyLabels,
-            datasets: datasets,
-        };
-    
-        const options = {
-            scales: {
-                r: {
-                    angleLines: {
-                        display: false
-                    },
-                    suggestedMin: 0,
-                    suggestedMax: 5
+    const getSolutionCultureData = () => {
+        const filteredData = kirkpatrick.filter(entry => entry.assessment === 'SOLUTION Culture');
+        return {
+            labels: ['Serve', 'Organize', 'Leadership', 'Uniqueness', 'Totality', 'Innovative', 'Openmind', 'Networking'],
+            datasets: filteredData.map((entry) => {
+                let backgroundColor, borderColor;
+                switch (entry.role) {
+                    case 'Self':
+                        backgroundColor = 'rgba(255, 99, 132, 0.2)';
+                        borderColor = 'rgba(255, 99, 132, 1)';
+                        break;
+                    case 'Peer':
+                        backgroundColor = 'rgba(54, 162, 235, 0.2)';
+                        borderColor = 'rgba(54, 162, 235, 1)';
+                        break;
+                    case 'Mentor':
+                        backgroundColor = 'rgba(75, 192, 192, 0.2)';
+                        borderColor = 'rgba(75, 192, 192, 1)';
+                        break;
+                    default:
+                        backgroundColor = `rgba(${Math.random() * 255}, 99, 132, 0.2)`; 
+                        borderColor = `rgba(${Math.random() * 255}, 99, 132, 1)`;
                 }
-            }
+                return {
+                    label: entry.role,
+                    data: [entry.serve, entry.organize, entry.leadership, entry.uniqueness, entry.totality, entry.innovative, entry.openmind, entry.networking],
+                    backgroundColor,
+                    borderColor,
+                    borderWidth: 1,
+                };
+            }),
         };
-    
-        return (
-            <div className="kirkpatrick-chart">
-                <Radar data={data} options={options} />
-            </div>
-        );
     };
     
-    
+    const getBehaviourCompetenciesData = () => {
+        const filteredData = kirkpatrick.filter(entry => entry.assessment === '8 Behaviour Competencies');
+        return {
+            labels: ['VBS', 'AJ', 'CF', 'DC', 'TW', 'PDA', 'IS', 'LM'],
+            datasets: filteredData.map((entry) => {
+                let backgroundColor, borderColor;
+                switch (entry.role) {
+                    case 'Self':
+                        backgroundColor = 'rgba(255, 99, 132, 0.2)';
+                        borderColor = 'rgba(255, 99, 132, 1)';
+                        break;
+                    case 'Peer':
+                        backgroundColor = 'rgba(54, 162, 235, 0.2)';
+                        borderColor = 'rgba(54, 162, 235, 1)';
+                        break;
+                    case 'Mentor':
+                        backgroundColor = 'rgba(75, 192, 192, 0.2)';
+                        borderColor = 'rgba(75, 192, 192, 1)';
+                        break;
+                    default:
+                        backgroundColor = `rgba(${Math.random() * 255}, 206, 86, 0.2)`;
+                        borderColor = `rgba(${Math.random() * 255}, 206, 86, 1)`;
+                }
+                return {
+                    label: entry.role,
+                    data: [entry.vbs, entry.aj, entry.cf, entry.dc, entry.tw, entry.pda, entry.is, entry.lm],
+                    backgroundColor,
+                    borderColor,
+                    borderWidth: 1,
+                };
+            }),
+        };
+    };
+
+    const renderKirkpatrickCharts = () => (
+        <div className="kirkpatrick-charts">
+            <div className="chart-container">
+                <h4>SOLUTION Culture</h4>
+                <Radar data={getSolutionCultureData()} />
+            </div>
+            <div className="chart-container">
+                <h4>8 Behaviour Competencies</h4>
+                <Radar data={getBehaviourCompetenciesData()} />
+            </div>
+        </div>
+    );
+
+    const renderPage = () => {
+        switch (currentPage) {
+            case 'main':
+                return(
+                    <div className="finalreport">
+                        <div className="title">
+                            <h3><b>Final Report</b></h3>
+                        </div>
+                        <div className="batch-list">
+                            {batches.map((batch, index) => (
+                            <BatchCard
+                                key={index}
+                                batchName={batch}
+                                onClick={() => handleBatchClick(batch)}
+                            />
+                            ))}</div>
+                    </div>
+                );
+            case 'second':
+                return (
+                    <div className="finalreport">
+                        <h3><b>Final Report</b></h3>
+                        <img className="backbutton" onClick={handleMain} src="/src/files/icons/backbutton.png" alt="Back" />
+                        <h4>Batch Info</h4>
+                        {renderBatchTable()}
+                        <h4>Participants</h4>
+                        {renderParticipantsTable()}
+                        <h4>Kirkpatrick Assessments</h4>
+                        {renderKirkpatrickCharts()}
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
 
     return (
-        <div className="finalreport">
-            <div className="title">
-                <div><b>Final Report</b></div>
-            </div>
-            <hr />
-            <div className="final-desc">
-                {renderDesc()}
-            </div>
-            <div className="selecttile">
-                <div className="phase">
-                    <span>Phase</span>
-                    <select className="phaseselect" id="phaseDropdown" value={selectedValue} onChange={handleChange}>
-                        <option value="option1">Phase 10</option>
-                        <option value="option2">Phase 20 + 70 OJT 1</option>
-                        <option value="option3">Phase 20 + 70 OJT 2</option>
-                        <option value="option4">Phase 20 + 70 OJT 3</option>
-                    </select>
-                </div>
-            </div>
-            <div className="final-container">
-                {renderCourses()}
-            </div>
-            <div className="graphic-title">
-                <div><b>Assessment</b></div>
-            </div>
-            <hr />
-            <div className="graphic-divider">
-                <div className="graphic-solution">
-                    <div className="solution-title">
-                        <b>SOLUTION Culture</b>
-                    </div>
-                    <div>
-                        {renderKirkpatrickChart('SOLUTION Culture')}
-                    </div>
-                </div>
-                <div className="graphic-8bc">
-                    <div className="bc-title">
-                        <b>8 Behaviour Competencies</b>
-                    </div>
-                    <div>
-                        {renderKirkpatrickChart('8 Behaviour Competencies')}
-                    </div>
-                </div>
-            </div>
+        <div className="App">
+            {renderPage()}
         </div>
     );
 }
