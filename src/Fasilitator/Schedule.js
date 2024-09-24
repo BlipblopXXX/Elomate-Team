@@ -2,23 +2,41 @@ import React, { useState, useEffect } from 'react';
 import './Schedule.css';
 
 const events = [
-    { date: '2024-04-01', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 310 Lt 3 TC Jakarta', time: '08.00 - 12.00 WIB'},
-    { date: '2024-04-01', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 201 Lt 2 CU Jakarta', time: '10.30 - 14.30 WIB'},
-    { date: '2024-04-01', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 100 Lt 1 CU Jakarta', time: '09.00 - 13.00 WIB'},
-    { date: '2024-04-09', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 312 Lt 3 BP Jakarta', time: '12.30 - 16.30 WIB'},
-    { date: '2024-04-09', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 203 Lt 2 BP Jakarta', time: '11.00 - 15.00 WIB'},
-    { date: '2024-04-30', title: 'Reminder Case Deadline',  class: 'Deadline Assignment', location: 'Online',                    time: 'Due : 3 March 2024, 23.59 WIB'},
-    { date: '2024-05-03', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 310 Lt 3 TC Jakarta', time: '08.00 - 12.00 WIB'},
-    { date: '2024-05-03', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 201 Lt 2 CU Jakarta', time: '10.30 - 14.30 WIB'},
-    { date: '2024-05-15', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 100 Lt 1 CU Jakarta', time: '09.00 - 13.00 WIB'},
-    { date: '2024-05-15', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 312 Lt 3 BP Jakarta', time: '12.30 - 16.30 WIB'},
-    { date: '2024-05-21', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 203 Lt 2 BP Jakarta', time: '11.00 - 15.00 WIB'},
-    { date: '2024-05-31', title: 'Reminder Case Deadline',  class: 'Deadline Assignment', location: 'Online',                    time: 'Due : 3 March 2024, 23.59 WIB'}
+    { date: '2024-08-01', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 310 Lt 3 TC Jakarta', time: '08.00 - 12.00 WIB'},
+    { date: '2024-08-01', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 201 Lt 2 CU Jakarta', time: '10.30 - 14.30 WIB'},
+    { date: '2024-08-01', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 100 Lt 1 CU Jakarta', time: '09.00 - 13.00 WIB'},
+    { date: '2024-08-09', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 312 Lt 3 BP Jakarta', time: '12.30 - 16.30 WIB'},
+    { date: '2024-08-09', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 203 Lt 2 BP Jakarta', time: '11.00 - 15.00 WIB'},
+    { date: '2024-08-30', title: 'Reminder Case Deadline',  class: 'Deadline Assignment', location: 'Online',                    time: 'Due : 3 March 2024, 23.59 WIB'},
+    { date: '2024-09-03', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 310 Lt 3 TC Jakarta', time: '08.00 - 12.00 WIB'},
+    { date: '2024-09-03', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 201 Lt 2 CU Jakarta', time: '10.30 - 14.30 WIB'},
+    { date: '2024-09-15', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 100 Lt 1 CU Jakarta', time: '09.00 - 13.00 WIB'},
+    { date: '2024-09-15', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 312 Lt 3 BP Jakarta', time: '12.30 - 16.30 WIB'},
+    { date: '2024-09-21', title: 'Nama Course',             class: 'Class Type', location: 'Ruang 203 Lt 2 BP Jakarta', time: '11.00 - 15.00 WIB'},
+    { date: '2024-09-31', title: 'Reminder Case Deadline',  class: 'Deadline Assignment', location: 'Online',                    time: 'Due : 3 March 2024, 23.59 WIB'}
 ];
 
 function Schedule() {
+    const [currentPage, setCurrentPage] = useState('main');
     const [date, setDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
+    const batches = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    const handleMain = () => {
+        setCurrentPage('main');
+    };
+
+    const handleBatchClick = (batchName) => {
+        console.log(`Clicked on ${batchName}`);
+        setCurrentPage('second');
+    };
+
+    const BatchCard = ({ batchName, onClick }) => (
+        <div className="batch-card" onClick={onClick}>
+            <img className="batch-icon" src="/src/files/icons/Batch.png"/>
+            <h3>Batch {batchName}</h3>
+        </div>
+    );
 
     useEffect(() => {
         setSelectedDate(new Date().getDate());
@@ -111,37 +129,66 @@ function Schedule() {
         return "";
     };
 
+    const renderPage = () => {
+        switch (currentPage) {
+            case 'main':
+                return(
+                    <div className="schedule">
+                        <div className="title">
+                            <h3><b>Schedule</b></h3>
+                        </div>
+                        <div className="batch-list">
+                            {batches.map((batch, index) => (
+                            <BatchCard
+                                key={index}
+                                batchName={batch}
+                                onClick={() => handleBatchClick(batch)}
+                            />
+                            ))}
+                        </div>
+                    </div>
+                )
+            case 'second':
+                return (
+                    <div className="schedule">
+                        <div className="title">
+                            <h><b>Schedule</b></h>
+                        </div>
+                        <img className="backbutton" onClick={handleMain} src="/src/files/icons/backbutton.png" alt="Back" />
+                        <hr />
+                        <div className="container">
+                            <div className="calendar">
+                                <div className="header">
+                                    <img src="/src/files/icons/backbutton.png" onClick={prevMonth} />
+                                    <h2>{date.toLocaleDateString('default', { month: 'long', year: 'numeric' })}</h2>
+                                    <img src="/src/files/icons/nextbutton.png" onClick={nextMonth} />
+                                </div>
+                                <div className="days">
+                                    <div className="day">S</div>
+                                    <div className="day">M</div>
+                                    <div className="day">T</div>
+                                    <div className="day">W</div>
+                                    <div className="day">T</div>
+                                    <div className="day">F</div>
+                                    <div className="day">S</div>
+                                </div>
+                                <hr />
+                                <div className="grid">
+                                    {renderCalendar()}
+                                </div>
+                            </div>
+                            <div className="description">
+                                {getDayAndDateDescription()}
+                            </div>
+                        </div>
+                    </div>
+                )
+        }
+    }
+
     return (
-        <div className="schedule">
-            <div className="title">
-                <h><b>Schedule</b></h>
-            </div>
-            <hr />
-            <div className="container">
-                <div className="calendar">
-                    <div className="header">
-                        <img src="/src/files/icons/backbutton.png" onClick={prevMonth} />
-                        <h2>{date.toLocaleDateString('default', { month: 'long', year: 'numeric' })}</h2>
-                        <img src="/src/files/icons/nextbutton.png" onClick={nextMonth} />
-                    </div>
-                    <div className="days">
-                        <div className="day">S</div>
-                        <div className="day">M</div>
-                        <div className="day">T</div>
-                        <div className="day">W</div>
-                        <div className="day">T</div>
-                        <div className="day">F</div>
-                        <div className="day">S</div>
-                    </div>
-                    <hr />
-                    <div className="grid">
-                        {renderCalendar()}
-                    </div>
-                </div>
-                <div className="description">
-                    {getDayAndDateDescription()}
-                </div>
-            </div>
+        <div className="App">
+            {renderPage()}
         </div>
     );
 }
