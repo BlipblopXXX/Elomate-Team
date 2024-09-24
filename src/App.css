@@ -1,7 +1,7 @@
 .login-container {
   display: flex;
   justify-content: space-between;
-  height: 100%;
+  height: 100vh;
 }
 
 .login-container .left-section {
@@ -10,27 +10,25 @@
 }
 
 .login-container .left-section img {
-  width: 100%;
-  height: 100vh;
+  max-width: 100%;
+  height: auto;
 }
 
 .login-container .right-section {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
   justify-content: center;
   text-align: center;
   padding: 1%;
   height: 100vh;
 }
 
-.login-container .logo {
-  padding-bottom: 5%;
+.login-container .logo{
+  padding-bottom: 25%;
   margin-top: 5%;
-  display: flex;
   justify-content: space-between;
-  width: 100%;
 }
 
 .login-container .logo .ut {
@@ -38,14 +36,14 @@
   margin-right: 280px;
 }
 
-.login-container .logo .elomate {
+.login-container .logo .elomate{
   justify-content: flex-end;
 }
 
 .login-container .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
   justify-content: center;
   text-align: center;
   margin-top: 10%;
@@ -67,16 +65,18 @@
 }
 
 .login-container .role {
+  display: flex;
+  flex-direction: column;
   margin-top: 3%;
-  width: 100%;
-  padding: 10px;
+  width: 400px;
+  padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 .login-container .card button {
-  margin-top: 10%;
+  margin-top: 40%;
   padding: 5%;
   background-color: black;
   color: white;
@@ -85,91 +85,4 @@
   cursor: pointer;
   width: 100%;
   margin-bottom: 5%;
-}
-
-/* Media Queries for Responsiveness */
-
-/* For tablets and smaller desktops */
-@media (max-width: 1024px) {
-  .login-container .logo .ut {
-    margin-right: 100px;
-  }
-  .login-container .card {
-    max-width: 60%;
-  }
-  
-  .login-container .role {
-    width: 80%;
-  }
-}
-
-/* For mobile devices */
-@media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
-  }
-
-  .login-container .left-section {
-    display: none;
-  }
-
-  .login-container .right-section {
-    width: 100%;
-    height: auto;
-  }
-
-  .login-container .card {
-    max-width: 80%;
-  }
-  
-  .login-container .card button {
-    padding: 10px;
-    margin-top: 20px;
-  }
-
-  .login-container .card input {
-    padding: 10px;
-  }
-
-  .login-container .logo {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .login-container .logo .ut,
-  .login-container .logo .elomate {
-    margin: 0;
-    max-width: 60%;
-  }
-  
-  .login-container .role {
-    width: 90%;
-  }
-}
-
-/* For very small screens (phones in portrait mode) */
-@media (max-width: 480px) {
-  .login-container .card {
-    max-width: 90%;
-  }
-
-  .login-container .card input {
-    padding: 8px;
-  }
-
-  .login-container .card button {
-    padding: 8px;
-    margin-top: 10px;
-  }
-
-  .login-container .logo .ut,
-  .login-container .logo .elomate {
-    max-width: 70%;
-    margin-bottom: 10px;
-  }
-
-  .login-container .role {
-    width: 100%;
-    padding: 8px;
-  }
 }
