@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Participant.css';
 
 const batchs = [
@@ -22,18 +22,38 @@ const profile = [
 ]
 
 function Participant() {
+    const [currentPage, setCurrentPage] = useState('main');
+    const [selectedBatch, setSelectedBatch] = useState(null);
+    const batches = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    const handleMain = () => {
+        setCurrentPage('main');
+        setSelectedBatch(null);
+    };
+
+    const handleBatchClick = (batchName) => {
+        console.log(`Clicked on ${batchName}`);
+        setSelectedBatch(batchName);
+        setCurrentPage('second');
+    };
+
+    const BatchCard = ({ batchName, onClick }) => (
+        <div className="batch-card" onClick={onClick}>
+            <img className="batch-icon" src="/src/files/icons/Batch.png"/>
+            <h3>Batch {batchName}</h3>
+        </div>
+    );
 
     const renderDesc = () => {
-        return batchs.map((batch, index) => (
-            <div key={index}>
-                <div className="desc">
-                    <div className="batch-title">Batch</div>
-                    <div className="batch">: {batch.batch}</div>
-                    <div className="total-title">Jumlah Peserta</div>
-                    <div className="total">: {people.length} Peserta</div>
-                </div>
+        if (!selectedBatch) return null;
+        return (
+            <div className="desc">
+                <div className="batch-title">Batch</div>
+                <div className="batch">: {selectedBatch}</div>
+                <div className="total-title">Jumlah Peserta</div>
+                <div className="total">: {people.length} Peserta</div>
             </div>
-        ))
+        );
     };
 
     const renderPeople = () => {
@@ -43,7 +63,7 @@ function Participant() {
                 <div key={index} className="person">
                     <div className="person-info">
                         <div className="img">
-                        <img className="person-img" src={profile[randomIndex].img} />
+                            <img className="person-img" src={profile[randomIndex].img} />
                         </div>
                         <div className="name">
                             <div className="name-title">Nama:</div>
@@ -66,19 +86,48 @@ function Participant() {
             );
         });
     };
-    
+
+    const renderPage = () => {
+        switch (currentPage) {
+            case 'main':
+                return (
+                    <div className="schedule">
+                        <div className="title">
+                            <h3><b>Participant Data</b></h3>
+                        </div>
+                        <div className="batch-list">
+                            {batches.map((batch, index) => (
+                                <BatchCard
+                                    key={index}
+                                    batchName={batch}
+                                    onClick={() => handleBatchClick(batch)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                );
+            case 'second':
+                return (
+                    <div className="participant">
+                        <div className="title">
+                            <h><b>Participant Data</b></h>
+                        </div>
+                        <img className="backbutton" onClick={handleMain} src="/src/files/icons/backbutton.png" alt="Back" />
+                        <hr />
+                        <div className="participant-desc">
+                            {renderDesc()}
+                        </div>
+                        <div className="participant-container">
+                            {renderPeople()}
+                        </div>
+                    </div>
+                );
+        }
+    }
+
     return (
-        <div className="participant">
-            <div className="title">
-                <h><b>Participant Data</b></h>
-            </div>
-            <hr />
-            <div className="participant-desc">
-                {renderDesc()}
-            </div>
-            <div className="participant-container">
-                {renderPeople()}
-            </div>
+        <div className="App">
+            {renderPage()}
         </div>
     );
 }
