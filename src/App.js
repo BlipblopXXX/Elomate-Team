@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import MenteeMain from './Mentee/Main';
-import FasilitatorMain from './Fasilitator/Main';
+import FasilitatorMain from './Mentee/Main';
 import AdminMain from './Mentee/Main';
 import Register from './Register';
 import Verify from './Verify';
@@ -12,22 +12,6 @@ function App() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('mentee');
   const [currentPage, setCurrentPage] = useState('login');
-
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get('http://localhost:3001/user-data');
-      const { username, password, role } = response.data;
-      setUsername(username);
-      setPassword(password);
-      setRole(role);
-    } catch (error) {
-      console.error('Failed to fetch user data:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -39,29 +23,13 @@ function App() {
 
     try {
       const response = await axios.post('http://localhost:3001/login', { nrp: username, password: password });
-      const { token, batch } = response.data;
+      const { data } = response;
 
-      console.log('Role:', role);
-      console.log('Batch:', batch);
+     
+      localStorage.setItem('token', data.token);
 
-      if (token) {
-        localStorage.setItem('token', token);
-      }
-
-      if (batch === undefined) {
-        alert('Batch tidak ditemukan dalam respons');
-        return;
-      }
-
-      if (role === 'fasilitator' && batch === '0') {
-        setCurrentPage('fasilitator');
-      } else if (role === 'mentee' && batch > '0') {
-        setCurrentPage('mentee');
-      } else if (role === 'admin' && batch === '999') {
-        setCurrentPage('admin');
-      } else {
-        alert('Role atau batch tidak valid');
-      }
+  
+      setCurrentPage(role);
     } catch (error) {
       console.error('Gagal login:', error);
       if (error.response) {
