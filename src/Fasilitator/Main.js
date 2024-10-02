@@ -133,7 +133,7 @@ function Main() {
                                             <p href="#"><img src="/src/files/icons/Role.png"/> Role</p>
                                         </div>
                                         <div className="role-details">
-                                            <p><b>Management Trainee</b></p>
+                                            <p><b>Fasilitator</b></p>
                                             <p>United Tractors</p>
                                         </div>
                                     </div>
