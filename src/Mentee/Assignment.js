@@ -19,26 +19,16 @@ function Assignment() {
   const [assign, setAssign] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
-
   const [scoreId, setScoreId] = useState([]);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [savedAnswers, setSavedAnswers] = useState({});
 
-  const handleOptionChange = (questionId, selectedAnswer) => {
+  const handleOptionChange = (questionId, selectedAnswer, selectedOption) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
       [questionId]: selectedAnswer,
+      selectedOption,
     }));
-  };
-
-  const calculateScore = () => {
-    let score = 0;
-    questions.forEach((question) => {
-      const correctAnswer = question.KUNCI_JAWABAN;
-      const selectedAnswer = answers[question.SOAL_ID];
-      if (selectedAnswer === correctAnswer) {
-        score += 100 / questions.length;
-      }
-    });
-    return Math.round(score);
   };
 
   useEffect(() => {
@@ -260,8 +250,6 @@ function Assignment() {
       setSelectedTest(assignment.ASSIGNID);
       setSelectedCourse(assignment.COURSEID);
       setSelectedAssign(assignment.AssignName);
-
-      // Memanggil fetchScoreId dengan COURSEID dan setSelectedTest sebagai testType
       await fetchScoreId(assignment.COURSEID, assignment.AssignName);
 
       setCurrentPage("third");
@@ -291,11 +279,23 @@ function Assignment() {
     setProgramId(course.PROGRAMID);
   };
 
-  const handleStartClick = () => {
+  const handleStartClick = async () => {
     if (
       window.confirm("Apakah Anda yakin ingin memulai mengerjakan soal ini?")
     ) {
-      handleStart();
+      try {
+        const token = localStorage.getItem("token");
+        await axios.get(`http://localhost:3001/soal/${selectedCourse}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setCurrentPage("fourth");
+        fetchQuestions(selectedCourse);
+      } catch (error) {
+        console.error("Failed to start assignment:", error);
+      }
     }
   };
 
@@ -324,7 +324,7 @@ function Assignment() {
         console.log("Correct answers fetched:", correctAnswers);
 
         let correctCount = 0;
-        questions.forEach((question) => {
+        const allQuestionData = questions.map((question) => {
           const selectedAnswer = answers[question.SOAL_ID];
           const correctAnswer = correctAnswers.find(
             (ans) => ans.SOAL_ID === question.SOAL_ID
@@ -333,15 +333,18 @@ function Assignment() {
           if (selectedAnswer === correctAnswer) {
             correctCount++;
           }
+
+          return {
+            SOAL_ID: question.SOAL_ID,
+            NAMA: question.NAMA,
+            PILIHAN: question.PILIHAN,
+            KUNCI_JAWABAN: correctAnswer,
+            JAWABAN_USER: selectedAnswer,
+          };
         });
 
         const score = Math.round((correctCount / questions.length) * 100);
         console.log("Score calculated:", score);
-
-        // Log the progress state and selectedCourse for debugging
-        console.log("Progress state:", progress);
-        console.log("Selected course:", selectedCourse);
-        console.log("Selected assign:", selectedAssign);
 
         console.log("Submitting score with programid:", selectProgramId);
 
@@ -352,6 +355,7 @@ function Assignment() {
             courseid: selectedCourse,
             type: selectedAssign,
             score: score,
+            savedAnswers: allQuestionData,
           },
           {
             headers: {
@@ -363,12 +367,6 @@ function Assignment() {
 
         console.log("Score submitted successfully");
 
-        setAssign((prevAssign) =>
-          prevAssign.map((item) =>
-            item.COURSEID === selectedCourse ? { ...item, STATUS: "completed" } : item
-          )
-        );
-
         setSelectedAssignDetails((prevDetails) =>
           prevDetails.map((detail) => ({
             ...detail,
@@ -376,10 +374,36 @@ function Assignment() {
           }))
         );
 
+        setIsAnswered(true);
         handleSecond();
       } catch (error) {
         console.error("Gagal submit jawaban:", error);
       }
+    }
+  };
+
+  const handleViewClick = async (courseId, type) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      // Call API to fetch saved answers with courseId and type
+      const answersResponse = await axios.get(
+        `http://localhost:3001/score/${courseId}/${type}/view`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // Set the fetched answers to savedAnswers
+      console.log("view", answersResponse.data.savedAnswers);
+      setSavedAnswers(answersResponse.data.savedAnswers);
+      setIsAnswered(true);
+      setCurrentPage("fifth"); // Move to the fifth page to view saved answers
+    } catch (error) {
+      console.error("Error fetching saved answers:", error);
     }
   };
 
@@ -417,10 +441,36 @@ function Assignment() {
     return (
       <div className="course-container">
         {filteredCourses.map((course) => {
-          const courseProgress = progress.find(
-            (prog) => prog.name === course.CourseName
-          );
-          const progressValue = courseProgress ? courseProgress.value : 0;
+          // Cari skor Pre-Test dan Post-Test dari scoreId.scores
+          const preTestScore =
+            scoreId && Array.isArray(scoreId.scores)
+              ? scoreId.scores.find(
+                  (score) =>
+                    score.COURSEID === course.COURSEID &&
+                    score.TYPE === "Pre-Test"
+                )
+              : null;
+          const postTestScore =
+            scoreId && Array.isArray(scoreId.scores)
+              ? scoreId.scores.find(
+                  (score) =>
+                    score.COURSEID === course.COURSEID &&
+                    score.TYPE === "Post-Test"
+                )
+              : null;
+
+          // Set default progress value to 0
+          let progressValue = 0;
+
+          // Jika Pre-Test selesai, tambahkan 50%
+          if (preTestScore) {
+            progressValue += 50;
+          }
+
+          // Jika Post-Test selesai, tambahkan 50% lagi
+          if (postTestScore) {
+            progressValue += 50;
+          }
 
           return (
             <div
@@ -483,6 +533,12 @@ function Assignment() {
             console.log("Score Data:", score);
           });
 
+          const currentAssignmentScore = scoreId.scores.find(
+            (score) =>
+              score.COURSEID === selectedCourse && score.TYPE === selectedAssign
+          );
+
+          const isAnswered = !!currentAssignmentScore;
 
           return (
             <div key={index} className="assign-selected-details">
@@ -528,8 +584,15 @@ function Assignment() {
                     {assignDetail.COUNT}
                   </span>
                 </div>
-                <div className="assign-button" onClick={handleStartClick}>
-                  Start
+                <div
+                  className="assign-button"
+                  onClick={
+                    isAnswered
+                      ? () => handleViewClick(selectedCourse, selectedAssign)
+                      : handleStartClick
+                  }
+                >
+                  {isAnswered ? "View" : "Start"}
                 </div>
               </div>
             </div>
@@ -542,10 +605,33 @@ function Assignment() {
   const renderSelected = () => {
     if (selectedCourse) {
       const selected = courses.find((item) => item.COURSEID === selectedCourse);
-      const courseProgress = progress.find(
-        (prog) => prog.COURSEID === selectedCourse
-      );
-      const progressValue = courseProgress ? courseProgress.value : 0;
+      const preTestScore =
+        scoreId && Array.isArray(scoreId.scores)
+          ? scoreId.scores.find(
+              (score) =>
+                score.COURSEID === selectedCourse && score.TYPE === "Pre-Test"
+            )
+          : null;
+      const postTestScore =
+        scoreId && Array.isArray(scoreId.scores)
+          ? scoreId.scores.find(
+              (score) =>
+                score.COURSEID === selectedCourse && score.TYPE === "Post-Test"
+            )
+          : null;
+
+      // Set default progress value to 0
+      let progressValue = 0;
+
+      // If Pre-Test is completed, add 50% to the progress
+      if (preTestScore) {
+        progressValue += 50;
+      }
+
+      // If Post-Test is completed, add another 50% to the progress
+      if (postTestScore) {
+        progressValue += 50;
+      }
 
       if (selected) {
         return (
@@ -569,43 +655,74 @@ function Assignment() {
   };
 
   const renderAssignDetails = () => {
+    console.log("Selected Course:", selectedCourse);
+
     if (selectedCourse) {
       const assignDetails = assign.filter(
         (item) => item.COURSEID === selectedCourse
       );
 
-      return assignDetails.map((item, index) => (
-        <div key={index} className="assign-details">
-          <div className="assign-desc1">
-            <img
-              className="assign-img"
-              src="/src/files/icons/CourseImg.png"
-              alt="Assignment"
-            />
-            <div className="assign-description">
-              <div className="assign-title">{item.AssignName}</div>
-              <div className="assign-no">Course Name: {item.CourseName}</div>
+      return assignDetails.map((item, index) => {
+        // Ensure scoreId and scoreId.scores are defined before accessing them
+        const preTestScore =
+          scoreId && Array.isArray(scoreId.scores)
+            ? scoreId.scores.find(
+                (score) =>
+                  score.COURSEID === item.COURSEID && score.TYPE === "Pre-Test"
+              )
+            : null;
+        const postTestScore =
+          scoreId && Array.isArray(scoreId.scores)
+            ? scoreId.scores.find(
+                (score) =>
+                  score.COURSEID === item.COURSEID && score.TYPE === "Post-Test"
+              )
+            : null;
+
+        console.log("preTestScore", preTestScore);
+        console.log("postTestScore", postTestScore);
+
+        let status = "Incomplete";
+
+        if (item.AssignName === "Pre-Test") {
+          status = preTestScore ? "Completed" : "Incomplete";
+        } else if (item.AssignName === "Post-Test") {
+          status = postTestScore ? "Completed" : "Incomplete";
+        }
+
+        return (
+          <div key={index} className="assign-details">
+            <div className="assign-desc1">
+              <img
+                className="assign-img"
+                src="/src/files/icons/CourseImg.png"
+                alt="Assignment"
+              />
+              <div className="assign-description">
+                <div className="assign-title">{item.AssignName}</div>
+                <div className="assign-no">Course Name: {item.CourseName}</div>
+              </div>
+            </div>
+            <div className="assign-desc2">
+              <div className="assign-duedet">Due</div>
+              <div className="assign-due">
+                {new Date(item.DUE).toLocaleDateString()}
+              </div>
+              <div className="assign-statusdet">Status</div>
+              <div className={`assign-status ${status.toLowerCase()}`}>
+                {status}
+              </div>
+              <hr />
+              <div
+                className="course-button"
+                onClick={() => handleThird(item.ASSIGNID, item.AssignName)}
+              >
+                Click to View the activity
+              </div>
             </div>
           </div>
-          <div className="assign-desc2">
-            <div className="assign-duedet">Due</div>
-            <div className="assign-due">
-              {new Date(item.DUE).toLocaleDateString()}
-            </div>
-            <div className="assign-statusdet">Status</div>
-            <div className={`assign-status ${item.STATUS.toLowerCase()}`}>
-            {item.STATUS === "completed" ? "Completed" : item.STATUS}
-            </div>
-            <hr />
-            <div
-              className="course-button"
-              onClick={() => handleThird(item.ASSIGNID, item.AssignName)}
-            >
-              Click to View the activity
-            </div>
-          </div>
-        </div>
-      ));
+        );
+      });
     }
     return null;
   };
@@ -731,24 +848,78 @@ function Assignment() {
           </div>
         );
       case "fourth":
+        case "fourth":
+  return (
+    <div className="assignment4">
+      <div className="title4">
+        <div className="backbutton">
+          <img
+            className="back"
+            onClick={handleSecond}
+            src="/src/files/icons/backbutton.png"
+            alt="Back"
+          />
+        </div>
+        <div className="title">
+          <b>Assignment</b>
+        </div>
+      </div>
+      <hr />
+      
+      {/* Render question navigation buttons */}
+      <div className="question-navigation">
+        {questions.map((_, index) => (
+          <button
+            key={index}
+            className={`question-number ${currentQuestion === index ? "active" : ""}`}
+            onClick={() => setCurrentQuestion(index)}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+      
+      {/* Render the current question and options */}
+      <div className="question-container">
+        <div className="question">{questions[currentQuestion]?.NAMA}</div>
+        <hr />
+        <div className="options">
+          {renderOptions(questions[currentQuestion])}
+        </div>
+        
+        {/* Render navigation buttons: Previous, Next, Finish */}
+        <div className="navigation-buttons">
+          {currentQuestion > 0 && (
+            <button onClick={handlePreviousClick}>Previous</button>
+          )}
+          {currentQuestion < questions.length - 1 ? (
+            <button onClick={handleNextClick}>Next</button>
+          ) : (
+            <button onClick={handleFinishClick}>Finish</button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+      case "fifth":
         return (
-          <div className="assignment4">
-            <div className="title4">
+          <div className="assignment5">
+            <div className="title5">
               <div className="backbutton">
                 <img
                   className="back"
-                  onClick={handleSecond}
+                  onClick={() => setCurrentPage("second")}
                   src="/src/files/icons/backbutton.png"
                   alt="Back"
                 />
               </div>
               <div className="title">
-                <b>Assignment</b>
+                <b>View Saved Answers</b>
               </div>
             </div>
             <hr />
             <div className="question-navigation">
-              {questions.map((_, index) => (
+              {savedAnswers.map((_, index) => (
                 <button
                   key={index}
                   className={`question-number ${
@@ -761,19 +932,25 @@ function Assignment() {
               ))}
             </div>
             <div className="question-container">
-              <div className="question">{questions[currentQuestion].NAMA}</div>
-              <hr />
-              <div className="options">
-                {renderOptions(questions[currentQuestion])}
+              {/* Display question number and text */}
+              <div className="question">
+                <strong>No. {currentQuestion + 1}:</strong>{" "}
+                {savedAnswers[currentQuestion].NAMA}
               </div>
+              <hr />
+      
+              {/* Display options with color-coded feedback */}
+              <div className="options">
+                {renderSavedOptions(savedAnswers[currentQuestion])}
+              </div>
+      
+              {/* Navigation for previous and next questions */}
               <div className="navigation-buttons">
                 {currentQuestion > 0 && (
                   <button onClick={handlePreviousClick}>Previous</button>
                 )}
-                {currentQuestion < questions.length - 1 ? (
+                {currentQuestion < savedAnswers.length - 1 && (
                   <button onClick={handleNextClick}>Next</button>
-                ) : (
-                  <button onClick={() => handleFinishClick()}>Finish</button>
                 )}
               </div>
             </div>
@@ -782,6 +959,43 @@ function Assignment() {
       default:
         return null;
     }
+  };
+
+  const renderSavedOptions = (question) => {
+    // Find the user's answer and the correct answer
+    const userAnswer = question.JAWABAN_USER;
+    const correctAnswer = question.KUNCI_JAWABAN;
+  
+    return question.PILIHAN.split(";;").map((option, index) => {
+      // Determine if this option is the user's answer or the correct answer
+      let optionStyle = "";
+      if (userAnswer === option && userAnswer === correctAnswer) {
+        // Correct answer selected by the user
+        optionStyle = "correct-answer";
+      } else if (userAnswer === option && userAnswer !== correctAnswer) {
+        // Incorrect answer selected by the user
+        optionStyle = "wrong-answer";
+      } else if (correctAnswer === option) {
+        // Correct answer not selected by the user
+        optionStyle = "correct-answer";
+      }
+  
+      return (
+        <div key={index} className={`option ${optionStyle}`}>
+          <input
+            type="radio"
+            id={`saved-option${question.SOAL_ID}-${index}`}
+            name={`question${question.SOAL_ID}`}
+            value={option}
+            checked={userAnswer === option}
+            disabled
+          />
+          <label htmlFor={`saved-option${question.SOAL_ID}-${index}`}>
+            {option}
+          </label>
+        </div>
+      );
+    });
   };
 
   return <div className="App">{renderPage()}</div>;
