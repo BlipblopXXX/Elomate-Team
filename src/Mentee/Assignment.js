@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "./Assignment.css";
 import axios from "axios";
 
 function Assignment() {
   const [currentPage, setCurrentPage] = useState("main");
-  const [selectedPhase, setSelectedPhase] = useState("option1");
+  const [selectedPhase, setSelectedPhase] = useState("Phase 10");
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectProgramId, setProgramId] = useState(null);
   const [selectedAssign, setSelectedAssign] = useState(null);
@@ -22,41 +22,41 @@ function Assignment() {
   const [scoreId, setScoreId] = useState([]);
   const [isAnswered, setIsAnswered] = useState(false);
   const [savedAnswers, setSavedAnswers] = useState({});
+  const [timeLeft, setTimeLeft] = useState(60);
 
-  const handleOptionChange = (questionId, selectedAnswer, selectedOption) => {
-    setAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionId]: selectedAnswer,
-      selectedOption,
-    }));
-  };
+  const handleOptionChange = useCallback(
+    (questionId, selectedAnswer) => {
+      setAnswers((prevAnswers) => ({
+        ...prevAnswers,
+        [questionId]: selectedAnswer,
+      }));
+    },
+    [setAnswers]
+  );
+
+  const fetchCourses = useCallback(async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:3001/courses/${selectedTopic}/${selectedPhase}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCourses(response.data.courses);
+    } catch (error) {
+      console.error("Failed to fetch courses:", error);
+    }
+  }, [selectedTopic, selectedPhase]);
 
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `http://localhost:3001/courses/${selectedTopic}/${
-            selectedPhase === "option1" ? "Phase 10" : "Phase 20 + 70"
-          }`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setCourses(response.data.courses);
-        console.log("Name, and Phase", response.data.courses);
-      } catch (error) {
-        console.error("Failed to fetch courses:", error);
-      }
-    };
-
-    if (selectedTopic) {
+    if (selectedTopic) { 
       fetchCourses();
     }
-  }, [selectedPhase, selectedTopic]);
+  }, [fetchCourses]);
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -100,7 +100,7 @@ function Assignment() {
     fetchProfile();
   }, []);
 
-  const fetchAssigns = async (courseId) => {
+  const fetchAssigns = useCallback(async (courseId) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
@@ -113,60 +113,66 @@ function Assignment() {
         }
       );
       setAssign(response.data.assigns);
-      console.log("Assignment", response.data.assigns);
     } catch (error) {
       console.error("Failed to fetch assignments:", error);
     }
-  };
+  }, []);
 
   const getRandomQuestions = (questions, numQuestions = 5) => {
     const shuffled = questions.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, numQuestions);
   };
 
-  const fetchQuestions = async (courseId) => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        `http://localhost:3001/soal/${courseId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const allQuestions = response.data.soal;
-      const randomQuestions = getRandomQuestions(allQuestions);
-      setQuestions(randomQuestions);
-      console.log("Random Questions", randomQuestions);
-    } catch (error) {
-      console.error("Failed to fetch questions:", error);
-    }
-  };
-
-  const fetchScoreId = async (courseId, testType) => {
-    try {
-      const token = localStorage.getItem("token");
-      let url = `http://localhost:3001/score/${courseId}`;
-
-      if (testType) {
-        url += `?testType=${testType}`;
+  const fetchQuestions = useCallback(
+    async (courseId) => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `http://localhost:3001/soal/${courseId}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const allQuestions = response.data.soal;
+        const randomQuestions = getRandomQuestions(allQuestions);
+        setQuestions(randomQuestions);
+      } catch (error) {
+        console.error("Failed to fetch questions:", error);
       }
+    },
+    [getRandomQuestions]
+  );
 
+  const fetchScoreId = useCallback(async (courseId, testType) => {
+    try {
+      const token = localStorage.getItem("token");
+      let url = `http://localhost:3001/score`;
+  
+      if (courseId) {
+        url += `/${courseId}`;
+        if (testType) {
+          url += `?testType=${testType}`;
+        }
+      }
+  
       const response = await axios.get(url, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log("Response Data:", response.data);
       setScoreId(response.data);
     } catch (error) {
       console.error("Failed to fetch Score:", error);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchScoreId();
+  }, [fetchScoreId]);
 
   useEffect(() => {
     if (selectedCourse) {
@@ -203,65 +209,57 @@ function Assignment() {
     fetchProgress();
   }, []);
 
-  const handleMain = () => {
+  const handleMain = useCallback(() => {
     setCurrentPage("main");
     setSelectedAssign(null);
-  };
+  }, []);
 
-  const handleSecond = () => {
-    console.log("Handling second page for course ID:", selectedCourse);
-    console.log("Handling second page for Program ID:", selectProgramId);
-
+  const handleSecond = useCallback(() => {
     setCurrentPage("second");
-
-    fetchAssigns(selectedCourse);
-    fetchScoreId(selectedCourse);
-  };
-
-  const handleStart = () => {
-    setCurrentPage("fourth");
-    fetchQuestions(selectedCourse);
-  };
-
-  const handleThird = async (assignId) => {
-    console.log("Handling third page for assignment ID:", assignId);
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        `http://localhost:3001/assigns/${assignId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (!response.data || !response.data.assign) {
-        throw new Error("Invalid response data");
-      }
-
-      const assignment = response.data.assign;
-      console.log("assign", assignment);
-      console.log("courseId", assignment.COURSEID);
-      console.log("setSelectedTest", assignment.AssignName);
-
-      setSelectedAssignDetails([assignment]);
-      setSelectedTest(assignment.ASSIGNID);
-      setSelectedCourse(assignment.COURSEID);
-      setSelectedAssign(assignment.AssignName);
-      await fetchScoreId(assignment.COURSEID, assignment.AssignName);
-
-      setCurrentPage("third");
-    } catch (error) {
-      console.error("Failed to fetch assignment details:", error);
+    if (selectedCourse) {
+      fetchAssigns(selectedCourse);
+      fetchScoreId(selectedCourse);
     }
-  };
+  }, [selectedCourse, fetchAssigns, fetchScoreId]);
+
+  const handleThird = useCallback(
+    async (assignId) => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `http://localhost:3001/assigns/${assignId}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.data || !response.data.assign) {
+          throw new Error("Invalid response data");
+        }
+
+        const assignment = response.data.assign;
+
+        setSelectedAssignDetails([assignment]);
+        setSelectedTest(assignment.ASSIGNID);
+        setSelectedCourse(assignment.COURSEID);
+        setSelectedAssign(assignment.AssignName);
+        await fetchScoreId(assignment.COURSEID, assignment.AssignName);
+
+        setCurrentPage("third");
+      } catch (error) {
+        console.error("Failed to fetch assignment details:", error);
+      }
+    },
+    [fetchScoreId]
+  );
 
   useEffect(() => {
-    if (selectedPhase === "option1") {
+    if (selectedPhase === "Phase 10") {
       setSelectedTopic("General Development");
-    } else if (selectedPhase === "option2") {
+    } else if (selectedPhase === "Phase 20 + 70") {
       setSelectedTopic("Project");
     }
   }, [selectedPhase]);
@@ -274,38 +272,32 @@ function Assignment() {
     setSelectedTopic(event.target.value);
   };
 
-  const handleCourseClick = (course) => {
+  const handleCourseClick = useCallback((course) => {
     setSelectedCourse(course.COURSEID);
     setProgramId(course.PROGRAMID);
-  };
+  }, []);
 
-  const handleStartClick = async () => {
+  const handleStartClick = useCallback(async () => {
     if (
       window.confirm("Apakah Anda yakin ingin memulai mengerjakan soal ini?")
     ) {
       try {
-        const token = localStorage.getItem("token");
-        await axios.get(`http://localhost:3001/soal/${selectedCourse}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        setTimeLeft(60);
         setCurrentPage("fourth");
-        fetchQuestions(selectedCourse);
+        if (selectedCourse) {
+          await fetchQuestions(selectedCourse);
+        }
       } catch (error) {
         console.error("Failed to start assignment:", error);
       }
     }
-  };
+  }, [selectedCourse, fetchQuestions]);
 
-  const handleFinishClick = async () => {
+  const handleFinishClick = useCallback(async () => {
     if (window.confirm("Apakah Anda yakin ingin menyelesaikan soal ini?")) {
-      console.log("User confirmed, starting process...");
       try {
         const token = localStorage.getItem("token");
 
-        console.log("Fetching correct answers...");
         const soalResponse = await axios.get(
           `http://localhost:3001/soal/${selectedCourse}`,
           {
@@ -320,8 +312,6 @@ function Assignment() {
           SOAL_ID: soal.SOAL_ID,
           KUNCI_JAWABAN: soal.KUNCI_JAWABAN,
         }));
-
-        console.log("Correct answers fetched:", correctAnswers);
 
         let correctCount = 0;
         const allQuestionData = questions.map((question) => {
@@ -344,9 +334,6 @@ function Assignment() {
         });
 
         const score = Math.round((correctCount / questions.length) * 100);
-        console.log("Score calculated:", score);
-
-        console.log("Submitting score with programid:", selectProgramId);
 
         await axios.post(
           `http://localhost:3001/score`,
@@ -365,8 +352,6 @@ function Assignment() {
           }
         );
 
-        console.log("Score submitted successfully");
-
         setSelectedAssignDetails((prevDetails) =>
           prevDetails.map((detail) => ({
             ...detail,
@@ -380,68 +365,77 @@ function Assignment() {
         console.error("Gagal submit jawaban:", error);
       }
     }
-  };
+  }, [
+    answers,
+    handleSecond,
+    questions,
+    selectProgramId,
+    selectedAssign,
+    selectedCourse,
+  ]);
 
-  const handleViewClick = async (courseId, type) => {
-    try {
-      const token = localStorage.getItem("token");
+  const handleViewClick = useCallback(
+    async (courseId, type) => {
+      try {
+        const token = localStorage.getItem("token");
 
-      // Call API to fetch saved answers with courseId and type
-      const answersResponse = await axios.get(
-        `http://localhost:3001/score/${courseId}/${type}/view`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+        const answersResponse = await axios.get(
+          `http://localhost:3001/score/${courseId}/${type}/view`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-      // Set the fetched answers to savedAnswers
-      console.log("view", answersResponse.data.savedAnswers);
-      setSavedAnswers(answersResponse.data.savedAnswers);
-      setIsAnswered(true);
-      setCurrentPage("fifth"); // Move to the fifth page to view saved answers
-    } catch (error) {
-      console.error("Error fetching saved answers:", error);
-    }
-  };
+        setSavedAnswers(answersResponse.data.savedAnswers);
+        setIsAnswered(true);
+        setCurrentPage("fifth");
+      } catch (error) {
+        console.error("Error fetching saved answers:", error);
+      }
+    },
+    []
+  );
 
-  const renderOptions = (question) => {
-    return question.PILIHAN.split(";;").map((option, index) => (
-      <div key={index} className="option">
-        <input
-          type="radio"
-          id={`option${question.SOAL_ID}-${index}`}
-          name={`question${question.SOAL_ID}`}
-          value={option}
-          onChange={() => handleOptionChange(question.SOAL_ID, option)}
-          checked={answers[question.SOAL_ID] === option}
-        />
-        <label htmlFor={`option${question.SOAL_ID}-${index}`}>{option}</label>
-      </div>
-    ));
-  };
+  const renderOptions = useCallback(
+    (question) => {
+      return question.PILIHAN.split(";;").map((option, index) => (
+        <div key={index} className="option">
+          <input
+            type="radio"
+            id={`option${question.SOAL_ID}-${index}`}
+            name={`question${question.SOAL_ID}`}
+            value={option}
+            onChange={() => handleOptionChange(question.SOAL_ID, option)}
+            checked={answers[question.SOAL_ID] === option}
+          />
+          <label htmlFor={`option${question.SOAL_ID}-${index}`}>{option}</label>
+        </div>
+      ));
+    },
+    [answers, handleOptionChange]
+  );
 
-  const handlePreviousClick = () => {
+  const handlePreviousClick = useCallback(() => {
     setCurrentQuestion((prev) => (prev > 0 ? prev - 1 : prev));
-  };
+  }, []);
 
-  const handleNextClick = () => {
+  const handleNextClick = useCallback(() => {
     setCurrentQuestion((prev) =>
       prev < questions.length - 1 ? prev + 1 : prev
     );
-  };
+  }, [questions.length]);
 
-  const getDescription = () => {
-    const filteredCourses = courses.filter(
-      (course) => course.ProgramName === selectedTopic
-    );
+  const filteredCourses = useMemo(() => {
+    return courses.filter((course) => course.ProgramName === selectedTopic);
+  }, [courses, selectedTopic]);
 
+  const getDescription = useCallback(() => {
     return (
       <div className="course-container">
         {filteredCourses.map((course) => {
-          // Cari skor Pre-Test dan Post-Test dari scoreId.scores
           const preTestScore =
             scoreId && Array.isArray(scoreId.scores)
               ? scoreId.scores.find(
@@ -459,15 +453,12 @@ function Assignment() {
                 )
               : null;
 
-          // Set default progress value to 0
           let progressValue = 0;
 
-          // Jika Pre-Test selesai, tambahkan 50%
           if (preTestScore) {
             progressValue += 50;
           }
 
-          // Jika Post-Test selesai, tambahkan 50% lagi
           if (postTestScore) {
             progressValue += 50;
           }
@@ -502,7 +493,9 @@ function Assignment() {
               <hr />
               <div
                 className="course-button"
-                onClick={() => handleSecond(course.COURSEID, course.PROGRAMID)}
+                onClick={() =>
+                  handleSecond(course.COURSEID, course.PROGRAMID)
+                }
               >
                 Click to View the activity
               </div>
@@ -511,27 +504,16 @@ function Assignment() {
         })}
       </div>
     );
-  };
+  }, [filteredCourses, handleCourseClick, handleSecond, scoreId]);
 
-  const renderAssignSelected = () => {
-    console.log("Selected Test:", selectedTest);
-
+  const renderAssignSelected = useCallback(() => {
     return (
       <div>
         {selectedAssignDetails.map((assignDetail, index) => {
           let questionType = null;
           if (questions && questions.length > 0) {
             questionType = questions[0].TYPE;
-            console.log("Question Type:", questionType);
           }
-
-          console.log("Processing assignDetail:", assignDetail);
-
-          console.log("Available scores:", scoreId.scores);
-
-          scoreId.scores.forEach((score) => {
-            console.log("Score Data:", score);
-          });
 
           const currentAssignmentScore = scoreId.scores.find(
             (score) =>
@@ -564,8 +546,8 @@ function Assignment() {
                 <div className="assign-detail">
                   <span className="assign-detail-label">Score: </span>
                   <span className="assign-detail-value">
-                    {scoreId.scores.length > 0
-                      ? scoreId.scores[scoreId.scores.length - 1].SCORE
+                    {currentAssignmentScore
+                      ? currentAssignmentScore.SCORE
                       : "No Score"}{" "}
                     / 100
                   </span>
@@ -600,9 +582,17 @@ function Assignment() {
         })}
       </div>
     );
-  };
+  }, [
+    handleStartClick,
+    handleViewClick,
+    questions,
+    scoreId.scores,
+    selectedAssign,
+    selectedAssignDetails,
+    selectedCourse,
+  ]);
 
-  const renderSelected = () => {
+  const renderSelected = useCallback(() => {
     if (selectedCourse) {
       const selected = courses.find((item) => item.COURSEID === selectedCourse);
       const preTestScore =
@@ -620,15 +610,12 @@ function Assignment() {
             )
           : null;
 
-      // Set default progress value to 0
       let progressValue = 0;
 
-      // If Pre-Test is completed, add 50% to the progress
       if (preTestScore) {
         progressValue += 50;
       }
 
-      // If Post-Test is completed, add another 50% to the progress
       if (postTestScore) {
         progressValue += 50;
       }
@@ -652,18 +639,15 @@ function Assignment() {
       }
     }
     return null;
-  };
+  }, [courses, scoreId, selectedCourse]);
 
-  const renderAssignDetails = () => {
-    console.log("Selected Course:", selectedCourse);
-
+  const renderAssignDetails = useCallback(() => {
     if (selectedCourse) {
       const assignDetails = assign.filter(
         (item) => item.COURSEID === selectedCourse
       );
 
       return assignDetails.map((item, index) => {
-        // Ensure scoreId and scoreId.scores are defined before accessing them
         const preTestScore =
           scoreId && Array.isArray(scoreId.scores)
             ? scoreId.scores.find(
@@ -678,9 +662,6 @@ function Assignment() {
                   score.COURSEID === item.COURSEID && score.TYPE === "Post-Test"
               )
             : null;
-
-        console.log("preTestScore", preTestScore);
-        console.log("postTestScore", postTestScore);
 
         let status = "Incomplete";
 
@@ -725,7 +706,7 @@ function Assignment() {
       });
     }
     return null;
-  };
+  }, [assign, handleThird, scoreId, selectedCourse]);
 
   const assignDetailsStyle = {
     display: "flex",
@@ -740,13 +721,71 @@ function Assignment() {
     assignDetailsStyle.flexDirection = "column";
   }
 
-  const renderPage = () => {
+  useEffect(() => {
+    if (currentPage === "fourth") {
+      const timerId = setInterval(() => {
+        setTimeLeft((prevTime) => {
+          if (prevTime > 0) {
+            return prevTime - 1;
+          } else {
+            clearInterval(timerId);
+            handleFinishClick();
+            return 0;
+          }
+        });
+      }, 1000);
+
+      return () => clearInterval(timerId);
+    }
+  }, [currentPage, handleFinishClick]);
+
+
+  const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  const renderSavedOptions = useCallback(
+    (question) => {
+      const userAnswer = question.JAWABAN_USER;
+      const correctAnswer = question.KUNCI_JAWABAN;
+
+      return question.PILIHAN.split(";;").map((option, index) => {
+        let optionStyle = "";
+        if (userAnswer === option && userAnswer === correctAnswer) {
+          optionStyle = "correct-answer";
+        } else if (userAnswer === option && userAnswer !== correctAnswer) {
+          optionStyle = "wrong-answer";
+        } else if (correctAnswer === option) {
+          optionStyle = "correct-answer";
+        }
+
+        return (
+          <div key={index} className={`option ${optionStyle}`}>
+            <input
+              type="radio"
+              id={`saved-option${question.SOAL_ID}-${index}`}
+              name={`question${question.SOAL_ID}`}
+              value={option}
+              checked={userAnswer === option}
+              disabled
+            />
+            <label htmlFor={`saved-option${question.SOAL_ID}-${index}`}>
+              {option}
+            </label>
+          </div>
+        );
+      });
+    },
+    []
+  );
+
+  const renderPage = useCallback(() => {
     switch (currentPage) {
       case "main":
         const filteredPrograms = programs.filter(
-          (program) =>
-            program.PHASE ===
-            (selectedPhase === "option1" ? "Phase 10" : "Phase 20 + 70")
+          (program) => program.PHASE === selectedPhase
         );
         return (
           <div className="assignment1">
@@ -805,10 +844,7 @@ function Assignment() {
             />
             <div className="assign-selected">{renderSelected()}</div>
             <hr />
-            <div
-              className="assign-details-container"
-              style={assignDetailsStyle}
-            >
+            <div className="assign-details-container">
               {renderAssignDetails()}
             </div>
           </div>
@@ -848,78 +884,27 @@ function Assignment() {
           </div>
         );
       case "fourth":
-        case "fourth":
-  return (
-    <div className="assignment4">
-      <div className="title4">
-        <div className="backbutton">
-          <img
-            className="back"
-            onClick={handleSecond}
-            src="/src/files/icons/backbutton.png"
-            alt="Back"
-          />
-        </div>
-        <div className="title">
-          <b>Assignment</b>
-        </div>
-      </div>
-      <hr />
-      
-      {/* Render question navigation buttons */}
-      <div className="question-navigation">
-        {questions.map((_, index) => (
-          <button
-            key={index}
-            className={`question-number ${currentQuestion === index ? "active" : ""}`}
-            onClick={() => setCurrentQuestion(index)}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
-      
-      {/* Render the current question and options */}
-      <div className="question-container">
-        <div className="question">{questions[currentQuestion]?.NAMA}</div>
-        <hr />
-        <div className="options">
-          {renderOptions(questions[currentQuestion])}
-        </div>
-        
-        {/* Render navigation buttons: Previous, Next, Finish */}
-        <div className="navigation-buttons">
-          {currentQuestion > 0 && (
-            <button onClick={handlePreviousClick}>Previous</button>
-          )}
-          {currentQuestion < questions.length - 1 ? (
-            <button onClick={handleNextClick}>Next</button>
-          ) : (
-            <button onClick={handleFinishClick}>Finish</button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-      case "fifth":
         return (
-          <div className="assignment5">
-            <div className="title5">
+          <div className="assignment4">
+            <div className="title4">
               <div className="backbutton">
                 <img
                   className="back"
-                  onClick={() => setCurrentPage("second")}
+                  onClick={handleSecond}
                   src="/src/files/icons/backbutton.png"
                   alt="Back"
                 />
               </div>
               <div className="title">
-                <b>View Saved Answers</b>
+                <b>Assignment</b>
+              </div>
+              <div className="timer">
+                <span>Time Left: {formatTime(timeLeft)}</span>
               </div>
             </div>
             <hr />
             <div className="question-navigation">
-              {savedAnswers.map((_, index) => (
+              {questions.map((_, index) => (
                 <button
                   key={index}
                   className={`question-number ${
@@ -932,71 +917,103 @@ function Assignment() {
               ))}
             </div>
             <div className="question-container">
-              {/* Display question number and text */}
               <div className="question">
-                <strong>No. {currentQuestion + 1}:</strong>{" "}
-                {savedAnswers[currentQuestion].NAMA}
+                {questions[currentQuestion]?.NAMA}
               </div>
               <hr />
-      
-              {/* Display options with color-coded feedback */}
               <div className="options">
-                {renderSavedOptions(savedAnswers[currentQuestion])}
+                {renderOptions(questions[currentQuestion])}
               </div>
-      
-              {/* Navigation for previous and next questions */}
               <div className="navigation-buttons">
                 {currentQuestion > 0 && (
                   <button onClick={handlePreviousClick}>Previous</button>
                 )}
-                {currentQuestion < savedAnswers.length - 1 && (
+                {currentQuestion < questions.length - 1 ? (
                   <button onClick={handleNextClick}>Next</button>
+                ) : (
+                  <button onClick={handleFinishClick}>Finish</button>
                 )}
               </div>
             </div>
           </div>
         );
-      default:
-        return null;
+        case "fifth":
+          return (
+            <div className="assignment5">
+              <div className="title5">
+                <div className="backbutton">
+                  <img
+                    className="back"
+                    onClick={() => setCurrentPage("second")}
+                    src="/src/files/icons/backbutton.png"
+                    alt="Back"
+                  />
+                </div>
+                <div className="title">
+                  <b>View Saved Answers</b>
+                </div>
+              </div>
+              <hr />
+              <div className="question-navigation">
+                {savedAnswers.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`question-number ${
+                      currentQuestion === index ? "active" : ""
+                    }`}
+                    onClick={() => setCurrentQuestion(index)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+              <div className="question-container">
+                <div className="question">
+                  <strong>No. {currentQuestion + 1}:</strong>{" "}
+                  {savedAnswers[currentQuestion].NAMA}
+                </div>
+                <hr />
+                <div className="options">
+                  {renderSavedOptions(savedAnswers[currentQuestion])}
+                </div>
+                <div className="navigation-buttons">
+                  {currentQuestion > 0 && (
+                    <button onClick={handlePreviousClick}>Previous</button>
+                  )}
+                  {currentQuestion < savedAnswers.length - 1 && (
+                    <button onClick={handleNextClick}>Next</button>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        default:
+          return null;
     }
-  };
-
-  const renderSavedOptions = (question) => {
-    // Find the user's answer and the correct answer
-    const userAnswer = question.JAWABAN_USER;
-    const correctAnswer = question.KUNCI_JAWABAN;
-  
-    return question.PILIHAN.split(";;").map((option, index) => {
-      // Determine if this option is the user's answer or the correct answer
-      let optionStyle = "";
-      if (userAnswer === option && userAnswer === correctAnswer) {
-        // Correct answer selected by the user
-        optionStyle = "correct-answer";
-      } else if (userAnswer === option && userAnswer !== correctAnswer) {
-        // Incorrect answer selected by the user
-        optionStyle = "wrong-answer";
-      } else if (correctAnswer === option) {
-        // Correct answer not selected by the user
-        optionStyle = "correct-answer";
-      }
-  
-      return (
-        <div key={index} className={`option ${optionStyle}`}>
-          <input
-            type="radio"
-            id={`saved-option${question.SOAL_ID}-${index}`}
-            name={`question${question.SOAL_ID}`}
-            value={option}
-            checked={userAnswer === option}
-            disabled
-          />
-          <label htmlFor={`saved-option${question.SOAL_ID}-${index}`}>
-            {option}
-          </label>
-        </div>
-      );
-    });
-  };
+  }, [
+    assign,
+    currentPage,
+    currentQuestion,
+    formatTime,
+    getDescription,
+    handleFinishClick,
+    handleMain,
+    handleNextClick,
+    handlePhaseChange,
+    handlePreviousClick,
+    handleSecond,
+    handleTopicChange,
+    questions,
+    renderAssignDetails,
+    renderAssignSelected,
+    renderOptions,
+    renderSavedOptions,
+    savedAnswers,
+    selectedCourse,
+    selectedPhase,
+    selectedTopic,
+    timeLeft,
+  ]);
 
   return <div className="App">{renderPage()}</div>;
 }
