@@ -25,7 +25,7 @@
   background-color: white;
   margin-left: 2%;
   margin-right: 1%;
-  height: 80vh;
+  height: 83vh;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -90,7 +90,7 @@
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
-  height: 80vh;
+  height: 83vh;
 }
 
 .dashboard .todolist-up {
@@ -113,36 +113,62 @@
   overflow-y: auto;
 }
 
-.dashboard .agenda {
+.dashboard .agenda-announcement-container {
   flex: 0.3;
   display: flex;
   flex-direction: column;
   margin-left: 1%;
   margin-right: 2%;
+  height: 83vh;
+}
+
+.dashboard .agenda {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1%;
+  margin-right: 2%;
+  margin-bottom: 1%;
   border-radius: 10px;
-  height: 80vh;
+  height: 50%;
 }
 
 .dashboard .agenda-up {
+  display: flex;
+  justify-content: space-between;
   flex: 1;
   background-color: gold;
   border-radius: 10px 10px 0 0;
   align-content: center; 
+  height: 40px;
 }
 
 .dashboard .agenda-title {
-  margin-top: 2%;
-  margin-left: 3%;
+  margin-top: 1%;
+  margin-left: 5%;
   font-size: 18px;
   font-weight: 500;
   color: white;
 }
 
+.dashboard .day-date{
+  display: flex;
+  justify-content: space-between;
+  text-shadow: 2px 2px 5px grey;
+}
+
+.dashboard .day {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px grey;
+}
+
 .dashboard .agenda-date {
-  margin-top: 1%;
-  margin-left: 3%;
-  font-size: 16px;
-  color: white;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  float: right;
 }
 
 .dashboard .agenda-down {
@@ -151,9 +177,43 @@
   overflow-y: auto;
 }
 
+.dashboard .announcement {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  height: 50%;
+  background-color: white;
+  margin-top: 1%;
+}
+
+.dashboard .announcement-up {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  background-color: gold;
+  border-radius: 10px 10px 0 0;
+  align-content: center;
+  height: 40px;
+}
+
+.dashboard .announcement-title {
+  margin-top: 1%;
+  margin-left: 5%;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.dashboard .announcement-content {
+  flex: 8;
+  overflow-y: auto;
+}
+
 .dashboard .list-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   
 }
   
@@ -165,21 +225,30 @@
   border-radius: 0;
 }
 
-.dashboard .list-table .th1,
-.dashboard .list-table .td1 {
+.dashboard .list-table .th1 {
   border: 1px solid #ddd;
   padding: 8px;
-  width: 0.01vh;
+  width: 5%;
   text-align: left;
 }
 
-.dashboard .list-table .th2,
-.dashboard .list-table .td2 {
+.dashboard .list-table .th2 {
+  width: 60%; /* Sesuaikan persentase sesuai kebutuhan */
+}
+
+.dashboard .list-table .th3 {
   border: 1px solid #ddd;
   padding: 8px;
-  width: 12vh;
+  width: 21%;
   text-align: left;
 }
+
+.dashboard .list-table .th4 {
+  text-align: center;
+  vertical-align: middle;
+  width: 12%;
+}
+
   
 .dashboard .list-table th {
   background-color: #f2f2f2;
@@ -196,11 +265,6 @@
   width: 100%;  
 }
   
-.dashboard .day {
-  padding: 10px;
-  font-size: 15px;
-}
-  
 .dashboard .activities {
   display: flex;
   flex-direction: column;
@@ -213,7 +277,7 @@
   margin-bottom: 7.5px;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
   
@@ -242,3 +306,43 @@
   border-top: 1px solid #ccc;
   margin-top: 30px;
 }
+
+.dashboard .announcement-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard .announcement-details{
+  display: flex;
+  align-items: center;
+  margin-bottom: 7.5px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+
+.dashboard .notif-title{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.dashboard .notif-date{
+  font-size: 12px;
+}
+
+.dashboard .view{
+  font-size: 13px;
+  color: white;
+  padding: 2%;
+}
+
+.dashboard .list-table .action-icon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+
