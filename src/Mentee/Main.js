@@ -22,6 +22,8 @@ function Main() {
     const [batchNumber, setBatchNumber] = useState('');
     const [selectedTool, setSelectedTool] = useState('dashboard');
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+    const [userName, setUserName] = useState('');
+    const [userNRP, setUserNRP] = useState('');
 
     const dropdownRef = useRef(null);
 
@@ -40,6 +42,8 @@ function Main() {
                 const userProfile = data.user;
 
                 setBatchNumber(userProfile.BATCH);
+                setUserName(userProfile.NAMA);
+                setUserNRP(userProfile.NRP);
             } catch (error) {
                 console.error("Error fetching profile data:", error);
             }
@@ -180,8 +184,8 @@ function Main() {
                                 <img className="icon2" onClick={handleGames} src="/src/files/icons/Games.png" alt="Games" />
                                 <img className="icon3" onClick={handleProfile} src="/src/files/icons/User.svg" alt="User" />
                                 <div className="user-text">
-                                    <p><b>Nama Elomate</b></p>
-                                    <p>Nomor Elomate</p>
+                                    <p><b>{userName || 'Nama Elomate'}</b></p>
+                                    <p>{userNRP || 'Nomor Elomate'}</p>
                                 </div>
                                 {isProfileDropdownOpen && (
                                     <div className="profile-dropdown">
@@ -218,8 +222,6 @@ function Main() {
                                         <a href="#" className={`participant ${selectedTool === 'participant' ? 'selected' : ''}`} onClick={handleParticipant}><img src="/src/files/icons/Participant.svg" alt="Participant Data"/> Participant Data</a>
                                         <a href="#" className={`forum ${selectedTool === 'forum' ? 'selected' : ''}`} onClick={handleForum}><img src="/src/files/icons/Forum.svg" alt="Forum" /> Forum</a>
                                         <a href="#" className={`announcement ${selectedTool === 'announcement' ? 'selected' : ''}`} onClick={handleAnnouncement}><img src="/src/files/icons/Announcement.svg" alt="Announcement"/> Announcement</a>
-                                        {/* Hapus tombol Logout yang terpisah */}
-                                        {/* <a href="#" className="logout" onClick={handleLogout}><img src="/src/files/icons/Logout.svg"/> Logout</a> */}
                                     </div>
                                 </div>
                                 <img className="ut" src="/src/files/images/LogoUnitedTractors.png" alt="United Tractors Logo" />
