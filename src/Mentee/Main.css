@@ -14,7 +14,7 @@
 
 .home .maintitle .user {
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     flex-direction: row;
     margin-left: auto;
@@ -108,6 +108,7 @@
 
 .home .toollist a {
     padding: 2%;
+    margin-bottom: 2%;
     text-decoration: none;
     color: black;
     border-radius: 10px;
@@ -138,7 +139,7 @@
 }
 
 .home .toollist .logout{
-    margin-top: 23%;
+    margin-top: 3%;
 }
 
 .home .toolbar .ut {
@@ -157,3 +158,131 @@
     max-width: calc(100% - 20%);
     max-height: calc(100vh - 60px);
 }
+
+/* RESPONSIVE DESIGN */
+
+/* Tablet layout (screen size <= 1024px) */
+@media screen and (max-width: 1024px) {
+    .home .toolbar {
+        width: 25%; /* Slightly wider toolbar */
+    }
+
+    .home .filler {
+        margin-left: 25%; /* Adjust filler according to new toolbar size */
+        width: calc(100% - 25%);
+    }
+
+    .home .maintitle .user {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Mobile layout (screen size <= 768px) */
+@media screen and (max-width: 768px) {
+    .home .maintitle {
+        flex-direction: column; /* Stack title elements vertically */
+        align-items: center;
+    }
+
+    .home .maintitle .user {
+        margin: 0;
+        justify-content: center; /* Center the user icons */
+    }
+
+    .home .toolbar {
+        width: 100%; /* Toolbar takes full width on mobile */
+        height: auto;
+        position: relative;
+        top: 0;
+    }
+
+    .home .filler {
+        margin-left: 0; /* Filler takes full width */
+        width: 100%;
+    }
+
+    .home .toollist {
+        padding: 5%; /* Reduce padding for mobile */
+    }
+
+    .home .toollist img {
+        width: 15%; /* Increase icon size for better tap targets */
+    }
+
+    .home .toollist a {
+        padding: 5%; /* Larger tap area for links */
+    }
+
+    .home .toollist .logout {
+        margin-top: 10%;
+    }
+
+    .home .maintitle .user .icon1, 
+    .home .maintitle .user .icon2, 
+    .home .maintitle .user .icon3 {
+        height: 4vh; /* Smaller icons for mobile */
+    }
+
+    .home .maintitle .user .user-text {
+        font-size: 8px; /* Reduce text size */
+    }
+}
+
+/* Main.css */
+
+/* Styling untuk dropdown profil */
+.profile-dropdown {
+    position: absolute;
+    top: 60px; /* Sesuaikan dengan posisi ikon profil */
+    right: 10px; /* Sesuaikan dengan posisi ikon profil */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    width: 150px;
+}
+
+.dropdown-item {
+    width: 100%;
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* Pastikan posisi relative pada container user */
+.user {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Tambahkan animasi atau transisi jika diinginkan */
+.profile-dropdown {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-icon {
+    width: 20px; /* Sesuaikan ukuran logo */
+    margin-right: 10px; /* Spasi antara ikon dan teks */
+}
+
