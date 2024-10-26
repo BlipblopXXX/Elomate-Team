@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./SelfPeer.css";
 
-const baseURL = "http://localhost:3001"; 
+const baseURL = "http://localhost:3001"; // Pastikan back-end Anda berjalan pada port ini
 
 const SelfPeer = () => {
   const [currentPage, setCurrentPage] = useState("main");
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [peerList, setPeerList] = useState([]);
-  const [selfProgress, setSelfProgress] = useState(0);
-  const [peerProgress, setPeerProgress] = useState(0);
   const [selectedPeer, setSelectedPeer] = useState(null);
   const [answers, setAnswers] = useState({});
   const [phase, setPhase] = useState("option1"); // Default phase
@@ -174,41 +172,6 @@ const SelfPeer = () => {
   };
 
   useEffect(() => {
-    const fetchProgress = async () => {
-      try {
-        const phaseMap = {
-          option1: 0,
-          option2: 1,
-          option3: 2,
-          option4: 3,
-        };
-
-        const topicMap = {
-          "SOLUTION Culture": 1,
-          "8 Behaviour Competencies": 2,
-        };
-
-        const response = await axios.get(`${baseURL}/progress`, {
-          params: {
-            phase: phaseMap[phase],
-            topic: selectedTask ? topicMap[selectedTask.title] : null,
-          },
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-
-        setSelfProgress(response.data.selfProgress);
-        setPeerProgress(response.data.peerProgress);
-      } catch (error) {
-        console.error("Error fetching progress:", error);
-      }
-    };
-
-    fetchProgress();
-  }, [phase, selectedTask]);
-  
-  useEffect(() => {
     const fetchPeers = async () => {
       try {
         const phaseMap = {
@@ -335,58 +298,44 @@ const SelfPeer = () => {
     }
   };
 
-  // Menghitung nilai rata-rata dari selfProgress dan peerProgress
-  const averageProgress = (selfProgress + peerProgress) / 2;
   const renderCard = () => {
-  const filteredPhase = cards.filter((card) => card.selectedphase === phase);
-    return (
-      <div className="selfpeer-container">
-        {filteredPhase.map((selfpeer, index) => (
-          <div key={index} className="selfpeer-wrapper">
-            <div className="selfpeer-item">
-              <div className="description">
-                <div className="selfpeer-text">
-                  <div className="selfpeer-title">
-                    <b>{selfpeer.title}</b>
-                  </div>
-                  <div className="selfpeer-batch">{selfpeer.no}</div>
-                </div>
-                <div className="progress-circle" style={{ background: `conic-gradient(#006aff ${averageProgress * 3.6}deg, #e0e0e0 0deg)` }}>
-                  <div className="progress-value">{averageProgress}%</div>
-                </div>
-              </div>
+    const filteredPhase = cards.filter((card) => card.selectedphase === phase);
 
-              <div className="TwinButton">
-                <div className="self-card">
-                  <div className="self-button">
-                    <span className="left">Self</span>
-                    <span className="right" onClick={() => handleSecond(selfpeer, "Self")}>Take the assessment</span>
-                  </div>
-                  <div className="progress-bar-container">
-                    <div className="progress-bar" style={{ width: `${selfProgress}%` }}>
-                      <span className="progress-text">{selfProgress}%</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="peer-card">
-                  <div className="peer-button">
-                    <span className="left">Peer</span>
-                    <span className="right" onClick={() => handleSecond(selfpeer, "Peer")}>Take the assessment</span>
-                  </div>
-                  <div className="progress-bar-container">
-                    <div className="progress-bar" style={{ width: `${peerProgress}%` }}>
-                      <span className="progress-text">{peerProgress}%</span>
-                    </div>
-                  </div>
-                </div>
+    return filteredPhase.map((selfpeer, index) => (
+      <div key={index} className="selfpeer-item">
+        <div className="description">
+          <img
+            className="selfpeer-img"
+            src="/src/files/icons/TaskImg.png"
+            alt="Task"
+          />
+          <div className="selfpeer-box">
+            <div className="selfpeer-text">
+              <div className="selfpeer-title">
+                <b>{selfpeer.title}</b>
               </div>
+              <div className="selfpeer-batch">{selfpeer.no}</div>                      
+            </div>
+            <div className="TwinButton">
+              <button
+                className="self-button-mt"
+                onClick={() => handleSecond(selfpeer, "Self")}
+              >
+                Self
+              </button>
+              <button
+                className="peer-button-mt"
+                onClick={() => handleSecond(selfpeer, "Peer")}
+              >
+                Peer
+              </button>
             </div>
           </div>
-        ))}
+        </div>
+        
       </div>
-    );
-};
+    ));
+  };
 
   const renderQuestion = () => {
     const questions =
@@ -423,7 +372,7 @@ const SelfPeer = () => {
     switch (currentPage) {
       case "main":
         return (
-          <div className="selfpeer">
+          <div className="selfpeer-1">
             <div className="title1">
               <h>
                 <b>Assessment</b>
@@ -445,13 +394,13 @@ const SelfPeer = () => {
               </div>
             </div>
             <hr />
-            <div className="selfpeer-rc">{renderCard()}</div>
+            <div className="selfpeer-rc-mt">{renderCard()}</div>
           </div>
         );
       case "second":
         return (
-          <div className="selfpeer">
-            <div className="back-header">
+          <div className="selfpeer-2">
+            <div className="title2">
               <img
                 className="backbutton"
                 onClick={handleMain}
@@ -495,8 +444,8 @@ const SelfPeer = () => {
         );
       case "peerList":
         return (
-          <div className="selfpeer">
-            <div className="back-header">
+          <div className="selfpeer-3">
+            <div className="title3">
               <img
                 className="backbutton"
                 src="/src/files/icons/backbutton.png"
@@ -517,18 +466,26 @@ const SelfPeer = () => {
               <div className="peer-list">
                 {peerList.map((person, index) => (
                   <div
-                  key={index}
-                  className={`peer-item ${
-                    person.STATUS === "Not Yet" ? "clickable" : ""
-                  }`}
-                  onClick={() => handlePeerSelected(person)}
-                    >
-                  <div className="peer-no">{index + 1}</div>
-                  <div className="peer-name">{person.NAMA}</div>
-                  <div className="peer-status">
-                    {person.STATUS}
+                    key={index}
+                    className={`peer-item ${
+                      selectedTask.title === "SOLUTION Culture" &&
+                      person.STATUS === "Not Yet"
+                        ? "clickable"
+                        : selectedTask.title === "8 Behaviour Competencies" &&
+                          person.STATUS === "Not Yet"
+                        ? "clickable"
+                        : ""
+                    }`}
+                    onClick={() => handlePeerSelected(person)}
+                  >
+                    <div className="peer-no">{index + 1}</div>
+                    <div className="peer-name">{person.NAMA}</div>
+                    <div className="peer-status">
+                      {selectedTask.title === "SOLUTION Culture"
+                        ? person.STATUS
+                        : person.STATUS}
+                    </div>
                   </div>
-                </div>
                 ))}
               </div>
             </div>
