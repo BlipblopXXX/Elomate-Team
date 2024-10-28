@@ -12,6 +12,7 @@ function Dashboard() {
     const [courses, setCourses] = useState([]);
     const [scores, setScores] = useState([]);
     const [programProgress, setProgramProgress] = useState([]);
+    const [assignments, setAssignments] = useState([]);
 
     const handleSchedule = () => {
         setCurrentScreen('schedule');
@@ -66,9 +67,26 @@ function Dashboard() {
                 console.error('Failed to fetch activities', error.response ? error.response.data : error.message);
             }
         };
+
+        const fetchAssignments = async () => { // Fungsi untuk mengambil tugas
+          try {
+              const token = localStorage.getItem("token");
+              const response = await axios.get("http://localhost:3001/assigns", { // Pastikan endpoint sesuai
+                  headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `Bearer ${token}`,
+                  },
+              });
+              setAssignments(response.data.assigns);
+              console.log("Assignments fetched:", response.data.assigns);
+          } catch (error) {
+              console.error("Error fetching assignments:", error.response ? error.response.data : error.message);
+          }
+        };
       
           fetchProgress();
           fetchActivities();
+          fetchAssignments();
     }, []);
 
     useEffect(() => {
@@ -120,69 +138,60 @@ function Dashboard() {
         fetchPrograms();
         fetchCourses();
         fetchScores();
-      }, []);  
-      
-    
-      useEffect(() => {
-        if (programs.length > 0 && courses.length > 0 && scores.length > 0) {
-          calculateProgressPerProgram();
-        }
-      }, [programs, courses, scores]);
+      }, []);
       
       const calculateProgressPerProgram = () => {
         // Group courses by program
         const coursesByProgram = courses.reduce((acc, course) => {
-          if (!acc[course.PROGRAMID]) {
-            acc[course.PROGRAMID] = [];
-          }
+          if (!acc[course.PROGRAMID]) acc[course.PROGRAMID] = [];
           acc[course.PROGRAMID].push(course);
           return acc;
         }, {});
       
-        // Calculate progress for each program
         const programProgressData = programs.map((program) => {
           const programCourses = coursesByProgram[program.PROGRAMID] || [];
-          let totalProgress = 0;
-          let numCourses = programCourses.length;
-      
-          if (numCourses === 0) {
-            return {
-              phase: program.PHASE,
-              programId: program.PROGRAMID,
-              programName: program.NAMA,
-              progress: 0,
-            };
-          }
+          let totalAssignments = 0;
+          let completedAssignments = 0;
       
           programCourses.forEach((course) => {
-            const preTestScore = scores.find(
-              (score) =>
-                score.COURSEID === course.COURSEID && score.TYPE === "Pre-Test"
-            );
-            const postTestScore = scores.find(
-              (score) =>
-                score.COURSEID === course.COURSEID && score.TYPE === "Post-Test"
+            const courseAssignments = scores.filter(
+              (score) => score.COURSEID === course.COURSEID
             );
       
-            let progressValue = 0;
-            if (preTestScore) progressValue += 50;
-            if (postTestScore) progressValue += 50;
+            totalAssignments += 2; // Assuming each course has Pre-Test and Post-Test
       
-            totalProgress += progressValue;
+            // Check for each assignment type
+            const preTest = courseAssignments.find(
+              (assign) => assign.type === "Pre-Test" && assign.STATUS === "Completed"
+            );
+            const postTest = courseAssignments.find(
+              (assign) => assign.type === "Post-Test" && assign.STATUS === "Completed"
+            );
+      
+            if (preTest) completedAssignments += 1;
+            if (postTest) completedAssignments += 1;
           });
       
-          const averageProgress = totalProgress / numCourses;
+          const progress = totalAssignments
+            ? Math.round((completedAssignments / totalAssignments) * 100)
+            : 0;
       
           return {
             phase: program.PHASE,
             programId: program.PROGRAMID,
             programName: program.NAMA,
-            progress: averageProgress,
+            progress,
           };
         });
       
         setProgramProgress(programProgressData);
       };
+
+      useEffect(() => {
+        if (programs.length > 0 && courses.length > 0 && scores.length > 0) {
+          calculateProgressPerProgram();
+        }
+      }, [programs, courses, scores]);
       
 
     const getDayName = (date) => {
@@ -304,14 +313,22 @@ function Dashboard() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {todo.map((item, index) => (
-                                        <tr key={item.id}>
-                                            <td className='th1'>{index + 1}</td>
-                                            <td className='th2'>{item.title}</td>
-                                            <td className='th3'>{item.date}</td>
-                                            <td className='th4'><img src="/src/files/icons/Action.svg" alt="Action" className="action-icon" /></td>
-                                        </tr>
-                                        ))}
+                                        {assignments.length > 0 ? (
+                                          assignments.map((item, index) => (
+                                              <tr key={item.ASSIGNID}>
+                                                  <td className='th1'>{index + 1}</td>
+                                                  <td className='th2'>{item.AssignName}</td>
+                                                  <td className='th3'>{new Date(item.DUE).toLocaleDateString()}</td>
+                                                  <td className='th4'>
+                                                      <img src="/src/files/icons/Action.svg" alt="Action" className="action-icon" />
+                                                  </td>
+                                              </tr>
+                                          ))
+                                      ) : (
+                                          <tr>
+                                              <td colSpan="4" className="no-assignments">No assignments available.</td>
+                                          </tr>
+                                      )}
                                     </tbody>
                                     </table>
                                 </div>
