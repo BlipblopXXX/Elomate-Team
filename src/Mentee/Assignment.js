@@ -148,27 +148,27 @@ function Assignment() {
 
   const fetchScoreId = useCallback(async (courseId, testType) => {
     try {
-      const token = localStorage.getItem("token");
-      let url = `http://localhost:3001/score`;
-  
-      if (courseId) {
-        url += `/${courseId}`;
-        if (testType) {
-          url += `?testType=${testType}`;
+        const token = localStorage.getItem("token");
+        let url = `http://localhost:3001/score`;
+    
+        if (courseId) {
+            url += `/${courseId}`;
+            if (testType) {
+                url += `?testType=${testType}`;
+            }
         }
-      }
-  
-      const response = await axios.get(url, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setScoreId(response.data);
+    
+        const response = await axios.get(url, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setScoreId(response.data);
     } catch (error) {
-      console.error("Failed to fetch Score:", error);
+        console.error("Failed to fetch Score:", error);
     }
-  }, []);
+}, []);
 
   useEffect(() => {
     fetchScoreId();
@@ -297,7 +297,8 @@ function Assignment() {
     if (window.confirm("Apakah Anda yakin ingin menyelesaikan soal ini?")) {
       try {
         const token = localStorage.getItem("token");
-
+  
+        // Fetch correct answers
         const soalResponse = await axios.get(
           `http://localhost:3001/soal/${selectedCourse}`,
           {
@@ -307,23 +308,23 @@ function Assignment() {
             },
           }
         );
-
+  
         const correctAnswers = soalResponse.data.soal.map((soal) => ({
           SOAL_ID: soal.SOAL_ID,
           KUNCI_JAWABAN: soal.KUNCI_JAWABAN,
         }));
-
+  
         let correctCount = 0;
         const allQuestionData = questions.map((question) => {
           const selectedAnswer = answers[question.SOAL_ID];
           const correctAnswer = correctAnswers.find(
             (ans) => ans.SOAL_ID === question.SOAL_ID
           )?.KUNCI_JAWABAN;
-
+  
           if (selectedAnswer === correctAnswer) {
             correctCount++;
           }
-
+  
           return {
             SOAL_ID: question.SOAL_ID,
             NAMA: question.NAMA,
@@ -332,7 +333,7 @@ function Assignment() {
             JAWABAN_USER: selectedAnswer,
           };
         });
-
+  
         const score = Math.round((correctCount / questions.length) * 100);
 
         await axios.post(
@@ -343,6 +344,7 @@ function Assignment() {
             type: selectedAssign,
             score: score,
             savedAnswers: allQuestionData,
+            STATUS: "Completed", // Add STATUS field
           },
           {
             headers: {
@@ -351,14 +353,15 @@ function Assignment() {
             },
           }
         );
-
+  
         setSelectedAssignDetails((prevDetails) =>
           prevDetails.map((detail) => ({
             ...detail,
             SCORE: score,
           }))
         );
-
+        
+        localStorage.setItem('scoresUpdated', Date.now());
         setIsAnswered(true);
         handleSecond();
       } catch (error) {
@@ -594,29 +597,31 @@ function Assignment() {
 
   const renderSelected = useCallback(() => {
     if (selectedCourse) {
-      const selected = courses.find((item) => item.COURSEID === selectedCourse);
-      const preTestScore =
-        scoreId && Array.isArray(scoreId.scores)
-          ? scoreId.scores.find(
-              (score) =>
-                score.COURSEID === selectedCourse && score.TYPE === "Pre-Test"
-            )
-          : null;
-      const postTestScore =
-        scoreId && Array.isArray(scoreId.scores)
-          ? scoreId.scores.find(
-              (score) =>
-                score.COURSEID === selectedCourse && score.TYPE === "Post-Test"
-            )
-          : null;
+        const selected = courses.find((item) => item.COURSEID === selectedCourse);
+        const preTestScore =
+            scoreId && Array.isArray(scoreId.scores)
+                ? scoreId.scores.find(
+                    (score) =>
+                        score.COURSEID === selectedCourse &&
+                        score.TYPE === "Pre-Test"
+                )
+                : null;
+        const postTestScore =
+            scoreId && Array.isArray(scoreId.scores)
+                ? scoreId.scores.find(
+                    (score) =>
+                        score.COURSEID === selectedCourse &&
+                        score.TYPE === "Post-Test"
+                )
+                : null;
 
       let progressValue = 0;
 
-      if (preTestScore) {
+      if (preTestScore && preTestScore.STATUS === 'Completed') {
         progressValue += 50;
       }
-
-      if (postTestScore) {
+      
+      if (postTestScore && postTestScore.STATUS === 'Completed') {
         progressValue += 50;
       }
 
@@ -666,9 +671,9 @@ function Assignment() {
         let status = "Incomplete";
 
         if (item.AssignName === "Pre-Test") {
-          status = preTestScore ? "Completed" : "Incomplete";
+          status = (preTestScore && preTestScore.STATUS === 'Completed') ? "Completed" : "Incomplete";
         } else if (item.AssignName === "Post-Test") {
-          status = postTestScore ? "Completed" : "Incomplete";
+          status = (postTestScore && postTestScore.STATUS === 'Completed') ? "Completed" : "Incomplete";
         }
 
         return (
