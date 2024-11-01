@@ -1,56 +1,128 @@
+/* Announcement.css */
+
+/* Title */
 .announcement .title {
-    margin-top: 1%;
-    margin-left: 2%;
-    font-size: 25px;
+  margin-top: 1%;
+  margin-left: 2%;
+  font-size: 25px;
 }
 
+/* Notification list */
 .announcement .notification-list {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
+/* Search bar */
 .announcement .search-bar {
-    background-color: #FFCA0D;
-    margin: 2%;
-    padding: 1%;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #FFCA0D;
+  margin: 2%;
+  padding: 1%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .announcement .search-bar input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    box-shadow: none;
-    outline: none;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: none;
+  outline: none;
 }
 
+/* Notification item */
 .announcement .notification {
-    background-color: #ffffff;
-    margin: 2%;
-    padding: 1%;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin: 2%;
+  padding: 1%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* Add pointer cursor to indicate clickability */
 }
 
-.announcement .notification-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.announcement .notification:hover {
+  background-color: #f0f0f0; /* Change background on hover */
 }
 
-.announcement .notification-header h2 {
-    margin-bottom: 10px;
-    font-size: 20px;
+/* Notification header */
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.announcement .notification-header .due {
-    font-size: 14px;
-    color: #888888;
+.notification-header h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
 }
 
-.announcement .notification p {
-    margin: 5px 0;
+.notification-header .due {
+  font-size: 14px;
+  color: red;
+  margin: 0; 
+  text-align: right; 
+  flex-shrink: 0;
+}
+
+.announcement .notification .content-preview {
+  overflow: hidden;      
+  text-overflow: ellipsis; 
+  white-space: nowrap;  
+  margin-top: 5px;         
+  color: #555555;           
+  font-size: 14px;      
+}
+
+.announcement-detail {
+  margin: 2%;
+  padding: 2%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-detail h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.announcement-detail p {
+  margin: 5px 0;
+}
+
+.announcement-detail .content {
+  margin-top: 20px;
+}
+
+/* Back button */
+.backbutton {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.backbutton:hover {
+  opacity: 0.8;
+}
+
+.announcement-detail .due {
+  text-align: right;  
+  color: red;       
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.announcement-detail-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;         
+  margin-top: 10px;          
+}
+
+.announcement-detail-header .due {
+  color: red;              
+  font-weight: bold;          
 }
