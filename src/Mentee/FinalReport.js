@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Radar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -20,10 +21,6 @@ ChartJS.register(
     Legend
 );
 
-const batchs = [
-    { batch: '1 November 2023', name: 'Naufal Ramiz' }
-];
-
 const kirkpatrick = [
     { role: 'Self', assessment: 'SOLUTION Culture', serve: 4, organize: 4, leadership: 4, uniqueness: 4, totality: 4, innovative: 4, openmind: 4, networking: 5 },
     { role: 'Peer', assessment: 'SOLUTION Culture', serve: 4, organize: 4, leadership: 3, uniqueness: 4, totality: 4, innovative: 4, openmind: 5, networking: 5 },
@@ -31,96 +28,229 @@ const kirkpatrick = [
     { role: 'Peer', assessment: '8 Behaviour Competencies', vbs: 3, aj: 4, cf: 4, dc: 4, tw: 4, pda: 3, is: 4, lm: 4 }
 ];
 
-const courses = [
-    { selectedValue: 'option1', course: 'General Development', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option1', course: 'Orientasi Divisi', score1: 88, score2: 85, status: 'Done' },
-    { selectedValue: 'option1', course: 'BGMS', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option1', course: 'NEOP', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option2', course: 'Case Study', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option2', course: 'Hands on Activity', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option3', course: 'Orientasi cabang/site', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option3', course: 'Mempelajari Business Process Divisi/Cabang/Site', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option3', course: 'Melakukan proses kerja di Divisi/Cabang/Site sesuai dengan KPI', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option4', course: 'Improvement bisnis proses', score1: 85, score2: 85, status: 'Done' },
-    { selectedValue: 'option4', course: 'Customer Solution Management (CSM)', score1: 85, score2: 85, status: 'Done' }
-];
-
 function FinalReport() {
-    const [selectedValue, setselectedValue] = useState('option1');
+    const [selectedPhase, setSelectedPhase] = useState('Phase 10');
+    const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [programs, setPrograms] = useState([]);
+    const [courses, setCourses] = useState([]);
+    const [scores, setScores] = useState([]);
+    const [programData, setProgramData] = useState([]);
 
-    const handleChange = (event) => {
-        setselectedValue(event.target.value);
+    const handlePhaseChange = (event) => {
+      setSelectedPhase(event.target.value);
     };
 
+    useEffect(() => {
+      const fetchPrograms = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await axios.get("http://localhost:3001/program", {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setPrograms(response.data.programs);
+        } catch (error) {
+          console.error("Failed to fetch programs:", error);
+        }
+      };
+    
+      fetchPrograms();
+    }, []);
+    
+    // Fetch user profile on component mount
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    throw new Error("No token found");
+                }
+
+                const response = await axios.get('http://localhost:3001/profile', {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                setProfile(response.data.user);
+                setLoading(false);
+            } catch (err) {
+                console.error("Error fetching profile:", err);
+                setError(err.response?.data?.message || err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchProfile();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const token = localStorage.getItem("token");
+            const headers = {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            };
+      
+            // Fetch profile
+            const profileResponse = await axios.get('http://localhost:3001/profile', { headers });
+            const profileData = profileResponse.data.user;
+            setProfile(profileData);
+      
+            // Fetch programs
+            const programsResponse = await axios.get('http://localhost:3001/program', { headers });
+            setPrograms(programsResponse.data.programs);
+      
+            // Fetch courses
+            const coursesResponse = await axios.get('http://localhost:3001/course/all', { headers });
+            setCourses(coursesResponse.data.courses);
+      
+            // Fetch scores
+            const scoresResponse = await axios.get('http://localhost:3001/score', { headers });
+            setScores(scoresResponse.data.scores);
+          } catch (err) {
+            setError(err.response?.data?.message || err.message);
+          } finally {
+            setLoading(false);
+          }
+        };
+      
+        fetchData();
+      }, []);
+
+      useEffect(() => {
+        if (!profile || !programs.length || !courses.length || !scores.length) {
+          return;
+        }
+      
+        let filteredPrograms = programs.filter(
+          (program) => program.PHASE === selectedPhase
+        );
+      
+        const data = filteredPrograms.map(program => {
+          const programCourses = courses.filter(course => course.PROGRAMID === program.PROGRAMID);
+          const totalCourses = programCourses.length;
+      
+          let completedCourses = 0;
+          let totalPreTestScore = 0;
+          let totalPostTestScore = 0;
+          let preTestCount = 0;
+          let postTestCount = 0;
+      
+          programCourses.forEach(course => {
+            const preTestScoreEntry = scores.find(score => 
+              score.COURSEID === course.COURSEID && 
+              score.TYPE === 'Pre-Test' && 
+              score.ACCOUNTID === profile.ACCOUNTID &&
+              score.STATUS === 'Completed'
+            );
+            const postTestScoreEntry = scores.find(score => 
+              score.COURSEID === course.COURSEID && 
+              score.TYPE === 'Post-Test' && 
+              score.ACCOUNTID === profile.ACCOUNTID &&
+              score.STATUS === 'Completed'
+            );
+      
+            if (preTestScoreEntry) {
+              totalPreTestScore += preTestScoreEntry.SCORE;
+              preTestCount++;
+            }
+      
+            if (postTestScoreEntry) {
+              totalPostTestScore += postTestScoreEntry.SCORE;
+              postTestCount++;
+            }
+      
+            if (preTestScoreEntry && postTestScoreEntry) {
+              completedCourses++;
+            }
+          });
+      
+          const programCompleted = completedCourses === totalCourses;
+          const averagePreTestScore = preTestCount > 0 ? totalPreTestScore / preTestCount : 0;
+          const averagePostTestScore = postTestCount > 0 ? totalPostTestScore / postTestCount : 0;
+      
+          return {
+            program,
+            status: programCompleted ? 'Completed' : 'Incomplete',
+            averagePreTestScore,
+            averagePostTestScore,
+          };
+        });
+      
+        setProgramData(data);
+      }, [profile, programs, courses, scores, selectedPhase]);
+      
+
     const renderDesc = () => {
-        return batchs.map((batch, index) => (
-            <div key={index}>
-                <div className="desc">
-                    <div className="batch-title">Batch</div>
-                    <div className="batch">: {batch.batch}</div>
-                    <div className="batch-name">Nama Peserta</div>
-                    <div className="name">: {batch.name}</div>
-                </div>
+        if (loading) {
+            return <div>Loading profile...</div>;
+        }
+
+        if (error) {
+            return <div className="error">Error: {error}</div>;
+        }
+
+        if (!profile) {
+            return <div>No profile data available.</div>;
+        }
+
+        return (
+            <div className="desc">
+                <div className="batch-title">Batch</div>
+                <div className="batch">: {profile.BATCH}</div>
+                <div className="batch-name">Nama Peserta</div>
+                <div className="name">: {profile.NAMA}</div>
             </div>
-        ))
+        );
     };
 
     const renderCourses = () => {
-        const totalScores = courses.reduce((accumulator, course) => {
-            return course.score1 !== null ? accumulator + course.score1 : accumulator;
-        }, 0);
-
-        const validScoresCount = courses.reduce((count, course) => {
-            return course.score1 !== null ? count + 1 : count;
-        }, 0);
-
-        const averageScore = validScoresCount > 0 ? totalScores / validScoresCount : 0;
-
-        const totalScores2 = courses.reduce((accumulator, course) => {
-            return course.score2 !== null ? accumulator + course.score2 : accumulator;
-        }, 0);
-
-        const validScoresCount2 = courses.reduce((count, course) => {
-            return course.score2 !== null ? count + 1 : count;
-        }, 0);
-
-        const averageScore2 = validScoresCount2 > 0 ? totalScores2 / validScoresCount2 : 0;
-
-        const coursex = courses.filter(course => course.selectedValue === selectedValue);
-
+        if (loading) {
+          return <div>Loading...</div>;
+        }
+      
+        if (error) {
+          return <div className="error">Error: {error}</div>;
+        }
+      
+        if (!programData.length) {
+          return <div>No data available.</div>;
+        }
+      
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Course</th>
-                        <th>Pre-test</th>
-                        <th>Post-test</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {coursex.map((course, index) => (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{course.course}</td>
-                            <td>{course.score1 || "-"}</td>
-                            <td>{course.score2 || "-"}</td>
-                            <td>{course.status}</td>
-                        </tr>
-                    ))}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colSpan="2">Rata-rata</td>
-                        <td>{averageScore.toFixed(2)}</td>
-                        <td>{averageScore2.toFixed(2)}</td>
-                        <td colSpan="2"></td>
-                    </tr>
-                </tfoot>
-            </table>
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Program</th>
+                <th className="gold-header">Pre-test Average</th>
+                <th className="gold-header">Post-test Average</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {programData.map((data, index) => (
+                <tr key={data.program.PROGRAMID}>
+                  <td>{index + 1}</td>
+                  <td>{data.program.NAMA}</td>
+                  <td>{data.averagePreTestScore.toFixed(2)}</td>
+                  <td>{data.averagePostTestScore.toFixed(2)}</td>
+                  <td className={data.status === 'Completed' ? 'status-completed' : ''}>
+                    {data.status}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         );
-    };
+      };
 
     const renderKirkpatrickChart = (assessmentType) => {
         const filteredData = kirkpatrick.filter(item => item.assessment === assessmentType);
@@ -180,8 +310,6 @@ function FinalReport() {
             </div>
         );
     };
-    
-    
 
     return (
         <div className="finalreport">
@@ -194,13 +322,16 @@ function FinalReport() {
             </div>
             <div className="selecttile">
                 <div className="phase">
-                    <span>Phase</span>
-                    <select className="phaseselect" id="phaseDropdown" value={selectedValue} onChange={handleChange}>
-                        <option value="option1">Phase 10</option>
-                        <option value="option2">Phase 20 + 70 OJT 1</option>
-                        <option value="option3">Phase 20 + 70 OJT 2</option>
-                        <option value="option4">Phase 20 + 70 OJT 3</option>
-                    </select>
+                  <label htmlFor="phaseDropdown">Phase</label>
+                  <select
+                    className="phaseselect"
+                    id="phaseDropdown"
+                    value={selectedPhase}
+                    onChange={handlePhaseChange}
+                  >
+                    <option value="Phase 10">Phase 10</option>
+                    <option value="Phase 20 + 70">Phase 20 + 70</option>
+                  </select>
                 </div>
             </div>
             <div className="final-container">
