@@ -637,130 +637,261 @@
     cursor: not-allowed;
 }
 
-.assignment5 .title5 {
-    margin-top: 1%;
-    margin-left: 2%;
+.assignment5 .title5 h {
     font-size: 25px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .assignment5 .backbutton {
-    margin-top: 1%;
-    margin-left: 2%;
-    width: 3%;
     cursor: pointer;
-}
-
-.assignment5 .add-assignment {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+    width: 5%;
+    margin-top: 1%;
 }
 
 .assignment5 .add-assignment h2 {
-    text-align: center;
+    font-size: 20px;
     margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+    text-align: center;
 }
 
-.assignment5 .add-assignment form {
+.assignment5 .selecttile {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.assignment5 .add-assignment form input {
-    margin-bottom: 15px;
+.assignment5 .selecttile div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.assignment5 .selecttile label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.assignment5 .phaseselect,
+.assignment5 .topicselect,
+.assignment5 .assignmentselect {
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #fff;
 }
 
-.assignment5 .add-assignment form input:focus {
-    border-color: #007BFF;
-    outline: none;
+.assignment5 form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px 15px;
+    align-items: center;
+    width: 100%;
 }
 
-.assignment5 .add-assignment form button {
+.assignment5 form label {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.assignment5 form input[type="text"],
+.assignment5 form input[type="number"],
+.assignment5 form input[type="date"],
+.assignment5 form select {
+    width: 95%;
     padding: 10px;
-    font-size: 18px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.assignment5 form button {
+    grid-column: 2;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
     color: #fff;
-    background-color: #007BFF;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.assignment5 .add-assignment form button:hover {
-    background-color: #0056b3;
+.assignment5 form button:hover {
+    background-color: #45a049;
 }
 
-.assignment6 .title6 {
-    margin-top: 1%;
-    margin-left: 2%;
-    font-size: 25px;
+.assignment5 .assignment-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.assignment6 .backbutton {
-    margin-top: 1%;
-    margin-left: 2%;
-    width: 3%;
+.assignment5 .assignment-details div {
+    width: 48%;
+}
+
+.assignment5 .assignment-details p {
+    padding: 5px 0;
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.assignment5 .confirm-button {
+    display: block;
+    width: 100px;
+    margin: 20px auto 0;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
 }
 
-.assignment6 .add-assignment {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
+.assignment5 .confirm-button:hover {
+    background-color: #45A049;
+}
+
+.assignment5 .button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.assignment5 .button:hover {
+    transform: translateY(-1px);
+}
+
+.assignment5 .button:active {
+    transform: translateY(0);
+}
+
+.assignment5 .add-question-button {
+    background-color: #28a745;
+}
+
+.assignment5 .delete-question-button {
+    background-color: #dc3545;
+}
+
+.assignment5 .confirm-button:active {
+    background-color: #3e8e41;
+}
+
+.assignment5 .question textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.assignment5 .question-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 100%;
 }
 
-.assignment6 .add-assignment h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+.assignment5 .question-navigation button{
+    width: 6%;
 }
 
-.assignment6 .add-assignment form {
+.assignment5 .question-number {
+    width: 50px;
+    height: 40px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #212529;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.assignment5 .question-number:hover {
+    background-color: #e2e6ea;
+}
+
+.assignment5 .question-number.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.assignment5 .questions-list {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
 }
 
-.assignment6 .add-assignment form input {
-    margin-bottom: 15px;
-    padding: 10px;
-    font-size: 16px;
+.assignment5 .question-item {
+    padding: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.assignment6 .add-assignment form input:focus {
-    border-color: #007BFF;
-    outline: none;
+.assignment5 .question-item h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-weight: bold;
 }
 
-.assignment6 .add-assignment form button {
-    padding: 10px;
-    font-size: 18px;
-    color: #fff;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.assignment5 .question-item p {
+    margin: 0 0 10px 0;
+    color: #555;
 }
 
-.assignment6 .add-assignment form button:hover {
-    background-color: #0056b3;
+.assignment5 .question-item h5 {
+    margin: 10px 0 5px 0;
+    color: #444;
+    font-size: 14px;
+}
+
+.assignment5 .question-item ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.assignment5 .question-item ul li {
+    margin-bottom: 5px;
 }
 
 .editassign .assign-title {
