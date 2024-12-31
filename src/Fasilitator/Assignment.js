@@ -116,6 +116,28 @@ const progress = [
     { selectedTopic: 'Review2', order: '5', name: 'Final Review', value: 0 },
 ];
 
+const assignment = [
+    {selectedTopic: 'General Development', name: 'On Boarding'},
+    {selectedTopic: 'General Development', name: 'SOLUTION Culture'},
+    {selectedTopic: 'General Development', name: 'Behaviour Competencies'},
+    {selectedTopic: 'General Development', name: 'Business Process UT'},
+    {selectedTopic: 'General Development', name: 'Kebhinekaan'},
+    {selectedTopic: 'General Development', name: 'BMS'},
+    {selectedTopic: 'General Development', name: 'Basic Mentoring'},
+    {selectedTopic: 'General Development', name: 'Project Management'},
+    {selectedTopic: 'Orientasi Divisi', name: 'Business Process Divisi'},
+    {selectedTopic: 'Orientasi Divisi', name: 'Functional BMC'},
+    {selectedTopic: 'Orientasi Divisi', name: 'Case Studies'},
+    {selectedTopic: 'BGMS', name: 'Character Building'},
+    {selectedTopic: 'BGMS', name: 'Teamwork'},
+    {selectedTopic: 'BGMS', name: 'Drive & Courage'},
+    {selectedTopic: 'NEOP', name: 'Executive Sharing'},
+    {selectedTopic: 'NEOP', name: 'Corporate Value'},
+    {selectedTopic: 'NEOP', name: 'AHEMCE Value Chain'},
+    {selectedTopic: 'NEOP', name: 'Business Process AHEMCE',},
+    {selectedTopic: 'NEOP', name: 'Personal Branding'},
+];
+
 const questions = [
     {
         question: 'Apa yang dimaksud dengan integritas dalam konteks karakter?',
@@ -139,15 +161,14 @@ const questions = [
     }, 
 ]; 
 
-function Assignment({ onAddAssignment }) {
+function Assignment() {
     const [currentPage, setCurrentPage] = useState('first');
     const [selectedPhase, setSelectedPhase] = useState('Phase 10');
     const [selectedTopic, setSelectedTopic] = useState('General Development');
+    const [selectedAssignment, setSelectedAssignment] = useState('On Boarding');
     const [selectedAssign, setSelectedAssign] = useState(null);
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [selectedTest, setSelectedTest] = useState(null);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [name, setName] = useState('');
     const [title, setTitle] = useState('');
     const [start, setStart] = useState('');
     const [due, setDue] = useState('');
@@ -156,6 +177,9 @@ function Assignment({ onAddAssignment }) {
     const [type, setType] = useState('');
     const [qcount, setQcount] = useState('');
     const [editableDetails, setEditableDetails] = useState({});
+    const [assignmentDetails, setAssignmentDetails] = useState(null);
+    const [questions, setQuestions] = useState([]);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
 
     const handleFirst = () =>{
         setCurrentPage('first');
@@ -186,8 +210,24 @@ function Assignment({ onAddAssignment }) {
     };
 
     const handleAddAll= () => {
-        setCurrentPage('five')
+        setCurrentPage('five0')
     }
+
+    const handleAddAll2= () => {
+        setCurrentPage('five1')
+    }
+
+    const handleAddAll3= () => {
+        setCurrentPage('five2')
+    }
+
+    const handleAddAll4= () => {
+        setCurrentPage('five3')
+    }
+
+    const handleAddFinishClick = () => {
+        handleAddAll4();    
+    };
 
     const handleThird = (assign) => {
         setCurrentPage('third');
@@ -222,7 +262,10 @@ function Assignment({ onAddAssignment }) {
     const handleTopicChange = (event) => {
         setSelectedTopic(event.target.value);
     };
- 
+
+    const handleAssignmentChange = (e) => {
+        setSelectedAssignment(e.target.value);
+    };
 
     const handleCourseClick = (course) => {
         setSelectedAssign(course.name);
@@ -247,18 +290,65 @@ function Assignment({ onAddAssignment }) {
         setCurrentQuestion((prev) => (prev < questions.length - 1 ? prev + 1 : prev));
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newAssignment = { name, title, start, due, status, time, type, qcount: parseInt(qcount) };
-        onAddAssignment(newAssignment);
-        setName('');
-        setTitle('');
-        setStart('');
-        setDue('');
-        setStatus('');
-        setTime('');
-        setType('');
-        setQcount('');
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    
+        if (time < 1) {
+            alert("Time cannot be less than 1 minute.");
+            return;
+        }
+        if (qcount < 1) {
+            alert("Question count cannot be less than 1.");
+            return;
+        }
+    
+        const initialQuestions = Array.from({ length: qcount }, () => ({
+            question: '',
+            options: ['', '', '', ''],
+        }));
+    
+        setAssignmentDetails({
+            phase: selectedPhase,
+            topic: selectedTopic,
+            assignment: selectedAssignment,
+            title,
+            start,
+            due,
+            status: "Incomplete",
+            time,
+            type,
+            qcount,
+        });
+    
+        setQuestions(initialQuestions);
+        setCurrentPage('five1');
+    };
+
+    const handleConfirm = () => {
+        setCurrentPage('five2');
+    };
+
+    const handleQuestionChange = (index, value) => {
+        setQuestions((prevQuestions) =>
+            prevQuestions.map((question, i) =>
+                i === index ? { ...question, question: value } : question
+            )
+        );
+    };
+
+    const handleOptionChange = (questionIndex, optionIndex, value) => {
+        setQuestions((prevQuestions) =>
+            prevQuestions.map((question, i) =>
+                i === questionIndex
+                    ? {
+                        ...question,
+                        options: question.options.map((option, j) =>
+                            j === optionIndex ? value : option
+                        ),
+                    }
+                    : question
+            )
+        );
     };
 
     const getDescription = () => {
@@ -740,19 +830,54 @@ function Assignment({ onAddAssignment }) {
                         </div>
                     </div>
                 )
-            case 'five':
-                return(
-                    <div className="assignment6">
-                        <div className="title6">
+            case 'five0':
+                return (
+                    <div className="assignment5">
+                        <div className="title5">
                             <h><b>Assignment</b></h>
                         </div>
                         <hr />
                         <img className="backbutton" onClick={handleFirst} src="/src/files/icons/backbutton.png" alt="Back" />
                         <div className="add-assignment">
                             <h2>Add New Assignment</h2>
+                            <div className="selecttile">
+                                <div className="phase">
+                                    <label htmlFor="phaseDropdown"><b>Phase:</b></label>
+                                    <select className="phaseselect" id="phaseDropdown" value={selectedPhase} onChange={handlePhaseChange}>
+                                        <option value="Phase 10">Phase 10</option>
+                                        <option value="Phase 20 + 70">Phase 20 + 70</option>
+                                    </select>
+                                </div>
+                                <div className="topic">
+                                    <label htmlFor="topicDropdown"><b>Topic:</b></label>
+                                    <select className="topicselect" id="topicDropdown" value={selectedTopic} onChange={handleTopicChange}>
+                                        {selectedPhase === "Phase 10" && (
+                                            <>
+                                                <option value="General Development">General Development</option>
+                                                <option value="Orientasi Divisi">Orientasi Divisi</option>
+                                                <option value="BGMS">BGMS</option>
+                                                <option value="NEOP">NEOP</option>
+                                                <option value="Review1">Review</option>
+                                            </>
+                                        )}
+                                        {selectedPhase === "Phase 20 + 70" && (
+                                            <>
+                                                <option value="Project">Project</option>
+                                                <option value="Review2">Review</option>
+                                            </>
+                                        )}
+                                    </select>
+                                </div>
+                                <div className="assignment-name">
+                                    <label htmlFor="assignmentDropdown"><b>Assignment:</b></label>
+                                    <select className="assignmentselect" id="assignmentDropdown" value={selectedAssignment} onChange={handleAssignmentChange}>
+                                        {assignment.map((item, index) => (
+                                            <option key={index} value={item.name}>{item.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
                             <form onSubmit={handleSubmit}>
-                                <h><b>Name:</b></h>
-                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
                                 <h><b>Title:</b></h>
                                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
                                 <h><b>Start Date:</b></h>
@@ -760,18 +885,145 @@ function Assignment({ onAddAssignment }) {
                                 <h><b>Due Date:</b></h>
                                 <input type="date" value={due} onChange={(e) => setDue(e.target.value)} required />
                                 <h><b>Status:</b></h>
-                                <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} required />
+                                <input type="text" value="Incomplete" readOnly />
                                 <h><b>Time (minutes):</b></h>
-                                <input type="number" value={time} onChange={(e) => setTime(e.target.value)} required />
+                                <input 
+                                    type="number" 
+                                    value={time} 
+                                    onChange={(e) => setTime(e.target.value)} 
+                                    required 
+                                />
                                 <h><b>Type:</b></h>
-                                <input type="text" value={type} onChange={(e) => setType(e.target.value)} required />
+                                <select value={type} onChange={(e) => setType(e.target.value)} required>
+                                    <option value="" disabled>Select Type</option>
+                                    <option value="Pilihan Ganda">Pilihan Ganda</option>
+                                    <option value="Esai">Esai</option>
+                                </select>
                                 <h><b>Question Count:</b></h>
-                                <input type="number" value={qcount} onChange={(e) => setQcount(e.target.value)} required />
+                                <input 
+                                    type="number" 
+                                    value={qcount} 
+                                    onChange={(e) => setQcount(e.target.value)} 
+                                    required 
+                                />
                                 <button type="submit">Next</button>
                             </form>
                         </div>
                     </div>
+                );
+            case 'five1':
+                return(
+                    <div className="assignment5">
+                        <div className="title5">
+                            <h><b>Assignment Details</b></h>
+                        </div>
+                        <hr />
+                        <img className="backbutton" onClick={handleAddAll} src="/src/files/icons/backbutton.png" alt="Back" />
+                        {assignmentDetails && (
+                            <div className="assignment-details">
+                                <div>
+                                    <p><b>Phase:</b> {assignmentDetails.phase}</p>
+                                    <p><b>Topic:</b> {assignmentDetails.topic}</p>
+                                    <p><b>Assignment:</b> {assignmentDetails.assignment}</p>
+                                    <p><b>Title:</b> {assignmentDetails.title}</p>
+                                    <p><b>Start Date:</b> {assignmentDetails.start}</p>
+                                </div>
+                                <div>
+                                    <p><b>Due Date:</b> {assignmentDetails.due}</p>
+                                    <p><b>Status:</b> {assignmentDetails.status}</p>
+                                    <p><b>Time (minutes):</b> {assignmentDetails.time}</p>
+                                    <p><b>Type:</b> {assignmentDetails.type}</p>
+                                    <p><b>Question Count:</b> {assignmentDetails.qcount}</p>
+                                </div>
+                            </div>
+                        )}
+                        <button className="confirm-button" onClick={handleConfirm}>Confirm</button>
+                    </div>
                 )
+            case 'five2':
+                return (
+                    <div className="assignment5">
+                        <div className="title5">
+                            <h><b>Assignment Questions</b></h>
+                        </div>
+                        <hr />
+                        <img className="backbutton" onClick={handleAddAll2} src="/src/files/icons/backbutton.png" alt="Back" />
+                        <div className="question-navigation">
+                            {questions.map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`question-number ${currentQuestion === index ? 'active' : ''}`}
+                                    onClick={() => setCurrentQuestion(index)}
+                                >
+                                    {index + 1}
+                                </button>
+                            ))}
+                        </div>        
+                        <div className="question-container">
+                            <div className="question">
+                                <textarea
+                                    value={questions[currentQuestion]?.question || ''}
+                                    onChange={(e) => handleQuestionChange(currentQuestion, e.target.value)}
+                                    placeholder="Enter your question here"
+                                />
+                            </div>
+                            <hr />
+                            <div className="options">
+                                {questions[currentQuestion]?.options.map((option, index) => (
+                                    <div key={index} className="option">
+                                        <input
+                                            type="radio"
+                                            id={`option${index}`}
+                                            name="option"
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            value={option}
+                                            onChange={(e) => handleOptionChange(currentQuestion, index, e.target.value)}
+                                            placeholder={`Option ${index + 1}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="navigation-buttons"> 
+                                {currentQuestion > 0 && (
+                                    <button onClick={handlePreviousClick}>Previous</button>
+                                )}
+                                {currentQuestion < questions.length - 1 ? (
+                                    <button onClick={handleNextClick}>Next</button>
+                                ) : (
+                                    <button onClick={handleAddFinishClick}>Finish</button>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            case 'five3':
+                return (
+                    <div className="assignment5">
+                        <div className="title5">
+                            <h><b>Submitted Questions</b></h>
+                        </div>
+                        <hr />
+                        <img className="backbutton" onClick={handleAddAll3} src="/src/files/icons/backbutton.png" alt="Back" />
+                        <div className="questions-list">
+                            {questions.map((question, index) => (
+                                <div key={index} className="question-item">
+                                    <h4>Question {index + 1}:</h4>
+                                    <p>{question.question}</p>
+                                    <h5>Options:</h5>
+                                    <ul>
+                                        {question.options.map((option, optIndex) => (
+                                            <li key={optIndex}>{option}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                            {questions.length === 0 && <p>No questions submitted yet.</p>}
+                        </div>
+                    </div>
+                );
             case 'main2':
                 return (
                     <div className="assignment1">
