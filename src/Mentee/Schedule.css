@@ -64,48 +64,48 @@
     font-size: 18px;
 }
 
-.schedule .event-details {
+.schedule .activity-details {
     margin-left: 20px;
     width: 90%;
     padding: 10px;
     border-radius: 5px;
 }
 
-.schedule .event {
+.schedule .activity {
     margin-bottom: 20px;
 }
 
-.schedule .event-details {
+.schedule .activity-details {
     margin-top: 20px;
 }
 
-.schedule .event {
+.schedule .activity {
     padding: 15px;
     border: 3px solid skyblue;
     border-radius: 5px;
 }
 
-.schedule .event.deadline-event {
+.schedule .activity.deadline-activity {
     border-color: red;
 }
 
-.schedule .event + .event {
+.schedule .activity + .activity {
     margin-top: 20px;
 }
 
-.schedule .event img{
+.schedule .activity img {
     margin-right: 5px;
 }
 
-.schedule .event-title{
+.schedule .activity-nama {
     margin-bottom: 8px;
 }
 
-.schedule .event-place img{
+.schedule .activity-location img {
     margin-right: 10px;
 }
 
-.schedule .event-title {
+.schedule .activity-nama {
     font-size: 16px;
     font-weight: bold;
 }
@@ -142,7 +142,7 @@
     transform: translateX(-50%);
     width: 15%;
     height: 15%;
-    background-color: gold;
+    background-color: blue;
     border-radius: 50%;
 }
 
