@@ -45,9 +45,8 @@
   font-size: small;
   display: flex;
   flex-direction: row;
-  margin-left: 29.25%;
+
   color: darkgray;
-  float: right;
 
 }
 
@@ -174,7 +173,7 @@ width: 20vh;
 }
 
 .profile .editprofile-container{
-  height: 105vh;
+  height: 115vh;
   padding: 2%;
   margin: 2%;
   border: 1px solid black;
