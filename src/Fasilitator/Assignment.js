@@ -74,12 +74,14 @@ function Assignment({assignmentId, onBack}) {
   const [assignmentDetails, setAssignmentDetails] = useState(null);
   const [editableDetails, setEditableDetails] = useState({});
 
-
   const handleOptionChange = useCallback(
-    (questionId, selectedAnswer) => {
+    (questionId, optionIndex, selectedAnswer) => {
       setAnswers((prevAnswers) => ({
         ...prevAnswers,
-        [questionId]: selectedAnswer,
+        [questionId]: {
+          ...prevAnswers[questionId],
+          [optionIndex]: selectedAnswer,
+        },
       }));
     },
     [setAnswers]
@@ -515,14 +517,15 @@ function Assignment({assignmentId, onBack}) {
       return question.PILIHAN.split(";;").map((option, index) => (
         <div key={index} className="option">
           <input
-            type="radio"
+            type="text"
             id={`option${question.SOAL_ID}-${index}`}
             name={`question${question.SOAL_ID}`}
-            value={option}
-            onChange={() => handleOptionChange(question.SOAL_ID, option)}
-            checked={answers[question.SOAL_ID] === option}
+            value={answers[question.SOAL_ID]?.[index] || option}
+            onChange={(e) =>
+              handleOptionChange(question.SOAL_ID, index, e.target.value)
+            }
+            placeholder={`Option ${String.fromCharCode(65 + index)}`}
           />
-          <label htmlFor={`option${question.SOAL_ID}-${index}`}>{option}</label>
         </div>
       ));
     },
@@ -1466,18 +1469,12 @@ const handleQuestionChange = (index, value) => {
                         <div className="options">
                             {questions[currentQuestion]?.options.map((option, index) => (
                                 <div key={index} className="option">
-                                    <input
-                                        type="radio"
-                                        id={`option${index}`}
-                                        name="option"
-                                        required
-                                    />
-                                    <input
-                                        type="text"
-                                        value={option}
-                                        onChange={(e) => handleOptionChange(currentQuestion, index, e.target.value)}
-                                        placeholder={`Option ${index + 1}`}
-                                    />
+                                <input
+                                    type="text"
+                                    value={answers[currentQuestion]?.[index] || option} // Use the answer if it exists, else fallback to the option
+                                    onChange={(e) => handleOptionChange(currentQuestion, index, e.target.value)} // Update the answer for the current option
+                                    placeholder={`Option ${String.fromCharCode(65 + index)}`} // Display Option A, B, C, D
+                                />
                                 </div>
                             ))}
                         </div>
@@ -1494,31 +1491,46 @@ const handleQuestionChange = (index, value) => {
                     </div>
                 </div>
             );
-        case 'six3':
-            return (
-                <div className="assignment5">
-                    <div className="title5">
-                        <h><b>Submitted Questions</b></h>
-                    </div>
-                    <hr />
-                    <img className="backbutton" onClick={handleAddAll3} src="/src/files/icons/backbutton.png" alt="Back" />
-                    <div className="questions-list">
-                        {questions.map((question, index) => (
-                            <div key={index} className="question-item">
-                                <h4>Question {index + 1}:</h4>
-                                <p>{question.question}</p>
-                                <h5>Options:</h5>
-                                <ul>
+            case 'six3':
+                return (
+                    <div className="assignment5">
+                        <div className="title5">
+                            <h><b>Submitted Questions</b></h>
+                        </div>
+                        <hr />
+                        <img className="backbutton" onClick={handleAddAll3} src="/src/files/icons/backbutton.png" alt="Back" />
+                        <div className="questions-list">
+                            {questions.length > 0 ? (
+                                questions.map((question, index) => (
+                                <div key={index} className="question-item">
+                                    <h4>Question {index + 1}:</h4>
+                                    <p>{question.question}</p>
+                                    <h5>Options:</h5>
+                                    <div className="options-container">
                                     {question.options.map((option, optIndex) => (
-                                        <li key={optIndex}>{option}</li>
+                                        <div key={optIndex} className="option-item">
+                                        <input
+                                            type="radio"
+                                            id={`option${question.SOAL_ID}-${optIndex}`}
+                                            name={`question${question.SOAL_ID}`}
+                                            value={option}
+                                            onChange={() => handleOptionChange(question.SOAL_ID, option)}  // Handle option change
+                                            checked={answers[question.SOAL_ID] === option}  // Check if this option is selected
+                                        />
+                                        <label htmlFor={`option${question.SOAL_ID}-${optIndex}`}>
+                                            {String.fromCharCode(65 + optIndex)}. {option}
+                                        </label>
+                                        </div>
                                     ))}
-                                </ul>
+                                    </div>
+                                </div>
+                                ))
+                            ) : (
+                                <p>No questions submitted yet.</p>
+                            )}
                             </div>
-                        ))}
-                        {questions.length === 0 && <p>No questions submitted yet.</p>}
                     </div>
-                </div>
-            );
+                );
         case 'main2':
             return (
                 <div className="assignment1">
